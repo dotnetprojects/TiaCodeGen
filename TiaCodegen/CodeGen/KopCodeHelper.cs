@@ -813,7 +813,6 @@ namespace TiaCodegen.CodeGen
         {
             bool fixAgain = false;
             List<IOperationOrSignal> newChildren = new List<IOperationOrSignal>();
-            int i = 0;
             if (s != null && s.Children != null)
             {
                 if (s is ICoil && s.Children.Count == 2 && s.Children[1] is Signal)  // Coils at least need one And or Or, so to fix insert one
