@@ -27,7 +27,7 @@ Library to Generate TIA KOP Code via C#
 
 This will create following
 
-!(sample1.png)
+![](sample1.png)
 
 ```csharp
             var codeblock = new CodeBlock();
@@ -51,4 +51,4 @@ This will create following
 
 This will create following
 
-!(sample2.png)
+![](sample2.png)
