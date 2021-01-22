@@ -1,0 +1,30 @@
+﻿namespace TiaCodegen.Enums
+{
+    public enum SignalType
+    {
+        Bool,
+        Byte,
+        Int,
+        DInt,
+        UInt,
+        Time,
+        UDT,
+        String,
+        Real,
+        Constant,
+        ConstantBool,
+        ConstantInt,
+        ConstantDInt,
+        ConstantUInt,
+        ConstantUDInt,
+        ConstantTime,
+        ConstantString,
+        ConstantReal,
+        ConstantWord,
+        Custom,
+        Void,
+        Variant,
+        ProgramAlarm,
+        Word
+    }
+}
