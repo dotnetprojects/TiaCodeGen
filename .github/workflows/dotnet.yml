@@ -17,15 +17,25 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
+    - name: Fetch tags and master for GitVersion
+      run: |
+        git fetch --tags
+        git branch --create-reflog master origin/master
+
+    - name: GitVersion
+      id: gitversion  # step id used as reference for output values
+      uses: roryprimrose/rungitversion@v1
+
+    - name: Update project version
+      uses: roryprimrose/set-vs-sdk-project-version@v1
+      with:
+        version: ${{ steps.gitversion.outputs.NuGetVersionV2 }}
+        assemblyVersion: ${{ steps.gitversion.outputs.AssemblySemVer }}
+        fileVersion: ${{ steps.gitversion.outputs.MajorMinorPatch }}
+        informationalVersion: ${{ steps.gitversion.outputs.InformationalVersion }}
+    
     - name: Restore dependencies
       run: dotnet restore
-    - uses: SiqiLu/dotnet-bump-version@master
-      with:
-          # Version files to bump version.
-          # You can use Glob pattern string (like "**/*.csproj") or Glob patterns array json string (like "["**/*.csproj", "v1.version", "**/*.version.json", "!v2.version.json"]").
-          # Patterns supported by Globby are supported.Leading ! changes the meaning of an include pattern to exclude.
-          version_files: \*_/_.csproj
-          github_token: ${{ secrets.GITHUB_TOKEN }}
     - name: Build
       run: dotnet build --no-restore
     - name: Test
