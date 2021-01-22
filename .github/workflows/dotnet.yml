@@ -12,13 +12,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: SiqiLu/dotnet-bump-version@master
-      with:
-          # Version files to bump version.
-          # You can use Glob pattern string (like "**/*.csproj") or Glob patterns array json string (like "["**/*.csproj", "v1.version", "**/*.version.json", "!v2.version.json"]").
-          # Patterns supported by Globby are supported.Leading ! changes the meaning of an include pattern to exclude.
-          version_files: \*_/_.csproj
-          github_token: ${{ secrets.GITHUB_TOKEN }}
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
@@ -26,6 +19,13 @@ jobs:
         dotnet-version: 5.0.x
     - name: Restore dependencies
       run: dotnet restore
+    - uses: SiqiLu/dotnet-bump-version@master
+      with:
+          # Version files to bump version.
+          # You can use Glob pattern string (like "**/*.csproj") or Glob patterns array json string (like "["**/*.csproj", "v1.version", "**/*.version.json", "!v2.version.json"]").
+          # Patterns supported by Globby are supported.Leading ! changes the meaning of an include pattern to exclude.
+          version_files: \*_/_.csproj
+          github_token: ${{ secrets.GITHUB_TOKEN }}
     - name: Build
       run: dotnet build --no-restore
     - name: Test
