@@ -23,7 +23,7 @@ Library to Generate TIA KOP Code via C#
             var block = new Block("Test", "blabla", codeblock);
             block.Interface = TestInterface;
             var xml = block.GetCode();
-´´´
+```
 
 This will create following
 
@@ -47,7 +47,7 @@ This will create following
             var block = new Block("Test", "blabla", codeblock);
             block.Interface = TestInterface;
             var xml = block.GetCode();
-´´´
+```
 
 This will create following
 
