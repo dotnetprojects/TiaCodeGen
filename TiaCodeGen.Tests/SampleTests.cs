@@ -11,7 +11,7 @@ namespace TiaCodegen.Samples
     [TestFixture]
     public class SampleTests
     {
-        const string TestInterface=@"
+        const string TestInterface = @"
 <Interface>
 	<Sections xmlns=""http://www.siemens.com/automation/Openness/SW/Interface/v3"">
 	  <Section Name=""Input"">
@@ -106,6 +106,35 @@ namespace TiaCodegen.Samples
             var block = new Block("Test", "blabla", codeblock);
             var xml = block.GetCode();
             block.Interface = TestInterface;
+        }
+
+        [Test]
+        public void CreateBlock3()
+        {
+            var codeblock = new CodeBlock();
+
+            var nw = new Network("Test2");
+            nw.Add(
+                new Coil(
+                    new Signal("#Bool1"),
+                    new And(
+                        new Signal("#Bool2"),
+                        new Or(
+                             new Signal("#Bool3"),
+                             new And(
+                                new Signal("#Bool1"),
+                                new Signal("#Bool4")
+                            )
+                        )
+                    )
+                )
+            );
+
+            codeblock.Add(nw);
+
+            var block = new Block("Test", "blabla", codeblock);
+            block.Interface = TestInterface;
+            var xml = block.GetCode();
         }
     }
 }

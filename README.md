@@ -52,3 +52,34 @@ This will create following
 This will create following
 
 ![](sample2.png)
+
+```csharp
+            var codeblock = new CodeBlock();
+
+            var nw = new Network("Test2");
+            nw.Add(
+                new Coil(
+                    new Signal("#Bool1"),
+                    new And(
+                        new Signal("#Bool2"),
+                        new Or(
+                             new Signal("#Bool3"),
+                             new And(
+                                new Signal("#Bool1"),
+                                new Signal("#Bool4")
+                            )
+                        )
+                    )
+                )
+            );
+
+            codeblock.Add(nw);
+
+            var block = new Block("Test", "blabla", codeblock);
+            block.Interface = TestInterface;
+            var xml = block.GetCode();
+```
+
+This will create following
+
+![](sample3.png)
