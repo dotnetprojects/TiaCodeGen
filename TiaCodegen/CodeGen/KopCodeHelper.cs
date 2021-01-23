@@ -38,7 +38,6 @@ namespace TiaCodegen.CodeGen
 
         private ulong _currentId = 21;
         private CodeBlock _block;
-        private Dictionary<string, ulong> _signalsIdDictionary = new Dictionary<string, ulong>();
         private StringBuilder _sb;
 
         private void AddSignalDefinitions(Network network)

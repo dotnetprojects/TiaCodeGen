@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System.Collections.Generic;
 using TiaCodegen.Blocks;
 using TiaCodegen.Commands;
 using TiaCodegen.Commands.Coils;
@@ -127,6 +128,31 @@ namespace TiaCodegen.Samples
                             )
                         )
                     )
+                )
+            );
+
+            codeblock.Add(nw);
+
+            var block = new Block("Test", "blabla", codeblock);
+            block.Interface = TestInterface;
+            var xml = block.GetCode();
+        }
+
+        [Test]
+        public void DynamicSample1()
+        {
+            var codeblock = new CodeBlock();
+
+            var signals = new List<string>() { "#Bool1", "#Bool2", "#Bool3" };
+            var and = new And();
+            foreach (var s in signals)
+                and.Add(new Signal(s));
+
+            var nw = new Network("Test2");
+            nw.Add(
+                new Coil(
+                    new Signal("#Bool4"),
+                    and
                 )
             );
 
