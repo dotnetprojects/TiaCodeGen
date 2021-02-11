@@ -291,7 +291,10 @@ namespace TiaCodegen.CodeGen
 
                     if (fc is ArithmeticCall)
                     {
-                        _sb.AppendLine("<TemplateValue Name=\"Card\" Type=\"Cardinality\">" + (fc.Children.Count() - 1) + "</TemplateValue>");
+                        if (fc is AddCall)
+                        {
+                            _sb.AppendLine("<TemplateValue Name=\"Card\" Type=\"Cardinality\">" + (fc.Children.Count() - 1) + "</TemplateValue>");
+                        }
                         _sb.AppendLine("<TemplateValue Name=\"SrcType\" Type=\"Type\">" + ((ArithmeticCall)fc).Type + "</TemplateValue>");
                     }
                     _sb.AppendLine("</Part>");
