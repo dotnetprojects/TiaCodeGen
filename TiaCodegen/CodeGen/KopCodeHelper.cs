@@ -288,10 +288,10 @@ namespace TiaCodegen.CodeGen
                     if (fc.AdditionalInnerXml != null)
                         _sb.AppendLine(fc.AdditionalInnerXml);
 
-                    if (fc is AddCall)
+                    if (fc is AddCall || fc is SubCall)
                     {
                         _sb.AppendLine("<TemplateValue Name=\"Card\" Type=\"Cardinality\">" + (fc.Children.Count() - 1) + "</TemplateValue>");
-                        _sb.AppendLine("<TemplateValue Name=\"SrcType\" Type=\"Type\">" + ((AddCall)fc).Type + "</TemplateValue>");
+                        _sb.AppendLine("<TemplateValue Name=\"SrcType\" Type=\"Type\">" + ((SystemFunctionCall)fc).Type + "</TemplateValue>");
                     }
                     _sb.AppendLine("</Part>");
                 }
@@ -445,7 +445,7 @@ namespace TiaCodegen.CodeGen
                 foreach (var intf in fc.Interface)
                 {
                     var sng = intf.Value.OperationOrSignal;
-                    if (fc is AddCall && sng == null)
+                    if ((fc is AddCall || fc is SubCall) && sng == null)
                     {
 
                     }
