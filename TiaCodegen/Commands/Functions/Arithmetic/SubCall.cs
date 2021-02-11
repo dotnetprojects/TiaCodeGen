@@ -1,14 +1,11 @@
 ﻿using System.Linq;
-using TiaCodegen.Commands.Functions.Base;
 using TiaCodegen.Enums;
 using TiaCodegen.Interfaces;
 
-namespace TiaCodegen.Commands.Functions
+namespace TiaCodegen.Commands.Functions.Arithmetic
 {
-    public class SubCall : SystemFunctionCall
+    public class SubCall : ArithmeticCall
     {
-        public string Type { get; set; }
-
         public SubCall(string type,
             IOperationOrSignal in1,
             IOperationOrSignal in2,
