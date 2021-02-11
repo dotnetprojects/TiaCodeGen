@@ -1,11 +1,14 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
 using TiaCodegen.Blocks;
 using TiaCodegen.Commands;
 using TiaCodegen.Commands.Coils;
 using TiaCodegen.Commands.Comparisons;
+using TiaCodegen.Commands.Functions.Base;
 using TiaCodegen.Commands.Signals;
 using TiaCodegen.Enums;
+using TiaCodegen.Interfaces;
 
 namespace TiaCodegen.Samples
 {
@@ -155,6 +158,42 @@ namespace TiaCodegen.Samples
                     and
                 )
             );
+
+            codeblock.Add(nw);
+
+            var block = new Block("Test", "blabla", codeblock);
+            block.Interface = TestInterface;
+            var xml = block.GetCode();
+        }
+
+        [Test]
+        public void TestCallWithOr()
+        {
+            var codeblock = new CodeBlock();
+
+            var nw = new Network("Test2");
+
+            var f = new FunctionBlockCall("CheckContour", "CheckContourInstance");
+            f.Interface["BoolPar"] = new IOperationOrSignalDirectionWrapper(new Or(new Signal("P1"), new Signal("P2")), Direction.InOut);
+            f.Children.AddRange(f.Interface.Values.Where(x => x.OperationOrSignal != null).Select(x => x.OperationOrSignal));
+            nw.Add(f);
+
+            codeblock.Add(nw);
+
+            var block = new Block("Test", "blabla", codeblock);
+            block.Interface = TestInterface;
+            var xml = block.GetCode();
+        }
+
+        [Test]
+        public void TestCallWithInRange()
+        {
+            var codeblock = new CodeBlock();
+
+            var nw = new Network("Test2");
+
+            var f = new InRangeCall(new Signal(1), new Signal(2), new Signal(3), new Coil(new Signal("MW0", SignalType.Int)));
+            nw.Add(f);
 
             codeblock.Add(nw);
 

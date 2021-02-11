@@ -291,11 +291,18 @@ namespace TiaCodegen.CodeGen
 
                     if (fc is ArithmeticCall)
                     {
-                        if (fc is AddCall)
+                        if (fc is VariableArithmeticCall)
                         {
                             _sb.AppendLine("<TemplateValue Name=\"Card\" Type=\"Cardinality\">" + (fc.Children.Count() - 1) + "</TemplateValue>");
                         }
                         _sb.AppendLine("<TemplateValue Name=\"SrcType\" Type=\"Type\">" + ((ArithmeticCall)fc).Type + "</TemplateValue>");
+                    }
+                    else if (fc is InRangeCall || fc is OutRangeCall)
+                    {
+                        var srctype = ((Signal)op.Children.First()).SignalType.ToString();
+                        if (srctype.StartsWith("Constant"))
+                            srctype = srctype.Substring(8);
+                        _sb.AppendLine("<TemplateValue Name=\"SrcType\" Type=\"Type\">" + srctype + "</TemplateValue>");
                     }
                     _sb.AppendLine("</Part>");
                 }
@@ -502,7 +509,7 @@ namespace TiaCodegen.CodeGen
                         }
                         else
                         {
-                            var inName = sng is FunctionCall ? "en" : "in";
+                            var inName = sng is FunctionCall ? ((sng is InRangeCall || sng is OutRangeCall) ? "pre" : "en") : "in";
                             _sb.AppendLine("<NameCon UId=\"" + sng.OperationId + "\" Name=\"" + inName + "\" />");
                         }
                         _sb.AppendLine("</Wire>");
@@ -623,7 +630,7 @@ namespace TiaCodegen.CodeGen
 
                             var ipName = "in";
 
-                            if (orSignal is BaseOperationOrSignal && ((BaseOperationOrSignal)orSignal).GetFirstChildNotAnd() is CompareOperator)
+                            if (orSignal is BaseOperationOrSignal && (((BaseOperationOrSignal)orSignal).GetFirstChildNotAnd() is CompareOperator || ((BaseOperationOrSignal)orSignal).GetFirstChildNotAnd() is InRangeCall || ((BaseOperationOrSignal)orSignal).GetFirstChildNotAnd() is OutRangeCall))
                             {
                                 ipName = "pre";
                             }
@@ -642,7 +649,7 @@ namespace TiaCodegen.CodeGen
                         var srcName = ch is Signal ? ((Signal)ch).Name : ch.GetType().Name;
                         var dstName = next is Signal ? ((Signal)next).Name : next.GetType().Name;
                         _sb.AppendLine("<NameCon UId=\"" + ch.OperationId + "\" Name=\"" + outName + "\" />" + "  <!-- " + srcName + " -->");
-                        if (next is CompareOperator)
+                        if (next is CompareOperator || next is InRangeCall || next is OutRangeCall)
                         {
                             _sb.AppendLine("<NameCon UId=\"" + next.OperationId + "\" Name=\"pre\" />" + "  <!-- " + dstName + " -->");
                         }
@@ -669,7 +676,7 @@ namespace TiaCodegen.CodeGen
                                     akC = c.Children.First();
                                 }
 
-                                if (akC is CompareOperator)
+                                if (akC is CompareOperator || akC is InRangeCall || akC is OutRangeCall)
                                 {
                                     _sb.AppendLine("<NameCon UId=\"" + akC.OperationId + "\" Name=\"pre\" />" + "  <!-- " + akC.GetType().Name + " -->");
                                 }
@@ -749,7 +756,16 @@ namespace TiaCodegen.CodeGen
                             break;
                     }
                     if (!noPowerRail)
-                        _sb.AppendLine("<NameCon UId=\"" + s.OperationId + "\" Name=\"en\" />" + "  <!-- " + ((FunctionCall)s).FunctionName + " -->");
+                    {
+                        if (s is InRangeCall || s is OutRangeCall)
+                        {
+                            _sb.AppendLine("<NameCon UId=\"" + s.OperationId + "\" Name=\"pre\" />" + "  <!-- " + ((FunctionCall)s).FunctionName + " -->");
+                        }
+                        else
+                        {
+                            _sb.AppendLine("<NameCon UId=\"" + s.OperationId + "\" Name=\"en\" />" + "  <!-- " + ((FunctionCall)s).FunctionName + " -->");
+                        }
+                    }
                     noPowerRail = true;
                 }
                 else if (s.Parent is FunctionCall)
