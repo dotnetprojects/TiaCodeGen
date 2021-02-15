@@ -54,7 +54,7 @@ namespace TiaCodegen.Samples
         public void CreateBlock1()
         {
             var codeblock = new CodeBlock();
-            var nw = new Network("Test1");
+            var nw = new Network("Test1", "Test1en");
 
             nw.Add(
                 new And(
@@ -77,7 +77,7 @@ namespace TiaCodegen.Samples
         {
             var codeblock = new CodeBlock();
 
-            var nw = new Network("Test2");
+            var nw = new Network("Test2", "Test2en");
             nw.Add(
             new And(
                 new Signal("#Bool1"),
@@ -117,7 +117,7 @@ namespace TiaCodegen.Samples
         {
             var codeblock = new CodeBlock();
 
-            var nw = new Network("Test2");
+            var nw = new Network("Test2", "Test2en");
             nw.Add(
                 new Coil(
                     new Signal("#Bool1"),
@@ -151,7 +151,7 @@ namespace TiaCodegen.Samples
             foreach (var s in signals)
                 and.Add(new Signal(s));
 
-            var nw = new Network("Test2");
+            var nw = new Network("Test2", "test2en");
             nw.Add(
                 new Coil(
                     new Signal("#Bool4"),
@@ -171,7 +171,7 @@ namespace TiaCodegen.Samples
         {
             var codeblock = new CodeBlock();
 
-            var nw = new Network("Test2");
+            var nw = new Network("Test2", "Test2en");
 
             var f = new FunctionBlockCall("CheckContour", "CheckContourInstance");
             f.Interface["BoolPar"] = new IOperationOrSignalDirectionWrapper(new Or(new Signal("P1"), new Signal("P2")), Direction.InOut);
@@ -190,7 +190,7 @@ namespace TiaCodegen.Samples
         {
             var codeblock = new CodeBlock();
 
-            var nw = new Network("Test2");
+            var nw = new Network("Test2", "Test2en");
 
             var f = new InRangeCall(new Signal(1), new Signal(2), new Signal(3), new Coil(new Signal("MW0", SignalType.Int)));
             nw.Add(f);
