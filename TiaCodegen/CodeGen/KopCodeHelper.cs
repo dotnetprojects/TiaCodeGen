@@ -962,6 +962,13 @@ namespace TiaCodegen.CodeGen
                     _sb.AppendLine("<Text>" + network.Description + "</Text>");
                     _sb.AppendLine("</AttributeList>");
                     _sb.AppendLine("</MultilingualTextItem>");
+                    _sb.AppendLine("<MultilingualTextItem ID=\"" + id + "\" CompositionName=\"Items\">");
+                    id++;
+                    _sb.AppendLine("<AttributeList>");
+                    _sb.AppendLine("<Culture>en-GB</Culture>");
+                    _sb.AppendLine("<Text>" + network.DescriptionEnglish + "</Text>");
+                    _sb.AppendLine("</AttributeList>");
+                    _sb.AppendLine("</MultilingualTextItem>");
                     _sb.AppendLine("</ObjectList>");
                     _sb.AppendLine("</MultilingualText>");
 
@@ -973,6 +980,13 @@ namespace TiaCodegen.CodeGen
                     _sb.AppendLine("<AttributeList>");
                     _sb.AppendLine("<Culture>de-DE</Culture>");
                     _sb.AppendLine("<Text>" + EscapeForXml(network.NetworkTitle) + "</Text>");
+                    _sb.AppendLine("</AttributeList>");
+                    _sb.AppendLine("</MultilingualTextItem>");
+                    _sb.AppendLine("<MultilingualTextItem ID=\"" + id + "\" CompositionName=\"Items\">");
+                    id++;
+                    _sb.AppendLine("<AttributeList>");
+                    _sb.AppendLine("<Culture>en-GB</Culture>");
+                    _sb.AppendLine("<Text>" + EscapeForXml(network.NetworkTitleEnglish) + "</Text>");
                     _sb.AppendLine("</AttributeList>");
                     _sb.AppendLine("</MultilingualTextItem>");
                     _sb.AppendLine("</ObjectList>");

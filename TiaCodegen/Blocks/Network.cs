@@ -9,17 +9,20 @@ namespace TiaCodegen.Blocks
 
         public string Description { get; set; }
 
-        public Network(string networkTitle = null, params IOperationOrSignal[] operationOrSignals)
-            : base(operationOrSignals)
-        {
-            NetworkTitle = networkTitle;
-        }
+        public string NetworkTitleEnglish { get; set; }
 
-        public Network(string networkTitle, string description, params IOperationOrSignal[] operationOrSignals)
+        public string DescriptionEnglish { get; set; }
+
+        public Network(params IOperationOrSignal[] operationOrSignals)
+            : base(operationOrSignals)
+        { }
+
+
+        public Network(string networkTitle, string networkTitleEnglish, params IOperationOrSignal[] operationOrSignals)
             : base(operationOrSignals)
         {
             NetworkTitle = networkTitle;
-            Description = description;
+            NetworkTitleEnglish = networkTitleEnglish;
         }
     }
 }

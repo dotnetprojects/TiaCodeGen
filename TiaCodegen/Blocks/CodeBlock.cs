@@ -8,8 +8,6 @@ namespace TiaCodegen.Blocks
 
         public bool Safety { get; set; }
 
-        public string Comment { get; set; }
-
         public CodeBlock() : base()
         {
             Name = "";
