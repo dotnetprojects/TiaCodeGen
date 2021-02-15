@@ -8,6 +8,9 @@ namespace TiaCodegen.Blocks
         public int Number { get; set; }
         private readonly CodeBlock CodeBlock;
         public string Title { get; set; }
+        public string TitleEnglish { get; set; }
+        public string Comment { get; set; }
+        public string CommentEnglish { get; set; }
         public string Author { get; set; }
 
         public string Interface { get; set; }
@@ -68,6 +71,28 @@ namespace TiaCodegen.Blocks
             <AttributeList>
               <Culture>de-DE</Culture>
               <Text>{Title}</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID=""{id++}"" CompositionName=""Items"">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text>{TitleEnglish}</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID=""{id++}"" CompositionName=""Comment"">
+        <ObjectList>
+          <MultilingualTextItem ID=""{id++}"" CompositionName=""Items"">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>{Comment}</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID=""{id++}"" CompositionName=""Items"">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text>{CommentEnglish}</Text>
             </AttributeList>
           </MultilingualTextItem>
         </ObjectList>
