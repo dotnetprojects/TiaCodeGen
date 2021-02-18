@@ -24,7 +24,8 @@ namespace TiaCodegen.Commands.Functions
             SafetyTemplateString = @"      <TemplateValue Name=""f_user_card"" Type=""Cardinality"">1</TemplateValue>
       <TemplateValue Name=""f_image_card"" Type=""Cardinality"">0</TemplateValue>
       <TemplateValue Name=""f_imageclassic_card"" Type=""Cardinality"">0</TemplateValue>
-      <TemplateValue Name=""f_imageplus_card"" Type=""Cardinality"">0</TemplateValue>";
+      <TemplateValue Name=""f_imageplus_card"" Type=""Cardinality"">0</TemplateValue>
+      < TemplateValue Name = ""codedbool_type"" Type = ""Type"" > DInt </ TemplateValue >";
 
             Children.AddRange(Interface.Values.Where(x => x.OperationOrSignal != null).Select(x => x.OperationOrSignal));
         }
