@@ -5,6 +5,7 @@ using TiaCodegen.Blocks;
 using TiaCodegen.Commands;
 using TiaCodegen.Commands.Coils;
 using TiaCodegen.Commands.Comparisons;
+using TiaCodegen.Commands.Functions;
 using TiaCodegen.Commands.Functions.Base;
 using TiaCodegen.Commands.Signals;
 using TiaCodegen.Enums;
@@ -193,6 +194,23 @@ namespace TiaCodegen.Samples
             var nw = new Network("Test2", "Test2en");
 
             var f = new InRangeCall(new Signal(1), new Signal(2), new Signal(3), new Coil(new Signal("MW0", SignalType.Int)));
+            nw.Add(f);
+
+            codeblock.Add(nw);
+
+            var block = new Block("Test", "blabla", codeblock);
+            block.Interface = TestInterface;
+            var xml = block.GetCode();
+        }
+
+        [Test]
+        public void TestCallWithTOn()
+        {
+            var codeblock = new CodeBlock() { Safety = true };
+
+            var nw = new Network("Test2", "Test2en");
+
+            var f = new TONCall("Hallo", pt: new Signal("T#4m", SignalType.ConstantTime));
             nw.Add(f);
 
             codeblock.Add(nw);
