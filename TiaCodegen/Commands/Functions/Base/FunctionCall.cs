@@ -7,6 +7,8 @@ namespace TiaCodegen.Commands.Functions.Base
 {
     public class FunctionCall : IOperationOrSignal
     {
+        public string SafetyTemplateString { get; set; }
+
         public string DebugInfo { get; set; }
 
         public bool DisableEno { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DotNetProjects.TiaCodegen.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -273,6 +274,10 @@ namespace TiaCodegen.CodeGen
                     if (fc.TemplateValueName != null)
                     {
                         _sb.AppendLine("<TemplateValue Name=\"" + fc.TemplateValueName + "\" Type=\"" + fc.TemplateValueType + "\">" + fc.TemplateValue + "</TemplateValue>");
+                        if (!string.IsNullOrEmpty(fc.SafetyTemplateString) && fc.TryGetParent<CodeBlock>()?.Safety == true)
+                        {
+                            _sb.AppendLine(fc.SafetyTemplateString);
+                        }
                     }
 
                     if (_block.Safety && fc.AdditionalSafetyTemplateValues != null)
@@ -920,6 +925,7 @@ namespace TiaCodegen.CodeGen
             }
         }
 
+       
         public string GetXml(ref int id)
         {
             FixChildAndsAndSingleOr(_block);
