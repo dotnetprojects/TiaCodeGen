@@ -5,9 +5,9 @@ using TiaCodegen.Interfaces;
 
 namespace TiaCodegen.Commands.Functions
 {
-    public class FDBACK : SystemFunctionBlockCall
+    public class FDBACKCall : SystemFunctionBlockCall
     {
-        public FDBACK(string instanceName,
+        public FDBACKCall(string instanceName,
             IOperationOrSignal on = null,
             IOperationOrSignal feedback = null,
             IOperationOrSignal qbad_fio = null,
@@ -30,7 +30,7 @@ namespace TiaCodegen.Commands.Functions
             Interface["ACK_REQ"] = new IOperationOrSignalDirectionWrapper(ack_req, Direction.Output);
             Interface["DIAG"] = new IOperationOrSignalDirectionWrapper(diag, Direction.Output);
 
-            SafetyTemplateString = @"      <TemplateValue Name=""f_user_card"" Type=""Cardinality"">1</TemplateValue>
+            AdditionalSafetyTemplateValues = @"      <TemplateValue Name=""f_user_card"" Type=""Cardinality"">1</TemplateValue>
       <TemplateValue Name=""f_image_card"" Type=""Cardinality"">0</TemplateValue>";
 
             Children.AddRange(Interface.Values.Where(x => x.OperationOrSignal != null).Select(x => x.OperationOrSignal));
