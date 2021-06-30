@@ -219,5 +219,33 @@ namespace TiaCodegen.Samples
             block.Interface = TestInterface;
             var xml = block.GetCode();
         }
+
+        [Test]
+        public void TestCallWithTPAndDistributor()
+        {
+            var codeblock = new CodeBlock() { Safety = false };
+
+            var nw = new Network("Test2", "Test2en");
+            var and =
+                new And(
+                new Signal("#aaa"),
+                new TPCall("PulseStartPrint",
+                    pt: new Signal("T#100ms", SignalType.ConstantTime),
+                    q: new Distributor(
+                        new Coil(new Signal("#bbbb")),
+                        new RCoil(new Signal("#cccc")),
+                        new SCoil(new Signal("#dddd"))
+                    )
+                )
+            );
+
+            nw.Add(and);
+
+            codeblock.Add(nw);
+
+            var block = new Block("Test", "blabla", codeblock);
+            block.Interface = TestInterface;
+            var xml = block.GetCode();
+        }
     }
 }

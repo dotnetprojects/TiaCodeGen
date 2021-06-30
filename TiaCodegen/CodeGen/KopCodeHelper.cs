@@ -508,14 +508,33 @@ namespace TiaCodegen.CodeGen
                     {
                         _sb.AppendLine("<Wire UId=\"" + _currentId + "\">" + (debug ?? ("<!-- Wire 4 FunctionCall -->")));
                         _sb.AppendLine("<NameCon UId=\"" + op.OperationId + "\" Name=\"" + intf.Key + "\" />");
-                        if (sng is Signal)
+                        if (sng is Distributor db)
                         {
-                            _sb.AppendLine("<IdentCon UId=\"" + ((Signal)sng).SignalId + "\" />" + "  <!-- " + ((Signal)sng).Name + " -->");
+                            _sb.AppendLine("<!-- Distributor -->");
+                            foreach (var c in db.Children)
+                            {
+                                if (c is Signal)
+                                {
+                                    _sb.AppendLine("<IdentCon UId=\"" + ((Signal)c).SignalId + "\" />" + "  <!-- " + ((Signal)c).Name + " -->");
+                                }
+                                else
+                                {
+                                    var inName = c is FunctionCall ? ((c is InRangeCall || c is OutRangeCall) ? "pre" : "en") : "in";
+                                    _sb.AppendLine("<NameCon UId=\"" + c.OperationId + "\" Name=\"" + inName + "\" />");
+                                }
+                            }
                         }
                         else
-                        {
-                            var inName = sng is FunctionCall ? ((sng is InRangeCall || sng is OutRangeCall) ? "pre" : "en") : "in";
-                            _sb.AppendLine("<NameCon UId=\"" + sng.OperationId + "\" Name=\"" + inName + "\" />");
+                        {                            
+                            if (sng is Signal)
+                            {
+                                _sb.AppendLine("<IdentCon UId=\"" + ((Signal)sng).SignalId + "\" />" + "  <!-- " + ((Signal)sng).Name + " -->");
+                            }
+                            else
+                            {
+                                var inName = sng is FunctionCall ? ((sng is InRangeCall || sng is OutRangeCall) ? "pre" : "en") : "in";
+                                _sb.AppendLine("<NameCon UId=\"" + sng.OperationId + "\" Name=\"" + inName + "\" />");
+                            }
                         }
                         _sb.AppendLine("</Wire>");
                         _currentId++;
