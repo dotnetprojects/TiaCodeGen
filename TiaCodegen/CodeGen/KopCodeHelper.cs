@@ -517,6 +517,14 @@ namespace TiaCodegen.CodeGen
                                 {
                                     _sb.AppendLine("<IdentCon UId=\"" + ((Signal)c).SignalId + "\" />" + "  <!-- " + ((Signal)c).Name + " -->");
                                 }
+                                else if (c is And && c.Children.FirstOrDefault() is Or)
+                                {
+                                    foreach(var ch in c.Children.FirstOrDefault().Children)
+                                    {
+                                        var inName = ch is FunctionCall ? ((ch is InRangeCall || ch is OutRangeCall) ? "pre" : "en") : "in";
+                                        _sb.AppendLine("<NameCon UId=\"" + ch.OperationId + "\" Name=\"" + inName + "\" />");
+                                    }
+                                }
                                 else
                                 {
                                     var inName = c is FunctionCall ? ((c is InRangeCall || c is OutRangeCall) ? "pre" : "en") : "in";
@@ -554,7 +562,7 @@ namespace TiaCodegen.CodeGen
                 _currentId++;
             }
             else if (op is Or && op.Children.Count > 1)
-            {
+            {               
                 int i = 1;
                 foreach (var ch in op.Children)
                 {
@@ -700,17 +708,24 @@ namespace TiaCodegen.CodeGen
                                     akC = c.Children.First();
                                 }
 
-                                if (akC is CompareOperator || akC is InRangeCall || akC is OutRangeCall)
+                                var l = new List<IOperationOrSignal>() { akC };
+                                if (akC is Or)
+                                    l = akC.Children;
+
+                                foreach (var s in l)
                                 {
-                                    _sb.AppendLine("<NameCon UId=\"" + akC.OperationId + "\" Name=\"pre\" />" + "  <!-- " + akC.GetType().Name + " -->");
-                                }
-                                else if (akC is FunctionCall || akC is IFunctionOperation)
-                                {
-                                    _sb.AppendLine("<NameCon UId=\"" + akC.OperationId + "\" Name=\"en\" />" + "  <!-- " + akC.GetType().Name + " -->");
-                                }
-                                else
-                                {
-                                    _sb.AppendLine("<NameCon UId=\"" + akC.OperationId + "\" Name=\"in\" />" + "  <!-- " + akC.GetType().Name + " -->");
+                                    if (s is CompareOperator || s is InRangeCall || s is OutRangeCall)
+                                    {
+                                        _sb.AppendLine("<NameCon UId=\"" + s.OperationId + "\" Name=\"pre\" />" + "  <!-- " + s.GetType().Name + " -->");
+                                    }
+                                    else if (s is FunctionCall || s is IFunctionOperation)
+                                    {
+                                        _sb.AppendLine("<NameCon UId=\"" + s.OperationId + "\" Name=\"en\" />" + "  <!-- " + s.GetType().Name + " -->");
+                                    }
+                                    else
+                                    {
+                                        _sb.AppendLine("<NameCon UId=\"" + s.OperationId + "\" Name=\"in\" />" + "  <!-- " + s.GetType().Name + " -->");
+                                    }
                                 }
                             }
                         }

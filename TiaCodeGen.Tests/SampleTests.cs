@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using TiaCodegen.Blocks;
 using TiaCodegen.Commands;
@@ -240,6 +241,35 @@ namespace TiaCodegen.Samples
             );
 
             nw.Add(and);
+
+            codeblock.Add(nw);
+
+            var block = new Block("Test", "blabla", codeblock);
+            block.Interface = TestInterface;
+            var xml = block.GetCode();
+        }
+
+        [Test]
+        public void DistributorWithOr()
+        {
+            var codeblock = new CodeBlock() { Safety = false };
+
+            var nw = new Network("Test2", "Test2en");
+            nw.Add(
+                new And(
+                    new Signal("asd"),
+                    new Distributor(
+                        new SCoil(new Signal("x")),
+                        new And(
+                            new Or(
+                                new Signal("a"),
+                                new Signal("b")
+                            ),
+                            new SCoil(new Signal("c"))
+                        )
+                    )
+                )
+            );
 
             codeblock.Add(nw);
 
