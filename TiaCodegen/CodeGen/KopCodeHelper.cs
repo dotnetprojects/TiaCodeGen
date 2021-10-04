@@ -519,10 +519,13 @@ namespace TiaCodegen.CodeGen
                                 }
                                 else if (c is And && c.Children.FirstOrDefault() is Or)
                                 {
-                                    foreach(var ch in c.Children.FirstOrDefault().Children)
+                                    foreach(var chIn in c.Children.FirstOrDefault().Children)
                                     {
-                                        var inName = ch is FunctionCall ? ((ch is InRangeCall || ch is OutRangeCall) ? "pre" : "en") : "in";
-                                        _sb.AppendLine("<NameCon UId=\"" + ch.OperationId + "\" Name=\"" + inName + "\" />");
+                                        foreach (var ch in GetAllOrSignals(chIn))
+                                        {
+                                            var inName = ch is FunctionCall ? ((ch is InRangeCall || ch is OutRangeCall) ? "pre" : "en") : "in";
+                                            _sb.AppendLine("<NameCon UId=\"" + ch.OperationId + "\" Name=\"" + inName + "\" />");
+                                        }
                                     }
                                 }
                                 else
@@ -653,20 +656,17 @@ namespace TiaCodegen.CodeGen
                         _sb.AppendLine("<NameCon UId=\"" + ch.OperationId + "\" Name=\"out\" />");
                         foreach (var orSignal in next.Children)
                         {
-                            var opId = orSignal.OperationId;
-
-                            if (orSignal is And)
+                            foreach (var os in GetAllOrSignals(orSignal))
                             {
-                                opId = ((And)orSignal).Children.First().OperationId;
-                            }
+                                var opId = os.OperationId;
+                                var ipName = "in";
 
-                            var ipName = "in";
-
-                            if (orSignal is BaseOperationOrSignal && (((BaseOperationOrSignal)orSignal).GetFirstChildNotAnd() is CompareOperator || ((BaseOperationOrSignal)orSignal).GetFirstChildNotAnd() is InRangeCall || ((BaseOperationOrSignal)orSignal).GetFirstChildNotAnd() is OutRangeCall))
-                            {
-                                ipName = "pre";
+                                if (os is BaseOperationOrSignal && (((BaseOperationOrSignal)os).GetFirstChildNotAnd() is CompareOperator || ((BaseOperationOrSignal)os).GetFirstChildNotAnd() is InRangeCall || ((BaseOperationOrSignal)os).GetFirstChildNotAnd() is OutRangeCall))
+                                {
+                                    ipName = "pre";
+                                }
+                                _sb.AppendLine("<NameCon UId=\"" + opId + "\" Name=\"" + ipName + "\" />");
                             }
-                            _sb.AppendLine("<NameCon UId=\"" + opId + "\" Name=\"" + ipName + "\" />");
                         }
                         _sb.AppendLine("</Wire>");
                         _currentId++;
@@ -712,19 +712,22 @@ namespace TiaCodegen.CodeGen
                                 if (akC is Or)
                                     l = akC.Children;
 
-                                foreach (var s in l)
+                                foreach (var sIn in l)
                                 {
-                                    if (s is CompareOperator || s is InRangeCall || s is OutRangeCall)
+                                    foreach (var s in GetAllOrSignals(sIn))
                                     {
-                                        _sb.AppendLine("<NameCon UId=\"" + s.OperationId + "\" Name=\"pre\" />" + "  <!-- " + s.GetType().Name + " -->");
-                                    }
-                                    else if (s is FunctionCall || s is IFunctionOperation)
-                                    {
-                                        _sb.AppendLine("<NameCon UId=\"" + s.OperationId + "\" Name=\"en\" />" + "  <!-- " + s.GetType().Name + " -->");
-                                    }
-                                    else
-                                    {
-                                        _sb.AppendLine("<NameCon UId=\"" + s.OperationId + "\" Name=\"in\" />" + "  <!-- " + s.GetType().Name + " -->");
+                                        if (s is CompareOperator || s is InRangeCall || s is OutRangeCall)
+                                        {
+                                            _sb.AppendLine("<NameCon UId=\"" + s.OperationId + "\" Name=\"pre\" />" + "  <!-- " + s.GetType().Name + " -->");
+                                        }
+                                        else if (s is FunctionCall || s is IFunctionOperation)
+                                        {
+                                            _sb.AppendLine("<NameCon UId=\"" + s.OperationId + "\" Name=\"en\" />" + "  <!-- " + s.GetType().Name + " -->");
+                                        }
+                                        else
+                                        {
+                                            _sb.AppendLine("<NameCon UId=\"" + s.OperationId + "\" Name=\"in\" />" + "  <!-- " + s.GetType().Name + " -->");
+                                        }
                                     }
                                 }
                             }
@@ -1044,6 +1047,29 @@ namespace TiaCodegen.CodeGen
 			PrintTree(_block, _sb);
 			_sb.AppendLine("-->");*/
             return _sb.ToString();
+        }
+
+        public IEnumerable<IOperationOrSignal> GetAllOrSignals(IOperationOrSignal sng)
+        {
+            if (sng is And)
+            {
+                if (sng.Children.First() is Or or)
+                {
+                    foreach (var o in or.Children)
+                    {
+                        foreach (var a in GetAllOrSignals(o))
+                            yield return a;
+                    }
+                }
+                else
+                {
+                    yield return ((And)sng).Children.First();
+                }
+            }
+            else
+            {
+                yield return sng;
+            }
         }
     }
 }

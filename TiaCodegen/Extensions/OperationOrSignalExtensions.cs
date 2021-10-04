@@ -1,4 +1,5 @@
-﻿using TiaCodegen.Interfaces;
+﻿using TiaCodegen.Commands;
+using TiaCodegen.Interfaces;
 
 namespace DotNetProjects.TiaCodegen.Extensions
 {

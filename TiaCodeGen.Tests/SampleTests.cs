@@ -262,10 +262,48 @@ namespace TiaCodegen.Samples
                         new SCoil(new Signal("x")),
                         new And(
                             new Or(
-                                new Signal("a"),
-                                new Signal("b")
+                                new And(
+                                    new Signal("a"),
+                                    new Signal("h")
+                                ),
+                                new And(
+                                    new Signal("b"),
+                                    new Signal("f")
+                                )
                             ),
                             new SCoil(new Signal("c"))
+                        )
+                    )
+                )
+            );
+
+            codeblock.Add(nw);
+
+            var block = new Block("Test", "blabla", codeblock);
+            block.Interface = TestInterface;
+            var xml = block.GetCode();
+        }
+
+        [Test]
+        public void MultipleOr()
+        {
+            var codeblock = new CodeBlock() { Safety = false };
+
+            var nw = new Network("Test2", "Test2en");
+            nw.Add(
+                new Coil(
+                    new Signal("a"),
+                    new And(
+                        new Signal("1"),
+                        new Or(
+                            new And(
+                                new Or(
+                                    new Signal("b"),
+                                    new Signal("c")
+                                ),
+                                new Signal("d")
+                            ),
+                            new Signal("e")
                         )
                     )
                 )

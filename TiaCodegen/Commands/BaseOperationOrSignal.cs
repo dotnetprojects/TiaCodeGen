@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TiaCodegen.Commands.Signals;
 using TiaCodegen.Interfaces;
 
 namespace TiaCodegen.Commands
