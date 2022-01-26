@@ -9,12 +9,13 @@ namespace TiaCodegen.Commands.Signals
     public class Signal : IOperationOrSignal
     {
         public string DebugInfo { get; set; }
-        public Signal(string name, SignalType signalType = SignalType.Bool, string customType = null)
+        public Signal(string name, SignalType signalType = SignalType.Bool, string customType = null, string description = null)
         {
             Name = name;
             SignalType = signalType;
             Children = new List<IOperationOrSignal>();
             CustomType = customType;
+            Description = description;
         }
 
         public Signal(int value)
@@ -36,6 +37,8 @@ namespace TiaCodegen.Commands.Signals
         public ulong SignalId { get; set; }
 
         public string Name { get; private set; }
+
+        public string Description { get; private set; }
 
         public SignalType SignalType { get; private set; }
 
