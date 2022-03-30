@@ -315,5 +315,27 @@ namespace TiaCodegen.Samples
             block.Interface = TestInterface;
             var xml = block.GetCode();
         }
+
+        [Test]
+        public void PeripheryFixedSignal()
+        {
+            var codeblock = new CodeBlock() { Safety = false };
+
+            var nw = new Network("Test3", "Test3en");
+            nw.Add(
+                new Coil(
+                    new FixedPeripherySignal("=PBG10.6+FBG11-BV1:4"),
+                    new And(
+                        new Signal("1")
+                    )
+                )
+            );
+
+            codeblock.Add(nw);
+
+            var block = new Block("Test", "blabla", codeblock);
+            block.Interface = TestInterface;
+            var xml = block.GetCode();
+        }
     }
 }

@@ -11,4 +11,10 @@ namespace TiaCodegen.Commands.Signals
                 base(name, signalType, customType)
         { }
     }
+    public class FixedPeripherySignal : FixedSignal
+    {
+        public FixedPeripherySignal(string name, SignalType signalType = SignalType.Bool, string customType = null) :
+                base(name, signalType, customType)
+        { }
+    }
 }

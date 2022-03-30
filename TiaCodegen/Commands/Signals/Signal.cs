@@ -369,11 +369,19 @@ namespace TiaCodegen.Commands.Signals
                     }
                     else
                     {
-                        sb.AppendLine("<Component Name=\"" + part + "\">");
+                        if (this is FixedPeripherySignal)
+                        {
+                            sb.AppendLine("<Component Name=\"" + part + "\" SimpleAccessModifier=\"Periphery\">");
+                        }
+                        else
+                            sb.AppendLine("<Component Name=\"" + part + "\">");
                     }
                     sb.AppendLine("</Component>");
                 }
-                sb.AppendLine("<Address Area=\"None\" Type=\"Bool\" BlockNumber=\"0\" BitOffset=\"0\" Informative=\"true\" />");
+                if (this is FixedPeripherySignal)
+                    sb.AppendLine("<Address Area=\"PeripheryInput\" Type=\"Bool\" BitOffset=\"0\" Informative=\"true\" />");
+                else
+                    sb.AppendLine("<Address Area=\"None\" Type=\"Bool\" BlockNumber=\"0\" BitOffset=\"0\" Informative=\"true\" />");
                 sb.AppendLine("</Symbol>");
                 sb.AppendLine("</Access>");
             }
