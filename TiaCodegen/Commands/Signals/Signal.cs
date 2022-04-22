@@ -130,6 +130,15 @@ namespace TiaCodegen.Commands.Signals
                 sb.AppendLine("</Constant>");
                 sb.AppendLine("</Access>");
             }
+            else if (SignalType == SignalType.ConstantUDInt && !Name.StartsWith("#"))
+            {
+                sb.AppendLine("<Access Scope=\"LiteralConstant\" UId=\"" + id + "\">");
+                sb.AppendLine("<Constant>");
+                sb.AppendLine("<ConstantType>UDInt</ConstantType>");
+                sb.AppendLine("<ConstantValue>" + Name + "</ConstantValue>");
+                sb.AppendLine("</Constant>");
+                sb.AppendLine("</Access>");
+            }
             else if (SignalType == SignalType.ConstantInt && !Name.StartsWith("#"))
             {
                 sb.AppendLine("<Access Scope=\"LiteralConstant\" UId=\"" + id + "\">");
