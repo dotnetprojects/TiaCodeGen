@@ -7,6 +7,7 @@
         Int,
         DInt,
         UInt,
+        UDInt,
         Time,
         UDT,
         String,
