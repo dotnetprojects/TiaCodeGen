@@ -51,6 +51,8 @@ This will create following
 
 This will create following
 
+image is missing....
+
 ![](sampleXXX.png)
 
 
@@ -58,6 +60,7 @@ This will create following
             var codeblock = new CodeBlock();
             var nw = new Network("Test1");
 
+            code is missing....
             
 ```
 
