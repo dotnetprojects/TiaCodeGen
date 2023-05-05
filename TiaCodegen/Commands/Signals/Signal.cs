@@ -350,6 +350,7 @@ namespace TiaCodegen.Commands.Signals
                             sb.AppendLine("<Access Scope=\"" + accessType + "\">");
                             sb.AppendLine("<Symbol>");
                             sb.AppendLine("<Component Name=\"" + p1 + "\" />");
+                            bool noClose = false;
                             while (p1 != null)
                             {
                                 i++;
@@ -361,14 +362,16 @@ namespace TiaCodegen.Commands.Signals
                                     foreach (var p in innerParts.Skip(1))
                                     {
                                         var pNe = p.Trim();
-                                        bool close = false;
                                         if (pNe.Contains("]"))
                                         {
                                             pNe = pNe.Substring(0, pNe.Length - 1);
-                                            close = true;
                                         }
                                         if (int.TryParse(pNe, out _))
                                         {
+                                            noClose = true;
+                                            sb.AppendLine("</Symbol>");
+                                            sb.AppendLine("</Access>");
+
                                             sb.AppendLine("<Access Scope=\"LiteralConstant\">");
                                             sb.AppendLine("<Constant>");
                                             sb.AppendLine("<ConstantType>DInt</ConstantType>");
@@ -408,8 +411,11 @@ namespace TiaCodegen.Commands.Signals
                                         sb.AppendLine("<Component Name=\"" + p1 + "\" />");
                                 }
                             }
-                            sb.AppendLine("</Symbol>");
-                            sb.AppendLine("</Access>");
+                            if (!noClose)
+                            {
+                                sb.AppendLine("</Symbol>");
+                                sb.AppendLine("</Access>");
+                            }
                         }
                         else
                         {
