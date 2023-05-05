@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using TiaCodegen.Commands.Comparisons;
 using TiaCodegen.Enums;
 using TiaCodegen.Interfaces;
 
@@ -352,13 +354,59 @@ namespace TiaCodegen.Commands.Signals
                             {
                                 i++;
                                 p1 = Unescape(Escape(LocalName).Split('.')[i]);
-                                if (p1.Contains("]"))
+                                if (p1.Contains(","))
                                 {
-                                    sb.AppendLine("<Component Name=\"" + p1.Substring(0, p1.Length - 1) + "\" />");
-                                    p1 = null;
+                                    var innerParts = p1.Split(',');
+                                    sb.AppendLine("<Component Name=\"" + innerParts[0] + "\" />");
+                                    foreach (var p in innerParts.Skip(1))
+                                    {
+                                        var pNe = p.Trim();
+                                        bool close = false;
+                                        if (pNe.Contains("]"))
+                                        {
+                                            pNe = pNe.Substring(0, pNe.Length - 1);
+                                            close = true;
+                                        }
+                                        if (int.TryParse(pNe, out _))
+                                        {
+                                            sb.AppendLine("<Access Scope=\"LiteralConstant\">");
+                                            sb.AppendLine("<Constant>");
+                                            sb.AppendLine("<ConstantType>DInt</ConstantType>");
+                                            sb.AppendLine("<ConstantValue>" + pNe + "</ConstantValue>");
+                                            sb.AppendLine("</Constant>");
+                                            sb.AppendLine("</Access>");
+                                        }
+                                        else
+                                        {
+                                            sb.AppendLine("</Symbol>");
+                                            sb.AppendLine("</Access>");
+
+                                            var accessTypePne = "GlobalVariable";
+                                            if (pNe[0] == '#')
+                                            {
+                                                pNe = pNe.Substring(1);
+                                                accessTypePne = "LocalVariable";
+                                            }
+                                            sb.AppendLine("<Access Scope=\"" + accessTypePne + "\">");
+                                            sb.AppendLine("<Symbol>");
+                                            sb.AppendLine("<Component Name=\"" + pNe + "\" />");
+                                        }
+                                    }
+                                    if (p1.Contains("]"))
+                                    {
+                                        p1 = null;
+                                    }
                                 }
                                 else
-                                    sb.AppendLine("<Component Name=\"" + p1 + "\" />");
+                                {
+                                    if (p1.Contains("]"))
+                                    {
+                                        sb.AppendLine("<Component Name=\"" + p1.Substring(0, p1.Length - 1) + "\" />");
+                                        p1 = null;
+                                    }
+                                    else
+                                        sb.AppendLine("<Component Name=\"" + p1 + "\" />");
+                                }
                             }
                             sb.AppendLine("</Symbol>");
                             sb.AppendLine("</Access>");
@@ -387,10 +435,10 @@ namespace TiaCodegen.Commands.Signals
                     }
                     sb.AppendLine("</Component>");
                 }
-                if (this is FixedPeripherySignal)
-                    sb.AppendLine("<Address Area=\"PeripheryInput\" Type=\"Bool\" BitOffset=\"0\" Informative=\"true\" />");
-                else
-                    sb.AppendLine("<Address Area=\"None\" Type=\"Bool\" BlockNumber=\"0\" BitOffset=\"0\" Informative=\"true\" />");
+                //if (this is FixedPeripherySignal)
+                //    sb.AppendLine("<Address Area=\"PeripheryInput\" Type=\"Bool\" BitOffset=\"0\" Informative=\"true\" />");
+                //else
+                //    sb.AppendLine("<Address Area=\"None\" Type=\"Bool\" BlockNumber=\"0\" BitOffset=\"0\" Informative=\"true\" />");
                 sb.AppendLine("</Symbol>");
                 sb.AppendLine("</Access>");
             }
