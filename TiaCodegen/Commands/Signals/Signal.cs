@@ -102,7 +102,10 @@ namespace TiaCodegen.Commands.Signals
             {
                 var value = Name.IndexOf(",");
                 sb.AppendLine("<Access Scope=\"GlobalConstant\" UId=\"" + id + "\">");
-                sb.AppendLine("<Constant Name=\"" + Name.Substring(0, value) + "\">");
+                if (value == -1)
+                    sb.AppendLine("<Constant Name=\"" + Name + "\">");
+                else
+                    sb.AppendLine("<Constant Name=\"" + Name.Substring(0, value) + "\">");
                 sb.AppendLine("</Constant>");
                 sb.AppendLine("</Access>");
             }
