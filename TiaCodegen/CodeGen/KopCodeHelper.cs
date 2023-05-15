@@ -315,7 +315,7 @@ namespace TiaCodegen.CodeGen
                         _sb.AppendLine("<TemplateValue Name=\"ptr_type\" Type=\"Type\">Variant</TemplateValue>");
                         _sb.AppendLine("<TemplateValue Name=\"laddr_type\" Type=\"Type\">HW_IO</TemplateValue>");
                     }
-                    _sb.AppendLine("</Part>");
+                    _sb.AppendLine("</Part>"); 
                 }
                 else if (op is FunctionCall)
                 {
