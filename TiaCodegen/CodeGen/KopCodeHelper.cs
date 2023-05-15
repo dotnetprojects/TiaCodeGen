@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Linq;
 using TiaCodegen.Blocks;
 using TiaCodegen.Commands;
 using TiaCodegen.Commands.Coils;
@@ -308,6 +309,11 @@ namespace TiaCodegen.CodeGen
                         if (srctype.StartsWith("Constant"))
                             srctype = srctype.Substring(8);
                         _sb.AppendLine("<TemplateValue Name=\"SrcType\" Type=\"Type\">" + srctype + "</TemplateValue>");
+                    }
+                    else if (fc.FunctionName == "DPRD_DAT" || fc.FunctionName == "DPWR_DAT")
+                    {
+                        _sb.AppendLine("< TemplateValue Name = \"ptr_type\" Type = \"Type\" > Variant </ TemplateValue >");
+                        _sb.AppendLine("< TemplateValue Name = \"laddr_type\" Type = \"Type\" > HW_IO </ TemplateValue >");
                     }
                     _sb.AppendLine("</Part>");
                 }

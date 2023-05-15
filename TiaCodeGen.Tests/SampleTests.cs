@@ -368,5 +368,29 @@ namespace TiaCodegen.Samples
             var xml = sb.ToString();
             Assert.AreEqual("<Access Scope=\"GlobalConstant\" UId=\"1\">\r\n<Constant Name=\"AAA\">\r\n</Constant>\r\n</Access>\r\n".Replace("\n", "").Replace("\r", ""), xml.Replace("\n", "").Replace("\r", ""));
         }
+
+        [Test]
+        public void SystemFunctionDPXX_DAT()
+        {
+            var codeblock = new CodeBlock() { Safety = false };
+
+            var nw = new Network("TestDPXX_DAT", "TestDPXX_DATen");
+
+            var sf1 = new SystemFunctionCall("DPRD_DAT");
+            sf1.Interface["LADDR"] = new IOperationOrSignalDirectionWrapper(new Signal("#Configuration.GeneralMoviC.ModuleHardwareID"), Direction.Input);
+            sf1.Interface["RET_VAL"] = new IOperationOrSignalDirectionWrapper(new Signal("#retVal"), Direction.Output);
+            sf1.Interface["RECORD"] = new IOperationOrSignalDirectionWrapper(new Signal("#PeripheryInputsMoviC"), Direction.Output);
+            sf1.Children.AddRange(sf1.Interface.Values.Where(x => x.OperationOrSignal != null).Select(x => x.OperationOrSignal));
+
+            nw.Add(sf1);
+
+            codeblock.Add(nw);
+
+            var block = new Block("Test", "blabla", codeblock);
+            block.Interface = TestInterface;
+            var xml = block.GetCode();
+
+            //Assert.AreEqual("<Access Scope=\"LocalVariable\" UId=\"1\">\r\n<Symbol>\r\n<Component Name=\"A\">\r\n</Component>\r\n<Component Name=\"B\">\r\n</Component>\r\n<Component Name=\"C\">\r\n<Access Scope=\"LocalVariable\">\r\n<Symbol>\r\n<Component Name=\"D\" />\r\n<Component Name=\"E\" />\r\n<Component Name=\"F\" />\r\n</Symbol>\r\n</Access>\r\n<Access Scope=\"LiteralConstant\">\r\n<Constant>\r\n<ConstantType>DInt</ConstantType>\r\n<ConstantValue>1</ConstantValue>\r\n</Constant>\r\n</Access>\r\n</Component>\r\n</Symbol>\r\n</Access>\r\n".Replace("\n", "").Replace("\r", ""), xml.Replace("\n", "").Replace("\r", ""));
+        }
     }
 }
