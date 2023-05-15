@@ -310,6 +310,11 @@ namespace TiaCodegen.CodeGen
                             srctype = srctype.Substring(8);
                         _sb.AppendLine("<TemplateValue Name=\"SrcType\" Type=\"Type\">" + srctype + "</TemplateValue>");
                     }
+                    else if (fc.FunctionName == "DPRD_DAT" || fc.FunctionName == "DPWR_DAT")
+                    {
+                        _sb.AppendLine("<TemplateValue Name=\"ptr_type\" Type=\"Type\">Variant</TemplateValue>");
+                        _sb.AppendLine("<TemplateValue Name=\"laddr_type\" Type=\"Type\">HW_IO</TemplateValue>");
+                    }
                     _sb.AppendLine("</Part>"); 
                 }
                 else if (op is FunctionCall)
