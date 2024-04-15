@@ -223,6 +223,23 @@ namespace TiaCodegen.Samples
         }
 
         [Test]
+        public void TestCallWithCTU()
+        {
+            var codeblock = new CodeBlock() { Safety = false };
+
+            var nw = new Network("Test2", "Test2en");
+
+            var f = new And(new Signal("aa"), new CTUCall("Hallo", r: new Signal("bbb", SignalType.Bool), pv: new Signal("2", SignalType.ConstantInt), q: new Coil(new Signal("ccc", SignalType.Bool))));
+            nw.Add(f);
+
+            codeblock.Add(nw);
+
+            var block = new Block("Test", "blabla", codeblock);
+            block.Interface = TestInterface;
+            var xml = block.GetCode();
+        }
+
+        [Test]
         public void TestCallWithTPAndDistributor()
         {
             var codeblock = new CodeBlock() { Safety = false };

@@ -8,13 +8,11 @@ namespace TiaCodegen.Commands.Functions
     public class CTUCall : SystemFunctionBlockCall
     {
         public CTUCall(string instanceName,
-            IOperationOrSignal cu = null,
             IOperationOrSignal r = null,
             IOperationOrSignal pv = null,
             IOperationOrSignal q = null,
             IOperationOrSignal cv = null) : base("CTU", instanceName, null)
         {
-            Interface["CU"] = new IOperationOrSignalDirectionWrapper(cu, Direction.Input);
             Interface["R"] = new IOperationOrSignalDirectionWrapper(r, Direction.Input);
             Interface["PV"] = new IOperationOrSignalDirectionWrapper(pv, Direction.Input);
             Interface["Q"] = new IOperationOrSignalDirectionWrapper(q, Direction.Output);

@@ -691,6 +691,10 @@ namespace TiaCodegen.CodeGen
                         {
                             _sb.AppendLine("<NameCon UId=\"" + next.OperationId + "\" Name=\"pre\" />" + "  <!-- " + dstName + " -->");
                         }
+                        else if (next is CTUCall)
+                        {
+                            _sb.AppendLine("<NameCon UId=\"" + next.OperationId + "\" Name=\"CU\" />" + "  <!-- " + dstName + " -->");
+                        }
                         else if (next is FunctionCall)
                         {
                             _sb.AppendLine("<NameCon UId=\"" + next.OperationId + "\" Name=\"" + (((FunctionCall)next).HasNoEn ? "in" : "en") + "\" />" + "  <!-- " + dstName + " -->");
