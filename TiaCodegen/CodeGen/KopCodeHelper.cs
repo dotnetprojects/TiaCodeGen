@@ -291,7 +291,10 @@ namespace TiaCodegen.CodeGen
                 {
                     var fc = (FunctionCall)op;
 
-                    _sb.AppendLine("<Part Name=\"" + fc.FunctionName + "\" UId=\"" + op.OperationId + "\"" + (fc.DisableEno ? " DisabledENO=\"true\"" : "") + ">");
+                    if (fc.FunctionName == "Serialize" || fc.FunctionName == "Deserialize")
+                        _sb.AppendLine("<Part Name=\"" + fc.FunctionName + "\" Version=\"2.0\" UId=\"" + op.OperationId + "\"" + (fc.DisableEno ? " DisabledENO=\"true\"" : "") + ">");
+                    else 
+                        _sb.AppendLine("<Part Name=\"" + fc.FunctionName + "\" UId=\"" + op.OperationId + "\"" + (fc.DisableEno ? " DisabledENO=\"true\"" : "") + ">");
                     if (fc.AdditionalInnerXml != null)
                         _sb.AppendLine(fc.AdditionalInnerXml);
 
