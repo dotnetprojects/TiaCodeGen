@@ -189,6 +189,33 @@ namespace TiaCodegen.Samples
         }
 
         [Test]
+        public void TestDistributor()
+        {
+            var codeblock = new CodeBlock();
+
+            var nw = new Network("Test2", "Test2en");
+            nw.Add(
+                new And(
+                    new Not(new Signal("Tag_9")),
+                    new Distributor(
+                        new And(
+                            new Coil(new Signal("#monitoringSignal"))
+                        ),
+                        new And(
+                            new TONCall("OnDelaySafetyDoorSDA11N13", pt: new Signal("T#60s", SignalType.ConstantTime), q: null)
+                        )
+                    )
+                )
+            );
+
+            codeblock.Add(nw);
+
+            var block = new Block("Test", "blabla", codeblock);
+            block.Interface = TestInterface;
+            var xml = block.GetCode();
+        }
+
+        [Test]
         public void TestCallWithInRange()
         {
             var codeblock = new CodeBlock();

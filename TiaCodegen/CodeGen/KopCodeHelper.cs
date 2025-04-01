@@ -733,7 +733,11 @@ namespace TiaCodegen.CodeGen
                                         {
                                             _sb.AppendLine("<NameCon UId=\"" + s.OperationId + "\" Name=\"pre\" />" + "  <!-- " + s.GetType().Name + " -->");
                                         }
-                                        else if (s is FunctionCall || s is IFunctionOperation)
+                                        else if (s is FunctionCall)
+                                        {
+                                            _sb.AppendLine("<NameCon UId=\"" + s.OperationId + "\" Name=\"" + (((FunctionCall)s).HasNoEn ? "in" : "en") + "\" />" + "  <!-- " + s.GetType().Name + " -->");
+                                        }
+                                        else if (s is IFunctionOperation)
                                         {
                                             _sb.AppendLine("<NameCon UId=\"" + s.OperationId + "\" Name=\"en\" />" + "  <!-- " + s.GetType().Name + " -->");
                                         }
