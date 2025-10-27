@@ -452,7 +452,7 @@ namespace TiaCodegen.CodeGen
             }
         }
 
-        static string debug = "";
+        static string debug = null;
 
         private void AddWires(IOperationOrSignal op)
         {
@@ -574,11 +574,11 @@ namespace TiaCodegen.CodeGen
                 _currentId++;
             }
             else if (op is Or && op.Children.Count > 1)
-            {               
+            {        
                 int i = 1;
                 foreach (var ch in op.Children)
                 {
-                    if (ch is And && ch.Children.Last() is Or) //Todo nur ein letztes or im End, könnte weiter verschachtelt sein
+                    if (ch is And && ch.Children.Last() is Or) //Todo nur ein letztes or im and, könnte weiter verschachtelt sein
                     {
                         foreach (var ch2 in ch.Children.Last().Children)
                         {
@@ -662,7 +662,7 @@ namespace TiaCodegen.CodeGen
                     if (next is Or)
                     {
                         _sb.AppendLine("<Wire UId=\"" + _currentId + "\">" + (debug ?? ("<!-- Wire And next Or -->")));
-                        _sb.AppendLine("<NameCon UId=\"" + ch.OperationId + "\" Name=\"out\" />");
+                        _sb.AppendLine("<NameCon UId=\"" + ch.OperationId + "\" Name=\"out\" />" + (ch is Signal ? "  <!-- " + ((Signal)ch).Name + " -->" : ""));
                         foreach (var orSignal in next.Children)
                         {
                             foreach (var os in GetAllOrSignals(orSignal))
@@ -674,7 +674,7 @@ namespace TiaCodegen.CodeGen
                                 {
                                     ipName = "pre";
                                 }
-                                _sb.AppendLine("<NameCon UId=\"" + opId + "\" Name=\"" + ipName + "\" />");
+                                _sb.AppendLine("<NameCon UId=\"" + opId + "\" Name=\"" + ipName + "\" />" + (os is Signal ? "  <!-- " + ((Signal)os).Name + " -->" : ""));
                             }
                         }
                         _sb.AppendLine("</Wire>");
