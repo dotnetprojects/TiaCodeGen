@@ -37,6 +37,6 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Package
-      run: dotnet pack -c Release -o . TiaCodegen/DotNetProjects.TiaCodegen.csproj
+      run: dotnet pack -c Debug -o . TiaCodegen/DotNetProjects.TiaCodegen.csproj
     - name: Publish
       run: dotnet nuget push *.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
