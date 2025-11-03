@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="TiaCodeGen.Tests/TiaCodeGen.Tests.csproj" />
+  <Project Path="TiaCodegen/DotNetProjects.TiaCodegen.csproj" />
+</Solution>
