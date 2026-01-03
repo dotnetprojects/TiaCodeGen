@@ -390,7 +390,7 @@ namespace TiaCodegen.Samples
             var s = new Signal("#A.B.C[#D.E.F, 1]");
             s.AddXmlToStringBuilder(1, sb);
             var xml = sb.ToString();
-            Assert.AreEqual("<Access Scope=\"LocalVariable\" UId=\"1\">\r\n<Symbol>\r\n<Component Name=\"A\">\r\n</Component>\r\n<Component Name=\"B\">\r\n</Component>\r\n<Component Name=\"C\">\r\n<Access Scope=\"LocalVariable\">\r\n<Symbol>\r\n<Component Name=\"D\" />\r\n<Component Name=\"E\" />\r\n<Component Name=\"F\" />\r\n</Symbol>\r\n</Access>\r\n<Access Scope=\"LiteralConstant\">\r\n<Constant>\r\n<ConstantType>DInt</ConstantType>\r\n<ConstantValue>1</ConstantValue>\r\n</Constant>\r\n</Access>\r\n</Component>\r\n</Symbol>\r\n</Access>\r\n".Replace("\n","").Replace("\r", ""), xml.Replace("\n", "").Replace("\r", ""));
+            Assert.AreEqual("<Access Scope=\"LocalVariable\" UId=\"1\">\r\n<Symbol>\r\n<Component Name=\"A\">\r\n</Component>\r\n<Component Name=\"B\">\r\n</Component>\r\n<Component Name=\"C\">\r\n<Access Scope=\"LocalVariable\">\r\n<Symbol>\r\n<Component Name=\"D\" />\r\n<Component Name=\"E\" />\r\n<Component Name=\"F\" />\r\n</Symbol>\r\n</Access>\r\n<Access Scope=\"LiteralConstant\">\r\n<Constant>\r\n<ConstantType>DInt</ConstantType>\r\n<ConstantValue>1</ConstantValue>\r\n</Constant>\r\n</Access>\r\n</Component>\r\n</Symbol>\r\n</Access>\r\n".Replace("\n", "").Replace("\r", ""), xml.Replace("\n", "").Replace("\r", ""));
         }
 
         [Test]
@@ -457,7 +457,7 @@ namespace TiaCodegen.Samples
                                         new Signal("Test3"),
                                         new Signal("Test4")
                                     )
-                                    { DebugInfo="aaa" }
+                                    { DebugInfo = "aaa" }
                                 ),
                                 new Signal("Test5")
                             )
@@ -528,6 +528,32 @@ namespace TiaCodegen.Samples
                                     new Signal("Test10")
                                 )
                             )
+                        )
+                    )
+                )
+            );
+            codeblock.Add(nw);
+
+            var block = new Block("Test", "blabla", codeblock);
+            block.Interface = TestInterface;
+            var xml = block.GetCode();
+        }
+
+
+        [Test]
+        public void Complex3()
+        {
+            var codeblock = new CodeBlock() { Safety = false };
+
+            var nw = new Network("T1", "T1");
+
+            nw.Add(
+                new Coil(
+                    new Signal("Test11"),
+                        new And(
+                            new Signal("Test1"),
+                            new Or(
+                                new Signal("Test2")
                         )
                     )
                 )
