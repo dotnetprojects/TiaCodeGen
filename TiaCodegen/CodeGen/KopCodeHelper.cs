@@ -694,7 +694,7 @@ namespace TiaCodegen.CodeGen
                         {
                             _sb.AppendLine("<NameCon UId=\"" + next.OperationId + "\" Name=\"pre\" />" + "  <!-- " + dstName + " -->");
                         }
-                        else if (next is CTUCall)
+                        else if (next is CTUCall || next is CTUDCall)
                         {
                             _sb.AppendLine("<NameCon UId=\"" + next.OperationId + "\" Name=\"CU\" />" + "  <!-- " + dstName + " -->");
                         }
