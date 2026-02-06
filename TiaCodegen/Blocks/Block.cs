@@ -56,6 +56,7 @@ namespace TiaCodegen.Blocks
       <MemoryLayout>Optimized</MemoryLayout>
       <Name>{Name}</Name>
  {(Number != 0 ? "<Number>" + Number + "</Number>" : "")}
+      <Namespace />
       <ProgrammingLanguage>LAD</ProgrammingLanguage>
     </AttributeList>
     <ObjectList>";

@@ -45,7 +45,7 @@ namespace TiaCodegen.CodeGen
 
         private void AddSignalDefinitions(Network network)
         {
-            var signals = network.Children.Flatten(x => x.Children).OfType<Signal>();
+            var signals = network.Children.Flatten(x => x.Children).OfType<Signal>().OrderBy(x => x.Name, new NaturalComparer());
 
             foreach (var signal in signals)
             {
@@ -88,6 +88,24 @@ namespace TiaCodegen.CodeGen
             {
                 if (op is Signal)
                 {
+                }
+                else if (op is And || (op is Or && op.Children.Count == 1))
+                {
+                }
+                else
+                {
+                    if (op is Or && op.Children.Count > 1)
+                    {
+                        //We need to fill this before
+                        op.CreateContactAndFillCardinality(op);
+                    }
+                }
+            }
+
+            foreach (var op in ops)
+            {
+                if (op is Signal)
+                {
                     if ((!(op.Parent is ICoil)) && (!(op.Parent is Not)) && (!(op.Parent is FunctionCall)) && (!(op.Parent is CompareOperator)) && (!(op.Parent is Move)) && (!(op.Parent is Convert)) && (!(op.Parent is S_Move)))
                     {
                         op.OperationId = _currentId;
@@ -107,22 +125,22 @@ namespace TiaCodegen.CodeGen
                             op.Children[0].OperationId = _currentId;
                     }
 
-                    if (!(op is Distributor))
-                        _currentId++;
-
                     if (op is Or && op.Children.Count > 1)
                     {
                         op.CreateContactAndFillCardinality(op);
                     }
+
+                    if (!(op is Distributor) && !op.DoNotCreateContact)
+                        _currentId++;
                 }
             }
 
             /*_sb.AppendLine("<!--");
-			foreach (var op in ops)
+            foreach (var op in ops)
             {
-				_sb.AppendLine(op.ToString() + " -- " + op.OperationId);
-			}
-			_sb.AppendLine("-->");*/
+                _sb.AppendLine(op.ToString() + " -- " + op.OperationId);
+            }
+            _sb.AppendLine("-->");*/
 
             foreach (var op in ops)
             {
@@ -452,7 +470,7 @@ namespace TiaCodegen.CodeGen
             }
         }
 
-        static string debug = "";
+        static string debug = null;
 
         private void AddWires(IOperationOrSignal op)
         {
@@ -528,7 +546,7 @@ namespace TiaCodegen.CodeGen
                                 }
                                 else if (c is And && c.Children.FirstOrDefault() is Or)
                                 {
-                                    foreach(var chIn in c.Children.FirstOrDefault().Children)
+                                    foreach (var chIn in c.Children.FirstOrDefault().Children)
                                     {
                                         foreach (var ch in GetAllOrSignals(chIn))
                                         {
@@ -545,7 +563,7 @@ namespace TiaCodegen.CodeGen
                             }
                         }
                         else
-                        {                            
+                        {
                             if (sng is Signal)
                             {
                                 _sb.AppendLine("<IdentCon UId=\"" + ((Signal)sng).SignalId + "\" />" + "  <!-- " + ((Signal)sng).Name + " -->");
@@ -573,35 +591,32 @@ namespace TiaCodegen.CodeGen
                 _sb.AppendLine("</Wire>");
                 _currentId++;
             }
-            else if (op is Or && op.Children.Count > 1)
-            {               
-                int i = 1;
-                foreach (var ch in op.Children)
+            else if (op is Or or && op.Children.Count > 1)
+            {
+                var orInputCounter = 1;
+                void ImportChildOrs (Or childOr)
                 {
-                    if (ch is And && ch.Children.Last() is Or) //Todo nur ein letztes or im End, könnte weiter verschachtelt sein
+                    var aaa = or;
+                    foreach (var ch in childOr.Children)
                     {
-                        foreach (var ch2 in ch.Children.Last().Children)
+                        if (ch.Children.Count > 0 && ch.Children.Last() is Or subChildOr)
                         {
-                            _sb.AppendLine("<Wire UId=\"" + _currentId + "\">" + (debug ?? ("<!-- Wire 1 Or -->")));
-                            _sb.AppendLine("<NameCon UId=\"" + ch2.OperationId + "\" Name=\"out\" />" + "  <!-- " + ch2.ToString() + " -->");
-                            _sb.AppendLine("<NameCon UId=\"" + op.OperationId + "\" Name=\"in" + i + "\" />" + "  <!-- " + op.ToString() + " -->");
-                            _sb.AppendLine("</Wire>");
-                            i++;
-                            _currentId++;
+                            ImportChildOrs(subChildOr);
                         }
-                    }
-                    else
-                    {
-                        if (!op.DoNotCreateContact)
+                        else
                         {
-                            _sb.AppendLine("<Wire UId=\"" + _currentId + "\">" + (debug ?? ("<!-- Wire 2 Or -->")));
+                            _sb.AppendLine("<Wire UId=\"" + _currentId + "\">" + (debug ?? ((op.DebugInfo != null ? " <!-- dbg: " + op.DebugInfo + "-->" : "") + "<!-- Wire 2 Or -->")));
                             _sb.AppendLine("<NameCon UId=\"" + ch.OperationId + "\" Name=\"out\" />" + "  <!-- " + ch.ToString() + " -->");
-                            _sb.AppendLine("<NameCon UId=\"" + op.OperationId + "\" Name=\"in" + i + "\" />" + "  <!-- " + op.ToString() + " -->");
+                            _sb.AppendLine("<NameCon UId=\"" + op.OperationId + "\" Name=\"in" + orInputCounter + "\" />" + "  <!-- " + op.ToString() + " -->");
                             _sb.AppendLine("</Wire>");
-                            i++;
+                            orInputCounter++;
                             _currentId++;
                         }
                     }
+                };
+                if (!op.DoNotCreateContact)
+                {
+                    ImportChildOrs(or);
                 }
             }
             else if (op is CompareOperator)
@@ -653,7 +668,7 @@ namespace TiaCodegen.CodeGen
                     }
                 }
             }
-            else if (op is And || op is Or)
+            else if (op is And /* || op is Or */ /* do we still get here? only with Or with one child */ )
             {
                 for (int n = 0; n < op.Children.Count - 1; n++)
                 {
@@ -661,8 +676,8 @@ namespace TiaCodegen.CodeGen
                     var next = op.Children[n + 1];
                     if (next is Or)
                     {
-                        _sb.AppendLine("<Wire UId=\"" + _currentId + "\">" + (debug ?? ("<!-- Wire And next Or -->")));
-                        _sb.AppendLine("<NameCon UId=\"" + ch.OperationId + "\" Name=\"out\" />");
+                        _sb.AppendLine("<Wire UId=\"" + _currentId + "\">" + (debug ?? ((op.DebugInfo != null ? " <!-- dbg: " + op.DebugInfo + "-->" : "") + "<!-- Wire And next Or -->")));
+                        _sb.AppendLine("<NameCon UId=\"" + ch.OperationId + "\" Name=\"out\" />" + (ch is Signal ? "  <!-- " + ((Signal)ch).Name + " -->" : ""));
                         foreach (var orSignal in next.Children)
                         {
                             foreach (var os in GetAllOrSignals(orSignal))
@@ -674,7 +689,7 @@ namespace TiaCodegen.CodeGen
                                 {
                                     ipName = "pre";
                                 }
-                                _sb.AppendLine("<NameCon UId=\"" + opId + "\" Name=\"" + ipName + "\" />");
+                                _sb.AppendLine("<NameCon UId=\"" + opId + "\" Name=\"" + ipName + "\" />" + (os is Signal ? "  <!-- " + ((Signal)os).Name + " -->" : ""));
                             }
                         }
                         _sb.AppendLine("</Wire>");
@@ -682,7 +697,7 @@ namespace TiaCodegen.CodeGen
                     }
                     else
                     {
-                        _sb.AppendLine("<Wire UId=\"" + _currentId + "\">" + (debug ?? ("<!-- Wire And -->")));
+                        _sb.AppendLine("<Wire UId=\"" + _currentId + "\">" + (debug ?? ((op.DebugInfo != null ? " <!-- dbg: " + op.DebugInfo + "-->" : "") + "<!-- Wire And -->")));
                         var outName = "out";
                         if (ch is FunctionCall || ch is S_Move || ch is Move || ch is Convert)
                             outName = "eno";
@@ -1060,9 +1075,9 @@ namespace TiaCodegen.CodeGen
                 }
             }
             /*_sb.AppendLine("<!--");
-			_sb.AppendLine("<!--");
-			PrintTree(_block, _sb);
-			_sb.AppendLine("-->");*/
+            _sb.AppendLine("<!--");
+            PrintTree(_block, _sb);
+            _sb.AppendLine("-->");*/
             return _sb.ToString();
         }
 

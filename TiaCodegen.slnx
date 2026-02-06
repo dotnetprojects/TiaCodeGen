@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/.github/" />
+  <Folder Name="/.github/workflows/">
+    <File Path=".github/workflows/dotnet.yml" />
+    <File Path=".github/workflows/dotnetpull.yml" />
+  </Folder>
+  <Project Path="TiaCodeGen.Tests/TiaCodeGen.Tests.csproj" />
+  <Project Path="TiaCodegen/DotNetProjects.TiaCodegen.csproj" />
+</Solution>
