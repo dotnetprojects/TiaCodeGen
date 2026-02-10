@@ -11,7 +11,8 @@ namespace TiaCodegen.Commands.Functions
             IOperationOrSignal r = null,
             IOperationOrSignal pv = null,
             IOperationOrSignal q = null,
-            IOperationOrSignal cv = null) : base("CTU", instanceName, null)
+            IOperationOrSignal cv = null,
+            string templateValue = "Int") : base("CTU", instanceName, null)
         {
             Interface["R"] = new IOperationOrSignalDirectionWrapper(r, Direction.Input);
             Interface["PV"] = new IOperationOrSignalDirectionWrapper(pv, Direction.Input);
@@ -20,7 +21,7 @@ namespace TiaCodegen.Commands.Functions
 
             TemplateValueName = "value_type";
             TemplateValueType = "Type";
-            TemplateValue = "Int";
+            TemplateValue = templateValue;
             HasNoEn = true;
 
             Children.AddRange(Interface.Values.Where(x => x.OperationOrSignal != null).Select(x => x.OperationOrSignal));
