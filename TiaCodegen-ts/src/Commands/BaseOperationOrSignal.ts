@@ -1,4 +1,4 @@
-import { IOperationOrSignal } from '../Interfaces/IOperationOrSignal';
+import { IOperationOrSignal } from '../Interfaces/IOperationOrSignal.js';
 
 export abstract class BaseOperationOrSignal implements IOperationOrSignal {
     debugInfo: string | null = null;
@@ -23,9 +23,10 @@ export abstract class BaseOperationOrSignal implements IOperationOrSignal {
 
     createContactAndFillCardinality(parent: IOperationOrSignal): number {
         this.cardinality = 1;
-        if (this.children.length > 0 && this.children[this.children.length - 1] instanceof Or) {
-            this.cardinality = this.children[this.children.length - 1].createContactAndFillCardinality(parent);
-            this.children[this.children.length - 1].doNotCreateContact = true;
+        const lastChild = this.children[this.children.length - 1];
+        if (this.children.length > 0 && lastChild.constructor.name === 'Or') {
+            this.cardinality = lastChild.createContactAndFillCardinality(parent);
+            lastChild.doNotCreateContact = true;
         }
         return this.cardinality;
     }
@@ -35,14 +36,15 @@ export abstract class BaseOperationOrSignal implements IOperationOrSignal {
     }
 
     toString(): string {
-        if (this instanceof And || this instanceof Or) {
-            return `${this.constructor.name} (${this.children.map(x => x.toString()).join(',')})`;
+        const name = this.constructor.name;
+        if (name === 'And' || name === 'Or') {
+            return `${name} (${this.children.map(x => x.toString()).join(',')})`;
         }
-        return this.constructor.name;
+        return name;
     }
 
     getFirstChildNotAnd(): IOperationOrSignal {
-        if (this instanceof And) {
+        if (this.constructor.name === 'And') {
             const ch1 = this.children[0];
             if (ch1 instanceof BaseOperationOrSignal) {
                 return ch1.getFirstChildNotAnd();
@@ -63,7 +65,3 @@ export abstract class BaseOperationOrSignal implements IOperationOrSignal {
         return inst;
     }
 }
-
-// Forward declarations to avoid circular imports - these are resolved at runtime
-import { And } from './And';
-import { Or } from './Or';

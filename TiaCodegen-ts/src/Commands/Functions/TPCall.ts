@@ -1,7 +1,7 @@
-import { IOperationOrSignal } from '../../Interfaces/IOperationOrSignal';
-import { IOperationOrSignalDirectionWrapper } from '../../Interfaces/IOperationOrSignalDirectionWrapper';
-import { Direction } from '../../Enums/Direction';
-import { SystemFunctionBlockCall } from './Base/SystemFunctionBlockCall';
+import { IOperationOrSignal } from '../../Interfaces/IOperationOrSignal.js';
+import { IOperationOrSignalDirectionWrapper } from '../../Interfaces/IOperationOrSignalDirectionWrapper.js';
+import { Direction } from '../../Enums/Direction.js';
+import { SystemFunctionBlockCall } from './Base/SystemFunctionBlockCall.js';
 
 export class TPCall extends SystemFunctionBlockCall {
     constructor(

@@ -1,6 +1,6 @@
-import { IOperationOrSignal } from '../../Interfaces/IOperationOrSignal';
-import { ICoil } from '../../Interfaces/ICoil';
-import { Signal } from '../Signals/Signal';
+import { IOperationOrSignal } from '../../Interfaces/IOperationOrSignal.js';
+import { ICoil } from '../../Interfaces/ICoil.js';
+import { Signal } from '../Signals/Signal.js';
 
 export class BaseCoil implements IOperationOrSignal, ICoil {
     debugInfo: string | null = null;

@@ -1,5 +1,5 @@
-import { IOperationOrSignal } from '../../../Interfaces/IOperationOrSignal';
-import { FunctionBlockCall } from './FunctionBlockCall';
+import { IOperationOrSignal } from '../../../Interfaces/IOperationOrSignal.js';
+import { FunctionBlockCall } from './FunctionBlockCall.js';
 
 export class SystemFunctionBlockCall extends FunctionBlockCall {
     templateValueName: string | null = null;

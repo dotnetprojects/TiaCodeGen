@@ -1,4 +1,4 @@
-import { BaseOperationOrSignal } from '../Commands/BaseOperationOrSignal';
+import { BaseOperationOrSignal } from '../Commands/BaseOperationOrSignal.js';
 
 export class CodeBlock extends BaseOperationOrSignal {
     name: string;

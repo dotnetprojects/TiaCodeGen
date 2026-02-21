@@ -1,6 +1,6 @@
-import { IOperationOrSignal } from '../../../Interfaces/IOperationOrSignal';
-import { IOperationOrSignalDirectionWrapper } from '../../../Interfaces/IOperationOrSignalDirectionWrapper';
-import { Direction } from '../../../Enums/Direction';
+import { IOperationOrSignal } from '../../../Interfaces/IOperationOrSignal.js';
+import { IOperationOrSignalDirectionWrapper } from '../../../Interfaces/IOperationOrSignalDirectionWrapper.js';
+import { Direction } from '../../../Enums/Direction.js';
 
 export class FunctionCall implements IOperationOrSignal {
     safetyTemplateString: string | null = null;

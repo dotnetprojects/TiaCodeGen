@@ -1,6 +1,6 @@
-import { Signal } from '../Signals/Signal';
-import { IPartName } from '../../Interfaces/IPartName';
-import { BaseNPCoil } from '../Coils/BaseNPCoil';
+import { Signal } from '../Signals/Signal.js';
+import { IPartName } from '../../Interfaces/IPartName.js';
+import { BaseNPCoil } from '../Coils/BaseNPCoil.js';
 
 export class PTrigCall extends BaseNPCoil implements IPartName {
     partName: string;

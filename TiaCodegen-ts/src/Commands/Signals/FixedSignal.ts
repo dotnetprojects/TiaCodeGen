@@ -1,1 +1,1 @@
-export { Signal, FixedSignal, FixedPeripherySignal } from './Signal';
+export { Signal, FixedSignal, FixedPeripherySignal } from './Signal.js';

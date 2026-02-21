@@ -1,5 +1,5 @@
-import { IOperationOrSignal } from '../Interfaces/IOperationOrSignal';
-import { Signal } from './Signals/Signal';
+import { IOperationOrSignal } from '../Interfaces/IOperationOrSignal.js';
+import { Signal } from './Signals/Signal.js';
 
 export class Not implements IOperationOrSignal {
     debugInfo: string | null = null;

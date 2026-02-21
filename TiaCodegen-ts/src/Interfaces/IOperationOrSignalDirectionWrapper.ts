@@ -1,6 +1,6 @@
-import { IOperationOrSignal } from './IOperationOrSignal';
-import { Direction } from '../Enums/Direction';
-import { SignalType } from '../Enums/SignalType';
+import { IOperationOrSignal } from './IOperationOrSignal.js';
+import { Direction } from '../Enums/Direction.js';
+import { SignalType } from '../Enums/SignalType.js';
 
 export class IOperationOrSignalDirectionWrapper {
     operationOrSignal: IOperationOrSignal | null;
