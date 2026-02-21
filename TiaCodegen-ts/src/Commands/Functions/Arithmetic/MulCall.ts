@@ -1,7 +1,7 @@
-import { IOperationOrSignal } from '../../../Interfaces/IOperationOrSignal';
-import { IOperationOrSignalDirectionWrapper } from '../../../Interfaces/IOperationOrSignalDirectionWrapper';
-import { Direction } from '../../../Enums/Direction';
-import { VariableArithmeticCall } from './VariableArithmeticCall';
+import { IOperationOrSignal } from '../../../Interfaces/IOperationOrSignal.js';
+import { IOperationOrSignalDirectionWrapper } from '../../../Interfaces/IOperationOrSignalDirectionWrapper.js';
+import { Direction } from '../../../Enums/Direction.js';
+import { VariableArithmeticCall } from './VariableArithmeticCall.js';
 
 export class MulCall extends VariableArithmeticCall {
     constructor(

@@ -1,5 +1,5 @@
-import { IOperationOrSignal } from '../Interfaces/IOperationOrSignal';
-import { BaseOperationOrSignal } from './BaseOperationOrSignal';
+import { IOperationOrSignal } from '../Interfaces/IOperationOrSignal.js';
+import { BaseOperationOrSignal } from './BaseOperationOrSignal.js';
 
 export class Or extends BaseOperationOrSignal {
     constructor(...operationOrSignals: IOperationOrSignal[]) {

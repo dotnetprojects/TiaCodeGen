@@ -2,11 +2,18 @@
   "name": "tia-codegen-ts",
   "version": "1.0.0",
   "description": "TypeScript port of TiaCodeGen C# library",
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
     "build": "tsc",
-    "test": "jest --testPathPattern=tests",
+    "test": "node --experimental-vm-modules node_modules/jest-cli/bin/jest.js --testPathPattern=tests",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
@@ -17,8 +24,14 @@
     "typescript": "^5.4.5"
   },
   "jest": {
-    "preset": "ts-jest",
+    "preset": "ts-jest/presets/default-esm",
     "testEnvironment": "node",
-    "testMatch": ["**/tests/**/*.test.ts"]
+    "testMatch": ["**/tests/**/*.test.ts"],
+    "moduleNameMapper": {
+      "^(\\.{1,2}/.*)\\.js$": "$1"
+    },
+    "transform": {
+      "^.+\\.tsx?$": ["ts-jest", {"useESM": true}]
+    }
   }
 }

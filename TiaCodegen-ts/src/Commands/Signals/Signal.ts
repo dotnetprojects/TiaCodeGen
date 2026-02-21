@@ -1,6 +1,6 @@
-import { IOperationOrSignal } from '../../Interfaces/IOperationOrSignal';
-import { SignalType } from '../../Enums/SignalType';
-import { StringBuilder } from '../../utils/StringBuilder';
+import { IOperationOrSignal } from '../../Interfaces/IOperationOrSignal.js';
+import { SignalType } from '../../Enums/SignalType.js';
+import { StringBuilder } from '../../utils/StringBuilder.js';
 
 export class Signal implements IOperationOrSignal {
     debugInfo: string | null = null;

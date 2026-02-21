@@ -1,7 +1,7 @@
-import { IOperationOrSignal } from '../../../Interfaces/IOperationOrSignal';
-import { IOperationOrSignalDirectionWrapper } from '../../../Interfaces/IOperationOrSignalDirectionWrapper';
-import { Direction } from '../../../Enums/Direction';
-import { ArithmeticCall } from './ArithmeticCall';
+import { IOperationOrSignal } from '../../../Interfaces/IOperationOrSignal.js';
+import { IOperationOrSignalDirectionWrapper } from '../../../Interfaces/IOperationOrSignalDirectionWrapper.js';
+import { Direction } from '../../../Enums/Direction.js';
+import { ArithmeticCall } from './ArithmeticCall.js';
 
 export class ModCall extends ArithmeticCall {
     constructor(

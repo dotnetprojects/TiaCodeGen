@@ -1,5 +1,5 @@
-import { IOperationOrSignal } from '../../../Interfaces/IOperationOrSignal';
-import { FunctionCall } from './FunctionCall';
+import { IOperationOrSignal } from '../../../Interfaces/IOperationOrSignal.js';
+import { FunctionCall } from './FunctionCall.js';
 
 export class FunctionBlockCall extends FunctionCall {
     instanceName: string;

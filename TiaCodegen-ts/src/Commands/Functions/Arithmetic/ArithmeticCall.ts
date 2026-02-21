@@ -1,5 +1,5 @@
-import { IOperationOrSignal } from '../../../Interfaces/IOperationOrSignal';
-import { SystemFunctionCall } from '../Base/SystemFunctionCall';
+import { IOperationOrSignal } from '../../../Interfaces/IOperationOrSignal.js';
+import { SystemFunctionCall } from '../Base/SystemFunctionCall.js';
 
 export abstract class ArithmeticCall extends SystemFunctionCall {
     type: string = '';

@@ -1,7 +1,7 @@
-import { IOperationOrSignal } from '../../Interfaces/IOperationOrSignal';
-import { IOperationOrSignalDirectionWrapper } from '../../Interfaces/IOperationOrSignalDirectionWrapper';
-import { Direction } from '../../Enums/Direction';
-import { SystemFunctionCall } from '../Functions/Base/SystemFunctionCall';
+import { IOperationOrSignal } from '../../Interfaces/IOperationOrSignal.js';
+import { IOperationOrSignalDirectionWrapper } from '../../Interfaces/IOperationOrSignalDirectionWrapper.js';
+import { Direction } from '../../Enums/Direction.js';
+import { SystemFunctionCall } from '../Functions/Base/SystemFunctionCall.js';
 
 export class OutRangeCall extends SystemFunctionCall {
     constructor(

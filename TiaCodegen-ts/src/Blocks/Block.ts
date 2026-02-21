@@ -1,5 +1,5 @@
-import { CodeBlock } from './CodeBlock';
-import { KopCodeHelper } from '../CodeGen/KopCodeHelper';
+import { CodeBlock } from './CodeBlock.js';
+import { KopCodeHelper } from '../CodeGen/KopCodeHelper.js';
 
 export class Block {
     name: string;

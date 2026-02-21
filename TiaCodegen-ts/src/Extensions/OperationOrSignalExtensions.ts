@@ -1,4 +1,4 @@
-import { IOperationOrSignal } from '../Interfaces/IOperationOrSignal';
+import { IOperationOrSignal } from '../Interfaces/IOperationOrSignal.js';
 
 export function tryGetParent<T extends IOperationOrSignal>(
     op: IOperationOrSignal,
