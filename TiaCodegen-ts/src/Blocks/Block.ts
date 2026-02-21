@@ -71,7 +71,7 @@ export class Block {
           <MultilingualTextItem ID="${idRef.value++}" CompositionName="Items">
             <AttributeList>
               <Culture>en-GB</Culture>
-              <Text>${this.titleEnglish}</Text>
+              <Text>${this.titleEnglish ?? ''}</Text>
             </AttributeList>
           </MultilingualTextItem>
         </ObjectList>
@@ -81,13 +81,13 @@ export class Block {
           <MultilingualTextItem ID="${idRef.value++}" CompositionName="Items">
             <AttributeList>
               <Culture>de-DE</Culture>
-              <Text>${this.comment}</Text>
+              <Text>${this.comment ?? ''}</Text>
             </AttributeList>
           </MultilingualTextItem>
           <MultilingualTextItem ID="${idRef.value++}" CompositionName="Items">
             <AttributeList>
               <Culture>en-GB</Culture>
-              <Text>${this.commentEnglish}</Text>
+              <Text>${this.commentEnglish ?? ''}</Text>
             </AttributeList>
           </MultilingualTextItem>
         </ObjectList>
