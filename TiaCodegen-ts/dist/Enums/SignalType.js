@@ -1,0 +1,32 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SignalType = void 0;
+var SignalType;
+(function (SignalType) {
+    SignalType["Bool"] = "Bool";
+    SignalType["Byte"] = "Byte";
+    SignalType["Int"] = "Int";
+    SignalType["DInt"] = "DInt";
+    SignalType["UInt"] = "UInt";
+    SignalType["UDInt"] = "UDInt";
+    SignalType["Time"] = "Time";
+    SignalType["UDT"] = "UDT";
+    SignalType["String"] = "String";
+    SignalType["Real"] = "Real";
+    SignalType["Constant"] = "Constant";
+    SignalType["ConstantBool"] = "ConstantBool";
+    SignalType["ConstantInt"] = "ConstantInt";
+    SignalType["ConstantDInt"] = "ConstantDInt";
+    SignalType["ConstantUInt"] = "ConstantUInt";
+    SignalType["ConstantUDInt"] = "ConstantUDInt";
+    SignalType["ConstantTime"] = "ConstantTime";
+    SignalType["ConstantString"] = "ConstantString";
+    SignalType["ConstantReal"] = "ConstantReal";
+    SignalType["ConstantWord"] = "ConstantWord";
+    SignalType["Custom"] = "Custom";
+    SignalType["Void"] = "Void";
+    SignalType["Variant"] = "Variant";
+    SignalType["ProgramAlarm"] = "ProgramAlarm";
+    SignalType["Word"] = "Word";
+})(SignalType || (exports.SignalType = SignalType = {}));
+//# sourceMappingURL=SignalType.js.map

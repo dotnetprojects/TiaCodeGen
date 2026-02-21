@@ -1,0 +1,1 @@
+{"version":3,"file":"SystemFunctionCall.js","sourceRoot":"","sources":["../../../../src/Commands/Functions/Base/SystemFunctionCall.ts"],"names":[],"mappings":";;;AACA,iDAA8C;AAE9C,MAAa,kBAAmB,SAAQ,2BAAY;IAChD,YAAY,YAAoB,EAAE,MAAiC,IAAI;QACnE,KAAK,CAAC,YAAY,EAAE,GAAG,CAAC,CAAC;IAC7B,CAAC;CACJ;AAJD,gDAIC"}

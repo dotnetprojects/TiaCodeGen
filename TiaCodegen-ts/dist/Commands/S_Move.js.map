@@ -1,0 +1,1 @@
+{"version":3,"file":"S_Move.js","sourceRoot":"","sources":["../../src/Commands/S_Move.ts"],"names":[],"mappings":";;;AAEA,mEAAgE;AAEhE,MAAa,MAAO,SAAQ,6CAAqB;IAC7C,YAAY,GAAG,kBAAwC;QACnD,KAAK,CAAC,GAAG,kBAAkB,CAAC,CAAC;IACjC,CAAC;IAED,IAAI,WAAW;QACX,OAAO,CAAC,CAAC;IACb,CAAC;IACD,IAAI,WAAW,CAAC,MAAc;QAC1B,mBAAmB;IACvB,CAAC;CACJ;AAXD,wBAWC"}

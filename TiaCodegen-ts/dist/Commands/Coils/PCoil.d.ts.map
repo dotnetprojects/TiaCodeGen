@@ -1,0 +1,1 @@
+{"version":3,"file":"PCoil.d.ts","sourceRoot":"","sources":["../../../src/Commands/Coils/PCoil.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,kBAAkB,EAAE,MAAM,qCAAqC,CAAC;AACzE,OAAO,EAAE,MAAM,EAAE,MAAM,mBAAmB,CAAC;AAC3C,OAAO,EAAE,UAAU,EAAE,MAAM,cAAc,CAAC;AAE1C,qBAAa,KAAM,SAAQ,UAAU;gBACrB,MAAM,EAAE,MAAM,EAAE,UAAU,EAAE,MAAM,EAAE,EAAE,GAAE,kBAAkB,GAAG,IAAW;CAGvF"}

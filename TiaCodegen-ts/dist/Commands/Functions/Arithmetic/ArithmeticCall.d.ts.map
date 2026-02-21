@@ -1,0 +1,1 @@
+{"version":3,"file":"ArithmeticCall.d.ts","sourceRoot":"","sources":["../../../../src/Commands/Functions/Arithmetic/ArithmeticCall.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,kBAAkB,EAAE,MAAM,wCAAwC,CAAC;AAC5E,OAAO,EAAE,kBAAkB,EAAE,MAAM,4BAA4B,CAAC;AAEhE,8BAAsB,cAAe,SAAQ,kBAAkB;IAC3D,IAAI,EAAE,MAAM,CAAM;gBAEN,YAAY,EAAE,MAAM,EAAE,GAAG,GAAE,kBAAkB,GAAG,IAAW;CAG1E"}

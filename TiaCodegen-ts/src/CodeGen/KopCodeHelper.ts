@@ -818,14 +818,14 @@ export class KopCodeHelper {
                 idRef.value++;
                 this._sb.appendLine('<AttributeList>');
                 this._sb.appendLine('<Culture>de-DE</Culture>');
-                this._sb.appendLine(`<Text>${network.description}</Text>`);
+                this._sb.appendLine(`<Text>${network.description ?? ''}</Text>`);
                 this._sb.appendLine('</AttributeList>');
                 this._sb.appendLine('</MultilingualTextItem>');
                 this._sb.appendLine(`<MultilingualTextItem ID="${idRef.value}" CompositionName="Items">`);
                 idRef.value++;
                 this._sb.appendLine('<AttributeList>');
                 this._sb.appendLine('<Culture>en-GB</Culture>');
-                this._sb.appendLine(`<Text>${network.descriptionEnglish}</Text>`);
+                this._sb.appendLine(`<Text>${network.descriptionEnglish ?? ''}</Text>`);
                 this._sb.appendLine('</AttributeList>');
                 this._sb.appendLine('</MultilingualTextItem>');
                 this._sb.appendLine('</ObjectList>');
