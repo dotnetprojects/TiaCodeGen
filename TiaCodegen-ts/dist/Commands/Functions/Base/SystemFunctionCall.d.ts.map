@@ -1,1 +1,0 @@
-{"version":3,"file":"SystemFunctionCall.d.ts","sourceRoot":"","sources":["../../../../src/Commands/Functions/Base/SystemFunctionCall.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,kBAAkB,EAAE,MAAM,wCAAwC,CAAC;AAC5E,OAAO,EAAE,YAAY,EAAE,MAAM,gBAAgB,CAAC;AAE9C,qBAAa,kBAAmB,SAAQ,YAAY;gBACpC,YAAY,EAAE,MAAM,EAAE,GAAG,GAAE,kBAAkB,GAAG,IAAW;CAG1E"}

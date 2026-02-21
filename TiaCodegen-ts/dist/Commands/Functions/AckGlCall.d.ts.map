@@ -1,1 +1,0 @@
-{"version":3,"file":"AckGlCall.d.ts","sourceRoot":"","sources":["../../../src/Commands/Functions/AckGlCall.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,kBAAkB,EAAE,MAAM,qCAAqC,CAAC;AAGzE,OAAO,EAAE,uBAAuB,EAAE,MAAM,gCAAgC,CAAC;AAEzE,qBAAa,SAAU,SAAQ,uBAAuB;gBAE9C,YAAY,EAAE,MAAM,EACpB,OAAO,GAAE,kBAAkB,GAAG,IAAW,EACzC,GAAG,GAAE,kBAAkB,GAAG,IAAW;CAe5C"}

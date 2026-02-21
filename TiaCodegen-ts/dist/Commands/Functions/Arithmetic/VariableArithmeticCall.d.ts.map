@@ -1,1 +1,0 @@
-{"version":3,"file":"VariableArithmeticCall.d.ts","sourceRoot":"","sources":["../../../../src/Commands/Functions/Arithmetic/VariableArithmeticCall.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,kBAAkB,EAAE,MAAM,wCAAwC,CAAC;AAC5E,OAAO,EAAE,cAAc,EAAE,MAAM,kBAAkB,CAAC;AAElD,8BAAsB,sBAAuB,SAAQ,cAAc;gBACnD,YAAY,EAAE,MAAM,EAAE,GAAG,GAAE,kBAAkB,GAAG,IAAW;CAG1E"}

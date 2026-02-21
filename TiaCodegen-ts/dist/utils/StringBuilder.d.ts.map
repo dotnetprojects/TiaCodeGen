@@ -1,1 +1,0 @@
-{"version":3,"file":"StringBuilder.d.ts","sourceRoot":"","sources":["../../src/utils/StringBuilder.ts"],"names":[],"mappings":"AAAA,qBAAa,aAAa;IACtB,OAAO,CAAC,KAAK,CAAgB;IAE7B,MAAM,CAAC,IAAI,EAAE,MAAM,GAAG,aAAa;IAKnC,UAAU,CAAC,IAAI,GAAE,MAAW,GAAG,aAAa;IAK5C,QAAQ,IAAI,MAAM;IAIlB,IAAI,MAAM,IAAI,MAAM,CAEnB;CACJ"}

@@ -1,1 +1,0 @@
-{"version":3,"file":"SCoil.d.ts","sourceRoot":"","sources":["../../../src/Commands/Coils/SCoil.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,kBAAkB,EAAE,MAAM,qCAAqC,CAAC;AACzE,OAAO,EAAE,MAAM,EAAE,MAAM,mBAAmB,CAAC;AAC3C,OAAO,EAAE,QAAQ,EAAE,MAAM,YAAY,CAAC;AAEtC,qBAAa,KAAM,SAAQ,QAAQ;gBACnB,MAAM,EAAE,MAAM,EAAE,EAAE,GAAE,kBAAkB,GAAG,IAAW;CAGnE"}

@@ -1,1 +1,0 @@
-{"version":3,"file":"FTrigCall.d.ts","sourceRoot":"","sources":["../../../src/Commands/Functions/FTrigCall.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,kBAAkB,EAAE,MAAM,qCAAqC,CAAC;AAGzE,OAAO,EAAE,uBAAuB,EAAE,MAAM,gCAAgC,CAAC;AAEzE,qBAAa,SAAU,SAAQ,uBAAuB;gBAE9C,YAAY,EAAE,MAAM,EACpB,GAAG,GAAE,kBAAkB,GAAG,IAAW,EACrC,CAAC,GAAE,kBAAkB,GAAG,IAAW,EACnC,GAAG,GAAE,kBAAkB,GAAG,IAAW;CAU5C"}
