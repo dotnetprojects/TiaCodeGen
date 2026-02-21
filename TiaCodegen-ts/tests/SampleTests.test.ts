@@ -18,6 +18,8 @@ import { InRangeCall } from '../src/Commands/Comparisons/InRangeCall';
 import { FunctionBlockCall } from '../src/Commands/Functions/Base/FunctionBlockCall';
 import { SystemFunctionCall } from '../src/Commands/Functions/Base/SystemFunctionCall';
 import { TONCall } from '../src/Commands/Functions/TONCall';
+import { CTUCall } from '../src/Commands/Functions/CTUCall';
+import { TPCall } from '../src/Commands/Functions/TPCall';
 import { IOperationOrSignalDirectionWrapper } from '../src/Interfaces/IOperationOrSignalDirectionWrapper';
 import { Direction } from '../src/Enums/Direction';
 import { SignalType } from '../src/Enums/SignalType';
@@ -222,6 +224,106 @@ describe('SampleTests', () => {
         expect(xml).toContain('F_LAD');
     });
 
+    test('TestCallWithCTU', () => {
+        const codeblock = new CodeBlock();
+        codeblock.safety = false;
+        const nw = new Network('Test2', 'Test2en');
+
+        const f = new And(
+            new Signal('aa'),
+            new CTUCall('Hallo', new Signal('bbb', SignalType.Bool), new Signal('2', SignalType.ConstantInt), new Coil(new Signal('ccc', SignalType.Bool))),
+        );
+        nw.add(f);
+        codeblock.add(nw);
+
+        const block = new Block('Test', 'blabla', codeblock);
+        block.blockInterface = TestInterface;
+        const xml = block.getCode();
+        expect(xml).toBeTruthy();
+    });
+
+    test('TestCallWithTPAndDistributor', () => {
+        const codeblock = new CodeBlock();
+        codeblock.safety = false;
+        const nw = new Network('Test2', 'Test2en');
+
+        const and = new And(
+            new Signal('#aaa'),
+            new TPCall(
+                'PulseStartPrint',
+                new Signal('T#100ms', SignalType.ConstantTime),
+                new Distributor(
+                    new Coil(new Signal('#bbbb')),
+                    new RCoil(new Signal('#cccc')),
+                    new SCoil(new Signal('#dddd')),
+                ),
+            ),
+        );
+        nw.add(and);
+        codeblock.add(nw);
+
+        const block = new Block('Test', 'blabla', codeblock);
+        block.blockInterface = TestInterface;
+        const xml = block.getCode();
+        expect(xml).toBeTruthy();
+    });
+
+    test('DistributorWithOr', () => {
+        const codeblock = new CodeBlock();
+        codeblock.safety = false;
+        const nw = new Network('Test2', 'Test2en');
+
+        nw.add(
+            new And(
+                new Signal('asd'),
+                new Distributor(
+                    new SCoil(new Signal('x')),
+                    new And(
+                        new Or(
+                            new And(new Signal('a'), new Signal('h')),
+                            new And(new Signal('b'), new Signal('f')),
+                        ),
+                        new SCoil(new Signal('c')),
+                    ),
+                ),
+            ),
+        );
+        codeblock.add(nw);
+
+        const block = new Block('Test', 'blabla', codeblock);
+        block.blockInterface = TestInterface;
+        const xml = block.getCode();
+        expect(xml).toBeTruthy();
+    });
+
+    test('MultipleOr', () => {
+        const codeblock = new CodeBlock();
+        codeblock.safety = false;
+        const nw = new Network('Test2', 'Test2en');
+
+        nw.add(
+            new Coil(
+                new Signal('a'),
+                new And(
+                    new Signal('1'),
+                    new Or(
+                        new And(
+                            new Or(new Signal('b'), new Signal('c')),
+                            new Signal('d'),
+                        ),
+                        new Signal('e'),
+                    ),
+                ),
+            ),
+        );
+        codeblock.add(nw);
+
+        const block = new Block('Test', 'blabla', codeblock);
+        block.blockInterface = TestInterface;
+        const xml = block.getCode();
+        expect(xml).toBeTruthy();
+    });
+
     test('FixedPeripherySignalTest', () => {
         const codeblock = new CodeBlock();
         const nw = new Network('Test3', 'Test3en');
@@ -319,6 +421,49 @@ describe('SampleTests', () => {
         outerOr.debugInfo = 'eee';
 
         nw.add(new Coil(new Signal('Test11'), outerOr));
+        codeblock.add(nw);
+
+        const block = new Block('Test', 'blabla', codeblock);
+        block.blockInterface = TestInterface;
+        const xml = block.getCode();
+        expect(xml).toBeTruthy();
+    });
+
+    test('ComplexOr2', () => {
+        const codeblock = new CodeBlock();
+        codeblock.safety = false;
+        const nw = new Network('T1', 'T1');
+
+        nw.add(
+            new Coil(
+                new Signal('Test11'),
+                new Or(
+                    new Signal('Test12'),
+                    new Or(
+                        new And(
+                            new Signal('Test1'),
+                            new Or(
+                                new And(
+                                    new Signal('Test2'),
+                                    new Or(new Signal('Test3'), new Signal('Test4')),
+                                ),
+                                new Signal('Test5'),
+                            ),
+                        ),
+                        new And(
+                            new Signal('Test6'),
+                            new Or(
+                                new And(
+                                    new Signal('Test7'),
+                                    new Or(new Signal('Test8'), new Signal('Test9')),
+                                ),
+                                new Signal('Test10'),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
         codeblock.add(nw);
 
         const block = new Block('Test', 'blabla', codeblock);
