@@ -15,7 +15,7 @@ export class OutRangeCall extends SystemFunctionCall {
         this.disableEno = false;
         this.iface['min'] = new IOperationOrSignalDirectionWrapper(min, Direction.Input);
         this.iface['in'] = new IOperationOrSignalDirectionWrapper(inParam, Direction.Input);
-        this.iface['max'] = new IOperationOrSignalDirectionWrapper(max, Direction.Output);
+        this.iface['max'] = new IOperationOrSignalDirectionWrapper(max, Direction.Input);
         this.iface['out'] = new IOperationOrSignalDirectionWrapper(out, Direction.Output);
 
         for (const w of Object.values(this.iface)) {

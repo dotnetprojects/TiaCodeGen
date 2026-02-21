@@ -6,7 +6,6 @@ export class FunctionBlockCall extends FunctionCall {
 
     constructor(functionName: string, instanceName: string, eno: IOperationOrSignal | null = null) {
         super(functionName, eno);
-        this.functionName = functionName;
         this.instanceName = instanceName;
     }
 }
