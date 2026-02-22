@@ -192,9 +192,10 @@ namespace TiaCodegen.Commands.Signals
             {
                 sb.AppendLine("<Access Scope=\"GlobalVariable\" UId=\"" + id + "\">" + "  <!-- P1: " + Name + " -->");
                 sb.AppendLine("<Symbol>");
-                for (int i = 0; i < Escape(Name).Split('.').Length; i++) // Aufsplitten von a.b.c in einzel Elemente
+                var nameParts = Escape(Name).Split('.');
+                for (int i = 0; i < nameParts.Length; i++) // Aufsplitten von a.b.c in einzel Elemente
                 {
-                    var part = Unescape(Escape(Name).Split('.')[i]);
+                    var part = Unescape(nameParts[i]);
 
                     var idx = part.IndexOf("[") + 1; // Aufsplitten von Arrays
                     if (idx > 0)
@@ -213,7 +214,7 @@ namespace TiaCodegen.Commands.Signals
                         {
                             var p1 = part.Substring(idx, part.Length - idx);
                             var accessType = "GlobalVariable";
-                            if (p1[0] == '#')
+                            if (p1.Length > 0 && p1[0] == '#')
                             {
                                 p1 = p1.Substring(1);
                                 accessType = "LocalVariable";
@@ -224,7 +225,9 @@ namespace TiaCodegen.Commands.Signals
                             while (p1 != null)
                             {
                                 i++;
-                                p1 = Unescape(Escape(Name).Split('.')[i]);
+                                if (i >= nameParts.Length)
+                                    break;
+                                p1 = Unescape(nameParts[i]);
                                 if (p1.Contains("]"))
                                 {
                                     sb.AppendLine("<Component Name=\"" + p1.Substring(0, p1.Length - 1) + "\" />");
@@ -328,12 +331,13 @@ namespace TiaCodegen.Commands.Signals
                     sb.AppendLine("<Access Scope=\"GlobalVariable\" UId=\"" + id + "\">" + "  <!-- P3: " + Name + " -->");
                 }
                 sb.AppendLine("<Symbol>");
-                var cnt = Escape(LocalName).Split('.').Length;
+                var localNameParts = Escape(LocalName).Split('.');
+                var cnt = localNameParts.Length;
                 if (this is FixedSignal)
                     cnt = 1;
                 for (int i = 0; i < cnt; i++) // Aufsplitten von a.b.c in einzel Elemente
                 {
-                    var part = Unescape(Escape(LocalName).Split('.')[i]);
+                    var part = Unescape(localNameParts[i]);
                     if (this is FixedSignal)
                         part = LocalName;
 
@@ -354,7 +358,7 @@ namespace TiaCodegen.Commands.Signals
                         {
                             var p1 = part.Substring(idx, part.Length - idx);
                             var accessType = "GlobalVariable";
-                            if (p1[0] == '#')
+                            if (p1.Length > 0 && p1[0] == '#')
                             {
                                 p1 = p1.Substring(1);
                                 accessType = "LocalVariable";
@@ -366,7 +370,9 @@ namespace TiaCodegen.Commands.Signals
                             while (p1 != null)
                             {
                                 i++;
-                                p1 = Unescape(Escape(LocalName).Split('.')[i]);
+                                if (i >= localNameParts.Length)
+                                    break;
+                                p1 = Unescape(localNameParts[i]);
                                 if (p1.Contains(","))
                                 {
                                     var innerParts = p1.Split(',');
@@ -397,7 +403,7 @@ namespace TiaCodegen.Commands.Signals
                                             sb.AppendLine("</Access>");
 
                                             var accessTypePne = "GlobalVariable";
-                                            if (pNe[0] == '#')
+                                            if (pNe.Length > 0 && pNe[0] == '#')
                                             {
                                                 pNe = pNe.Substring(1);
                                                 accessTypePne = "LocalVariable";

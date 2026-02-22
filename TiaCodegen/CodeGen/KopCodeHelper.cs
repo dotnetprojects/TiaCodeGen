@@ -516,7 +516,7 @@ namespace TiaCodegen.CodeGen
                             }
                             else
                             {
-                                _sb.AppendLine("<NameCon UId=\"" + sng.Children.Last().OperationId + "\" Name=\"out\" />");
+                                _sb.AppendLine("<NameCon UId=\"" + (sng.Children.Any() ? sng.Children.Last().OperationId : sng.OperationId) + "\" Name=\"out\" />");
                             }
                         }
                         _sb.AppendLine("<NameCon UId=\"" + op.OperationId + "\" Name=\"" + intf.Key + "\" />");
@@ -527,7 +527,7 @@ namespace TiaCodegen.CodeGen
                     {
                         _sb.AppendLine("<Wire UId=\"" + _currentId + "\">" + (debug ?? ("<!-- Wire 3 FunctionCall -->")));
                         _sb.AppendLine("<NameCon UId=\"" + op.OperationId + "\" Name=\"eno\" />");
-                        _sb.AppendLine("<NameCon UId=\"" + sng.Children.Last().OperationId + "\" Name=\"in\" />");
+                        _sb.AppendLine("<NameCon UId=\"" + (sng.Children.Any() ? sng.Children.Last().OperationId : sng.OperationId) + "\" Name=\"in\" />");
                         _sb.AppendLine("</Wire>");
                         _currentId++;
                     }
@@ -781,7 +781,7 @@ namespace TiaCodegen.CodeGen
                     if (op.Children[1] is Signal)
                         ch = op.Children[1];
                     else
-                        ch = op.Children[1].Children.Last();
+                        ch = op.Children[1].Children.Any() ? op.Children[1].Children.Last() : op.Children[1];
 
                     if (op.Children[1] is Or || op.Children[1] is CompareOperator || op.Children[1] is Move || op.Children[1] is Convert || op.Children[1] is S_Move || op.Children[1] is ICoil)
                     {
