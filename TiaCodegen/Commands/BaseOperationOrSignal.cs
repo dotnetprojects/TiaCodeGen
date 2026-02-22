@@ -59,7 +59,7 @@ namespace TiaCodegen.Commands
 
         public IOperationOrSignal GetFirstChildNotAnd()
         {
-            if (this is And)
+            if (this is And && Children.Count > 0)
             {
                 var ch1 = ((And)this).Children[0];
                 if (ch1 is BaseOperationOrSignal)

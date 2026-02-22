@@ -9,6 +9,6 @@ namespace TiaCodegen.Commands
             : base(operationOrSignals)
         { }
 
-        public override int Cardinality { get { return Children.Count() - 1; } }
+        public override int Cardinality { get { return Children.Any() ? Children.Count() - 1 : 0; } }
     }
 }
