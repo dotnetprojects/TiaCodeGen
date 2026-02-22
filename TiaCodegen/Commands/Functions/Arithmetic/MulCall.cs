@@ -4,9 +4,9 @@ using TiaCodegen.Interfaces;
 
 namespace TiaCodegen.Commands.Functions.Arithmetic
 {
-    public class AddCall : VariableArithmeticCall
+    public class MulCall : VariableArithmeticCall
     {
-        public AddCall(string type,
+        public MulCall(string type,
             IOperationOrSignal in1,
             IOperationOrSignal in2,
             IOperationOrSignal in3 = null,
@@ -58,7 +58,7 @@ namespace TiaCodegen.Commands.Functions.Arithmetic
             IOperationOrSignal in49 = null,
             IOperationOrSignal in50 = null,
             IOperationOrSignal out1 = null,
-            IOperationOrSignal eno = null) : base("Add", eno)
+            IOperationOrSignal eno = null) : base("Mul", eno)
         {
             DisableEno = true;
             Type = type;
