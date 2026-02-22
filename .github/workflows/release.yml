@@ -1,0 +1,81 @@
+name: Build Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    permissions: write-all
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependency-path: TiaCodegen-ts/package-lock.json
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Get version from tag
+      id: get_version
+      run: |
+        VERSION="${{ github.event.release.tag_name }}"
+        echo "VERSION=${VERSION#v}" >> $GITHUB_OUTPUT
+
+    - name: Update C# project version
+      uses: roryprimrose/set-vs-sdk-project-version@v1
+      with:
+        version: ${{ steps.get_version.outputs.VERSION }}
+        assemblyVersion: ${{ steps.get_version.outputs.VERSION }}
+        fileVersion: ${{ steps.get_version.outputs.VERSION }}
+        informationalVersion: ${{ steps.get_version.outputs.VERSION }}-${{ github.sha }}
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --no-restore -c Release
+
+    - name: Test
+      run: dotnet test --no-build -c Release --verbosity normal
+
+    - name: Install TypeScript dependencies
+      run: npm ci
+      working-directory: TiaCodegen-ts
+
+    - name: Update npm package version
+      run: npm version ${{ steps.get_version.outputs.VERSION }} --no-git-tag-version
+      working-directory: TiaCodegen-ts
+
+    - name: Build TypeScript
+      run: npm run build
+      working-directory: TiaCodegen-ts
+
+    - name: Test TypeScript
+      run: npm test
+      working-directory: TiaCodegen-ts
+
+    - name: Package
+      run: dotnet pack -c Release -o . TiaCodegen/DotNetProjects.TiaCodegen.csproj
+
+    - name: Upload to release
+      uses: AButler/upload-release-assets@v3.0
+      with:
+        files: '*.nupkg'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Publish to NuGet
+      run: dotnet nuget push *.nupkg -k ${{ secrets.NUGET_API_KEY }} -s "https://api.nuget.org/v3/index.json" --skip-duplicate
+
+    - name: Publish to npm
+      run: npm publish
+      working-directory: TiaCodegen-ts
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
