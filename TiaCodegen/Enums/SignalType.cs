@@ -5,6 +5,7 @@
         Bool,
         Byte,
         Int,
+        SInt,
         DInt,
         UInt,
         UDInt,
