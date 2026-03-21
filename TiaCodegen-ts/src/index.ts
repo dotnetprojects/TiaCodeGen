@@ -53,33 +53,33 @@ export { InRangeCall } from './Commands/Comparisons/InRangeCall.js';
 export { OutRangeCall } from './Commands/Comparisons/OutRangeCall.js';
 
 // Function Base
-export { FunctionCall } from './Commands/Functions/Base/FunctionCall.js';
-export { FunctionBlockCall } from './Commands/Functions/Base/FunctionBlockCall.js';
-export { SystemFunctionCall } from './Commands/Functions/Base/SystemFunctionCall.js';
-export { SystemFunctionBlockCall } from './Commands/Functions/Base/SystemFunctionBlockCall.js';
+export { FunctionCall, type FunctionCallOptions } from './Commands/Functions/Base/FunctionCall.js';
+export { FunctionBlockCall, type FunctionBlockCallOptions } from './Commands/Functions/Base/FunctionBlockCall.js';
+export { SystemFunctionCall, type SystemFunctionCallOptions } from './Commands/Functions/Base/SystemFunctionCall.js';
+export { SystemFunctionBlockCall, type SystemFunctionBlockCallOptions } from './Commands/Functions/Base/SystemFunctionBlockCall.js';
 
 // Arithmetic
-export { ArithmeticCall } from './Commands/Functions/Arithmetic/ArithmeticCall.js';
-export { VariableArithmeticCall } from './Commands/Functions/Arithmetic/VariableArithmeticCall.js';
-export { AddCall } from './Commands/Functions/Arithmetic/AddCall.js';
-export { MulCall } from './Commands/Functions/Arithmetic/MulCall.js';
-export { SubCall } from './Commands/Functions/Arithmetic/SubCall.js';
-export { DivCall } from './Commands/Functions/Arithmetic/DivCall.js';
-export { ModCall } from './Commands/Functions/Arithmetic/ModCall.js';
+export { ArithmeticCall, type ArithmeticCallOptions } from './Commands/Functions/Arithmetic/ArithmeticCall.js';
+export { VariableArithmeticCall, type VariableArithmeticCallOptions } from './Commands/Functions/Arithmetic/VariableArithmeticCall.js';
+export { AddCall, type AddCallOptions } from './Commands/Functions/Arithmetic/AddCall.js';
+export { MulCall, type MulCallOptions } from './Commands/Functions/Arithmetic/MulCall.js';
+export { SubCall, type SubCallOptions } from './Commands/Functions/Arithmetic/SubCall.js';
+export { DivCall, type DivCallOptions } from './Commands/Functions/Arithmetic/DivCall.js';
+export { ModCall, type ModCallOptions } from './Commands/Functions/Arithmetic/ModCall.js';
 
 // Functions
-export { AckGlCall } from './Commands/Functions/AckGlCall.js';
-export { CTUCall } from './Commands/Functions/CTUCall.js';
-export { CTUDCall } from './Commands/Functions/CTUDCall.js';
-export { FDBACKCall } from './Commands/Functions/FDBACKCall.js';
-export { FTrigCall } from './Commands/Functions/FTrigCall.js';
-export { NTrigCall } from './Commands/Functions/NTrigCall.js';
-export { PTrigCall } from './Commands/Functions/PTrigCall.js';
-export { RTrigCall } from './Commands/Functions/RTrigCall.js';
-export { TOFCall } from './Commands/Functions/TOFCall.js';
-export { TONCall } from './Commands/Functions/TONCall.js';
-export { TONRCall } from './Commands/Functions/TONRCall.js';
-export { TPCall } from './Commands/Functions/TPCall.js';
+export { AckGlCall, type AckGlCallOptions } from './Commands/Functions/AckGlCall.js';
+export { CTUCall, type CTUCallOptions } from './Commands/Functions/CTUCall.js';
+export { CTUDCall, type CTUDCallOptions } from './Commands/Functions/CTUDCall.js';
+export { FDBACKCall, type FDBACKCallOptions } from './Commands/Functions/FDBACKCall.js';
+export { FTrigCall, type FTrigCallOptions } from './Commands/Functions/FTrigCall.js';
+export { NTrigCall, type NTrigCallOptions } from './Commands/Functions/NTrigCall.js';
+export { PTrigCall, type PTrigCallOptions } from './Commands/Functions/PTrigCall.js';
+export { RTrigCall, type RTrigCallOptions } from './Commands/Functions/RTrigCall.js';
+export { TOFCall, type TOFCallOptions } from './Commands/Functions/TOFCall.js';
+export { TONCall, type TONCallOptions } from './Commands/Functions/TONCall.js';
+export { TONRCall, type TONRCallOptions } from './Commands/Functions/TONRCall.js';
+export { TPCall, type TPCallOptions } from './Commands/Functions/TPCall.js';
 
 // Blocks
 export { CodeBlock } from './Blocks/CodeBlock.js';

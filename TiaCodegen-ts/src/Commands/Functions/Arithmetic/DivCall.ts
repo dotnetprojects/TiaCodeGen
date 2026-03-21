@@ -3,15 +3,18 @@ import { IOperationOrSignalDirectionWrapper } from '../../../Interfaces/IOperati
 import { Direction } from '../../../Enums/Direction.js';
 import { ArithmeticCall } from './ArithmeticCall.js';
 
+export interface DivCallOptions {
+    type: string;
+    in1: IOperationOrSignal;
+    in2: IOperationOrSignal;
+    out1?: IOperationOrSignal | null;
+    eno?: IOperationOrSignal | null;
+}
+
 export class DivCall extends ArithmeticCall {
-    constructor(
-        type: string,
-        in1: IOperationOrSignal,
-        in2: IOperationOrSignal,
-        out1: IOperationOrSignal | null = null,
-        eno: IOperationOrSignal | null = null,
-    ) {
-        super('Div', eno);
+    constructor(options: DivCallOptions) {
+        const { type, in1, in2, out1 = null, eno = null } = options;
+        super({ functionName: 'Div', eno });
         this.disableEno = true;
         this.type = type;
         this.iface['IN1'] = new IOperationOrSignalDirectionWrapper(in1, Direction.Input);

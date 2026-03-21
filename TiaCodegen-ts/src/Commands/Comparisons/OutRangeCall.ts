@@ -11,7 +11,7 @@ export class OutRangeCall extends SystemFunctionCall {
         out: IOperationOrSignal,
         eno: IOperationOrSignal | null = null,
     ) {
-        super('OutRange', eno);
+        super({ functionName: 'OutRange', eno });
         this.disableEno = false;
         this.iface['min'] = new IOperationOrSignalDirectionWrapper(min, Direction.Input);
         this.iface['in'] = new IOperationOrSignalDirectionWrapper(inParam, Direction.Input);

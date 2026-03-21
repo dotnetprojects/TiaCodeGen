@@ -3,15 +3,17 @@ import { IOperationOrSignalDirectionWrapper } from '../../Interfaces/IOperationO
 import { Direction } from '../../Enums/Direction.js';
 import { SystemFunctionBlockCall } from './Base/SystemFunctionBlockCall.js';
 
-export class TOFCall extends SystemFunctionBlockCall {
-    constructor(
-        instanceName: string,
-        pt: IOperationOrSignal | null = null,
+export interface TOFCallOptions {
+    instanceName: string;
+    pt?: IOperationOrSignal | null;
+    q?: IOperationOrSignal | null;
+    et?: IOperationOrSignal | null;
+}
 
-        q: IOperationOrSignal | null = null,
-        et: IOperationOrSignal | null = null,
-    ) {
-        super('TOF', instanceName, null);
+export class TOFCall extends SystemFunctionBlockCall {
+    constructor(options: TOFCallOptions) {
+        const { instanceName, pt = null, q = null, et = null } = options;
+        super({ functionName: 'TOF', instanceName });
         this.iface['PT'] = new IOperationOrSignalDirectionWrapper(pt, Direction.Input);
 
         this.iface['Q'] = new IOperationOrSignalDirectionWrapper(q, Direction.Output);

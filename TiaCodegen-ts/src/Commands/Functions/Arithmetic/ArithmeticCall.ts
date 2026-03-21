@@ -1,10 +1,11 @@
-import { IOperationOrSignal } from '../../../Interfaces/IOperationOrSignal.js';
-import { SystemFunctionCall } from '../Base/SystemFunctionCall.js';
+import { SystemFunctionCall, SystemFunctionCallOptions } from '../Base/SystemFunctionCall.js';
+
+export interface ArithmeticCallOptions extends SystemFunctionCallOptions {}
 
 export abstract class ArithmeticCall extends SystemFunctionCall {
     type: string = '';
 
-    constructor(functionName: string, eno: IOperationOrSignal | null = null) {
-        super(functionName, eno);
+    constructor(options: ArithmeticCallOptions) {
+        super(options);
     }
 }

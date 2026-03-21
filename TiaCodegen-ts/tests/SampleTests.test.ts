@@ -151,7 +151,7 @@ describe('SampleTests', () => {
         const codeblock = new CodeBlock();
         const nw = new Network('Test2', 'Test2en');
 
-        const f = new FunctionBlockCall('CheckContour', 'CheckContourInstance');
+        const f = new FunctionBlockCall({ functionName: 'CheckContour', instanceName: 'CheckContourInstance' });
         f.iface['BoolPar'] = new IOperationOrSignalDirectionWrapper(
             new Or(new Signal('P1'), new Signal('P2')),
             Direction.InOut,
@@ -177,7 +177,7 @@ describe('SampleTests', () => {
                 new Distributor(
                     new And(new Coil(new Signal('#monitoringSignal'))),
                     new And(
-                        new TONCall('OnDelaySafetyDoorSDA11N13', new Signal('T#60s', SignalType.ConstantTime)),
+                        new TONCall({ instanceName: 'OnDelaySafetyDoorSDA11N13', pt: new Signal('T#60s', SignalType.ConstantTime) }),
                     ),
                 ),
             ),
@@ -214,7 +214,7 @@ describe('SampleTests', () => {
         codeblock.safety = true;
         const nw = new Network('Test2', 'Test2en');
 
-        const f = new TONCall('Hallo', new Signal('T#4m', SignalType.ConstantTime));
+        const f = new TONCall({ instanceName: 'Hallo', pt: new Signal('T#4m', SignalType.ConstantTime) });
         nw.add(f);
         codeblock.add(nw);
 
@@ -231,7 +231,7 @@ describe('SampleTests', () => {
 
         const f = new And(
             new Signal('aa'),
-            new CTUCall('Hallo', new Signal('bbb', SignalType.Bool), new Signal('2', SignalType.ConstantInt), new Coil(new Signal('ccc', SignalType.Bool))),
+            new CTUCall({ instanceName: 'Hallo', r: new Signal('bbb', SignalType.Bool), pv: new Signal('2', SignalType.ConstantInt), q: new Coil(new Signal('ccc', SignalType.Bool)) }),
         );
         nw.add(f);
         codeblock.add(nw);
@@ -249,15 +249,15 @@ describe('SampleTests', () => {
 
         const and = new And(
             new Signal('#aaa'),
-            new TPCall(
-                'PulseStartPrint',
-                new Signal('T#100ms', SignalType.ConstantTime),
-                new Distributor(
+            new TPCall({
+                instanceName: 'PulseStartPrint',
+                pt: new Signal('T#100ms', SignalType.ConstantTime),
+                q: new Distributor(
                     new Coil(new Signal('#bbbb')),
                     new RCoil(new Signal('#cccc')),
                     new SCoil(new Signal('#dddd')),
                 ),
-            ),
+            }),
         );
         nw.add(and);
         codeblock.add(nw);
@@ -373,7 +373,7 @@ describe('SampleTests', () => {
         codeblock.safety = false;
         const nw = new Network('TestDPXX_DAT', 'TestDPXX_DATen');
 
-        const sf1 = new SystemFunctionCall('DPRD_DAT');
+        const sf1 = new SystemFunctionCall({ functionName: 'DPRD_DAT' });
         sf1.iface['LADDR'] = new IOperationOrSignalDirectionWrapper(
             new Signal('#Configuration.GeneralMoviC.ModuleHardwareID'),
             Direction.Input,
