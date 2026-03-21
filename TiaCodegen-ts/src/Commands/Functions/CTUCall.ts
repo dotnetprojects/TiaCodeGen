@@ -3,16 +3,19 @@ import { IOperationOrSignalDirectionWrapper } from '../../Interfaces/IOperationO
 import { Direction } from '../../Enums/Direction.js';
 import { SystemFunctionBlockCall } from './Base/SystemFunctionBlockCall.js';
 
+export interface CTUCallOptions {
+    instanceName: string;
+    r?: IOperationOrSignal | null;
+    pv?: IOperationOrSignal | null;
+    q?: IOperationOrSignal | null;
+    cv?: IOperationOrSignal | null;
+    templateValue?: string;
+}
+
 export class CTUCall extends SystemFunctionBlockCall {
-    constructor(
-        instanceName: string,
-        r: IOperationOrSignal | null = null,
-        pv: IOperationOrSignal | null = null,
-        q: IOperationOrSignal | null = null,
-        cv: IOperationOrSignal | null = null,
-        templateValue: string = 'Int',
-    ) {
-        super('CTU', instanceName, null);
+    constructor(options: CTUCallOptions) {
+        const { instanceName, r = null, pv = null, q = null, cv = null, templateValue = 'Int' } = options;
+        super({ functionName: 'CTU', instanceName });
         this.iface['R'] = new IOperationOrSignalDirectionWrapper(r, Direction.Input);
         this.iface['PV'] = new IOperationOrSignalDirectionWrapper(pv, Direction.Input);
         this.iface['Q'] = new IOperationOrSignalDirectionWrapper(q, Direction.Output);

@@ -1,8 +1,9 @@
-import { IOperationOrSignal } from '../../../Interfaces/IOperationOrSignal.js';
-import { FunctionCall } from './FunctionCall.js';
+import { FunctionCall, FunctionCallOptions } from './FunctionCall.js';
+
+export interface SystemFunctionCallOptions extends FunctionCallOptions {}
 
 export class SystemFunctionCall extends FunctionCall {
-    constructor(functionName: string, eno: IOperationOrSignal | null = null) {
-        super(functionName, eno);
+    constructor(options: SystemFunctionCallOptions) {
+        super(options);
     }
 }

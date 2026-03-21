@@ -3,14 +3,17 @@ import { IOperationOrSignalDirectionWrapper } from '../../Interfaces/IOperationO
 import { Direction } from '../../Enums/Direction.js';
 import { SystemFunctionBlockCall } from './Base/SystemFunctionBlockCall.js';
 
+export interface FTrigCallOptions {
+    instanceName: string;
+    clk?: IOperationOrSignal | null;
+    q?: IOperationOrSignal | null;
+    eno?: IOperationOrSignal | null;
+}
+
 export class FTrigCall extends SystemFunctionBlockCall {
-    constructor(
-        instanceName: string,
-        clk: IOperationOrSignal | null = null,
-        q: IOperationOrSignal | null = null,
-        eno: IOperationOrSignal | null = null,
-    ) {
-        super('F_TRIG', instanceName, eno);
+    constructor(options: FTrigCallOptions) {
+        const { instanceName, clk = null, q = null, eno = null } = options;
+        super({ functionName: 'F_TRIG', instanceName, eno });
         this.iface['CLK'] = new IOperationOrSignalDirectionWrapper(clk, Direction.Input);
         this.iface['Q'] = new IOperationOrSignalDirectionWrapper(q, Direction.Output);
 

@@ -2,6 +2,11 @@ import { IOperationOrSignal } from '../../../Interfaces/IOperationOrSignal.js';
 import { IOperationOrSignalDirectionWrapper } from '../../../Interfaces/IOperationOrSignalDirectionWrapper.js';
 import { Direction } from '../../../Enums/Direction.js';
 
+export interface FunctionCallOptions {
+    functionName: string;
+    eno?: IOperationOrSignal | null;
+}
+
 export class FunctionCall implements IOperationOrSignal {
     safetyTemplateString: string | null = null;
     debugInfo: string | null = null;
@@ -20,7 +25,8 @@ export class FunctionCall implements IOperationOrSignal {
     cardinality: number = 0;
     hasNoEn: boolean = false;
 
-    constructor(functionName: string, eno: IOperationOrSignal | null = null) {
+    constructor(options: FunctionCallOptions) {
+        const { functionName, eno = null } = options;
         this.functionName = functionName;
         this.iface = {};
         this.children = [];

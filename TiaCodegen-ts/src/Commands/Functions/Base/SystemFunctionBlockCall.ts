@@ -1,12 +1,13 @@
-import { IOperationOrSignal } from '../../../Interfaces/IOperationOrSignal.js';
-import { FunctionBlockCall } from './FunctionBlockCall.js';
+import { FunctionBlockCall, FunctionBlockCallOptions } from './FunctionBlockCall.js';
+
+export interface SystemFunctionBlockCallOptions extends FunctionBlockCallOptions {}
 
 export class SystemFunctionBlockCall extends FunctionBlockCall {
     templateValueName: string | null = null;
     templateValueType: string | null = null;
     templateValue: string | null = null;
 
-    constructor(functionName: string, instanceName: string, eno: IOperationOrSignal | null = null) {
-        super(functionName, instanceName, eno);
+    constructor(options: SystemFunctionBlockCallOptions) {
+        super(options);
     }
 }

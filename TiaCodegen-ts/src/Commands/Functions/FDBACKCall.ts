@@ -3,21 +3,36 @@ import { IOperationOrSignalDirectionWrapper } from '../../Interfaces/IOperationO
 import { Direction } from '../../Enums/Direction.js';
 import { SystemFunctionBlockCall } from './Base/SystemFunctionBlockCall.js';
 
+export interface FDBACKCallOptions {
+    instanceName: string;
+    on?: IOperationOrSignal | null;
+    feedback?: IOperationOrSignal | null;
+    qbad_fio?: IOperationOrSignal | null;
+    ack_nec?: IOperationOrSignal | null;
+    ack?: IOperationOrSignal | null;
+    fdb_time?: IOperationOrSignal | null;
+    q?: IOperationOrSignal | null;
+    error?: IOperationOrSignal | null;
+    ack_req?: IOperationOrSignal | null;
+    diag?: IOperationOrSignal | null;
+}
+
 export class FDBACKCall extends SystemFunctionBlockCall {
-    constructor(
-        instanceName: string,
-        on: IOperationOrSignal | null = null,
-        feedback: IOperationOrSignal | null = null,
-        qbad_fio: IOperationOrSignal | null = null,
-        ack_nec: IOperationOrSignal | null = null,
-        ack: IOperationOrSignal | null = null,
-        fdb_time: IOperationOrSignal | null = null,
-        q: IOperationOrSignal | null = null,
-        error: IOperationOrSignal | null = null,
-        ack_req: IOperationOrSignal | null = null,
-        diag: IOperationOrSignal | null = null,
-    ) {
-        super('FDBACK', instanceName, null);
+    constructor(options: FDBACKCallOptions) {
+        const {
+            instanceName,
+            on = null,
+            feedback = null,
+            qbad_fio = null,
+            ack_nec = null,
+            ack = null,
+            fdb_time = null,
+            q = null,
+            error = null,
+            ack_req = null,
+            diag = null,
+        } = options;
+        super({ functionName: 'FDBACK', instanceName });
         this.iface['ON'] = new IOperationOrSignalDirectionWrapper(on, Direction.Input);
         this.iface['FEEDBACK'] = new IOperationOrSignalDirectionWrapper(feedback, Direction.Input);
         this.iface['QBAD_FIO'] = new IOperationOrSignalDirectionWrapper(qbad_fio, Direction.Input);

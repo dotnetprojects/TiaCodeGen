@@ -3,13 +3,16 @@ import { IOperationOrSignalDirectionWrapper } from '../../Interfaces/IOperationO
 import { Direction } from '../../Enums/Direction.js';
 import { SystemFunctionBlockCall } from './Base/SystemFunctionBlockCall.js';
 
+export interface AckGlCallOptions {
+    instanceName: string;
+    ackGlob?: IOperationOrSignal | null;
+    eno?: IOperationOrSignal | null;
+}
+
 export class AckGlCall extends SystemFunctionBlockCall {
-    constructor(
-        instanceName: string,
-        ackGlob: IOperationOrSignal | null = null,
-        eno: IOperationOrSignal | null = null,
-    ) {
-        super('ACK_GL', instanceName, eno);
+    constructor(options: AckGlCallOptions) {
+        const { instanceName, ackGlob = null, eno = null } = options;
+        super({ functionName: 'ACK_GL', instanceName, eno });
         this.iface['ACK_GLOB'] = new IOperationOrSignalDirectionWrapper(ackGlob, Direction.Input);
 
         this.additionalSafetyTemplateValues = `
