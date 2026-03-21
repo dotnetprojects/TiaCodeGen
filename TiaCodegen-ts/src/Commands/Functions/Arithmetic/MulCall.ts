@@ -67,10 +67,7 @@ export class MulCall extends VariableArithmeticCall {
         this.type = type;
         this.iface['IN1'] = new IOperationOrSignalDirectionWrapper(in1, Direction.Input);
         this.iface['IN2'] = new IOperationOrSignalDirectionWrapper(in2, Direction.Input);
-        for (let i = 3; i <= 50; i++) {
-            const key = `in${i}` as keyof MulCallOptions;
-            this.iface[`IN${i}`] = new IOperationOrSignalDirectionWrapper((options[key] as IOperationOrSignal | null | undefined) ?? null, Direction.Input);
-        }
+        this.addVariableInputs(options, 3, 50);
         this.iface['OUT'] = new IOperationOrSignalDirectionWrapper(out1, Direction.Output);
 
         for (const w of Object.values(this.iface)) {

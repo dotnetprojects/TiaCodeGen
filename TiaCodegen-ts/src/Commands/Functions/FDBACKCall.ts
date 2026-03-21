@@ -19,7 +19,19 @@ export interface FDBACKCallOptions {
 
 export class FDBACKCall extends SystemFunctionBlockCall {
     constructor(options: FDBACKCallOptions) {
-        const { instanceName, on = null, feedback = null, qbad_fio = null, ack_nec = null, ack = null, fdb_time = null, q = null, error = null, ack_req = null, diag = null } = options;
+        const {
+            instanceName,
+            on = null,
+            feedback = null,
+            qbad_fio = null,
+            ack_nec = null,
+            ack = null,
+            fdb_time = null,
+            q = null,
+            error = null,
+            ack_req = null,
+            diag = null,
+        } = options;
         super({ functionName: 'FDBACK', instanceName });
         this.iface['ON'] = new IOperationOrSignalDirectionWrapper(on, Direction.Input);
         this.iface['FEEDBACK'] = new IOperationOrSignalDirectionWrapper(feedback, Direction.Input);
