@@ -1,6 +1,6 @@
 {
   "name": "@node-projects/tia-codegen-ts",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "TypeScript port of TiaCodeGen C# library",
   "type": "module",
   "main": "dist/index.js",

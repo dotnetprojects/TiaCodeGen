@@ -1,10 +1,10 @@
 import { IOperationOrSignal } from '../../../Interfaces/IOperationOrSignal.js';
 import { IOperationOrSignalDirectionWrapper } from '../../../Interfaces/IOperationOrSignalDirectionWrapper.js';
 import { Direction } from '../../../Enums/Direction.js';
-import { ArithmeticCall } from './ArithmeticCall.js';
+import { ArithmeticCall, numericType } from './ArithmeticCall.js';
 
 export interface SubCallOptions {
-    type: string;
+    type: numericType;
     in1: IOperationOrSignal;
     in2: IOperationOrSignal;
     out1?: IOperationOrSignal | null;

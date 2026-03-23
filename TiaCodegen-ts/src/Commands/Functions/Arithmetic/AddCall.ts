@@ -2,9 +2,10 @@ import { IOperationOrSignal } from '../../../Interfaces/IOperationOrSignal.js';
 import { IOperationOrSignalDirectionWrapper } from '../../../Interfaces/IOperationOrSignalDirectionWrapper.js';
 import { Direction } from '../../../Enums/Direction.js';
 import { VariableArithmeticCall } from './VariableArithmeticCall.js';
+import { numericType } from './ArithmeticCall.js';
 
 export interface AddCallOptions {
-    type: string;
+    type: numericType;
     in1: IOperationOrSignal;
     in2: IOperationOrSignal;
     in3?: IOperationOrSignal | null;
@@ -67,6 +68,7 @@ export class AddCall extends VariableArithmeticCall {
         this.type = type;
         this.iface['IN1'] = new IOperationOrSignalDirectionWrapper(in1, Direction.Input);
         this.iface['IN2'] = new IOperationOrSignalDirectionWrapper(in2, Direction.Input);
+        //@ts-ignore
         this.addVariableInputs(options, 3, 50);
         this.iface['OUT'] = new IOperationOrSignalDirectionWrapper(out1, Direction.Output);
 
