@@ -168,6 +168,30 @@ describe('SampleTests', () => {
         expect(xml).toBeTruthy();
     });
 
+    test('FunctionBlockCallWithArrayInstance', () => {
+        const codeblock = new CodeBlock();
+        const nw = new Network('Test', 'Test');
+        nw.add(new FunctionBlockCall({ functionName: 'OrganiseSlot', instanceName: 'OrganiseSlot["S0001"]' }));
+        codeblock.add(nw);
+
+        const xml = new Block('Test', 'Test', codeblock).getCode();
+
+        expect(xml).toContain('<Component Name="OrganiseSlot">');
+        expect(xml).toContain('<Constant Name="S0001">');
+    });
+
+    test('SystemFunctionBlockCallWithArrayInstance', () => {
+        const codeblock = new CodeBlock();
+        const nw = new Network('Test', 'Test');
+        nw.add(new TONCall({ instanceName: 'Timer[1]' }));
+        codeblock.add(nw);
+
+        const xml = new Block('Test', 'Test', codeblock).getCode();
+
+        expect(xml).toContain('<Component Name="Timer">');
+        expect(xml).toContain('<ConstantValue>1</ConstantValue>');
+    });
+
     test('TestDistributor', () => {
         const codeblock = new CodeBlock();
         const nw = new Network('Test2', 'Test2en');

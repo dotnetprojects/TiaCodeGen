@@ -218,7 +218,7 @@ export class KopCodeHelper {
                         const idx = part.indexOf('[') + 1;
                         if (idx > 0) {
                             this._sb.appendLine(`<Component Name="${part.substring(0, idx - 1)}">`);
-                            const arrays = part.substring(idx, part.length - idx - 1);
+                            const arrays = part.substring(idx, part.length - 1);
 
                             if (arrays.includes('"')) {
                                 this._sb.appendLine('<Access Scope="GlobalConstant">');
@@ -312,7 +312,7 @@ export class KopCodeHelper {
                         const idx = instanceNamePart.indexOf('[') + 1;
                         if (idx > 0) {
                             this._sb.appendLine(`<Component Name="${instanceNamePart.substring(0, idx - 1)}">`);
-                            const arrays = instanceNamePart.substring(idx, instanceNamePart.length - idx - 1);
+                            const arrays = instanceNamePart.substring(idx, instanceNamePart.length - 1);
 
                             if (arrays.includes('"')) {
                                 this._sb.appendLine('<Access Scope="GlobalConstant">');
