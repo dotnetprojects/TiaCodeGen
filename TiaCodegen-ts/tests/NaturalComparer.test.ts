@@ -12,4 +12,10 @@ describe('NaturalComparer', () => {
         expect(comparer.compare('a2', 'a10')).toBeLessThan(0);
         expect(comparer.compare('a', 'A')).toBe(0);
     });
+
+    test('keeps characters without a single-char upper case like C# ToUpperInvariant', () => {
+        const comparer = new NaturalComparer();
+        expect(comparer.compare('xßy', 'xzy')).toBeGreaterThan(0);
+        expect(comparer.compare('xßy', 'xÜy')).toBeGreaterThan(0);
+    });
 });
