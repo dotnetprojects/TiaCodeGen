@@ -21,8 +21,10 @@ export class NaturalComparer {
                 }
                 if (vx !== vy) return vx < vy ? -1 : 1;
             } else {
-                const cmp = cx.toUpperCase().localeCompare(cy.toUpperCase());
-                if (cmp !== 0) return cmp;
+                // Ordinal comparison like char.ToUpperInvariant(cx).CompareTo(...) in the C# version
+                const ux = cx.toUpperCase();
+                const uy = cy.toUpperCase();
+                if (ux !== uy) return ux < uy ? -1 : 1;
                 i++;
                 j++;
             }
