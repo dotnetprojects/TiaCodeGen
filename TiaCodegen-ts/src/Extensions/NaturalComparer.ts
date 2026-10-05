@@ -22,8 +22,8 @@ export class NaturalComparer {
                 if (vx !== vy) return vx < vy ? -1 : 1;
             } else {
                 // Ordinal comparison like char.ToUpperInvariant(cx).CompareTo(...) in the C# version
-                const ux = cx.toUpperCase();
-                const uy = cy.toUpperCase();
+                const ux = this.toUpperChar(cx);
+                const uy = this.toUpperChar(cy);
                 if (ux !== uy) return ux < uy ? -1 : 1;
                 i++;
                 j++;
@@ -34,5 +34,11 @@ export class NaturalComparer {
 
     private isDigit(c: string): boolean {
         return c >= '0' && c <= '9';
+    }
+
+    // char.ToUpperInvariant keeps characters without a single-char upper case (e.g. 'ß' -> 'SS' in JS)
+    private toUpperChar(c: string): string {
+        const upper = c.toUpperCase();
+        return upper.length === 1 ? upper : c;
     }
 }
