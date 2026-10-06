@@ -2,7 +2,7 @@ export enum SignalType {
     Bool = 'Bool',
     Byte = 'Byte',
     Int = 'Int',
-    SInt = 'Int',
+    SInt = 'SInt',
     DInt = 'DInt',
     LInt = 'LInt',
     UInt = 'UInt',
