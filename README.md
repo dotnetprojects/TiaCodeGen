@@ -84,6 +84,44 @@ access. The historical special handling of global `Byte`, `String`, and `UDT`
 signals is unchanged; use the component API to handle dots consistently across
 variable types.
 
+# Publishing releases
+
+Publish a GitHub release with a version tag such as `v3.0.0` or `3.0.0`.
+The `Release packages` workflow checks out that tag, tests both libraries, and
+uses `3.0.0` for both `@node-projects/tia-codegen-ts` on npm and
+`DotNetProjects.TiaCodegen` on NuGet.org. The release title does not set the version.
+Draft releases do not publish packages. Pushes to `main` only build and test.
+
+The workflow uploads the built `.tgz` and `.nupkg` to the GitHub release before
+publishing those same files to the registries. Publishing runs in independent
+jobs so a failed registry job can be rerun without republishing to the other registry.
+
+For prereleases, use a tag such as `v3.0.0-rc.1`. These publish under npm's
+`next` dist-tag, leaving `latest` unchanged. A GitHub prerelease must include a
+prerelease suffix. Build metadata (`+build`) is rejected because NuGet strips it.
+Published package versions are immutable; use a new version for changed contents.
+
+One-time registry configuration:
+
+1. Sign in to npm as an owner of `@node-projects/tia-codegen-ts` and configure
+   GitHub Actions trusted publishing for owner `dotnetprojects`, repository
+   `TiaCodeGen`, workflow filename `release.yml`, with direct publishing allowed
+   and no environment name. With a recent npm CLI, run:
+
+   ```sh
+   npm login
+   npm trust github @node-projects/tia-codegen-ts --repo=dotnetprojects/TiaCodeGen --file=release.yml --allow-publish
+   ```
+
+   Alternatively, use the package's Trusted Publisher settings on npmjs.com.
+   The workflow uses OIDC and does not need an `NPM_TOKEN` secret.
+2. Create a NuGet.org API key with push permission for `DotNetProjects.TiaCodegen`
+   and store it as an Actions secret named `NUGET_API_KEY`, either in this
+   repository or in the organization with access granted to this repository. Never commit it.
+   The repository's built-in `GITHUB_TOKEN` handles release asset uploads.
+3. Commit the workflow and package configuration before tagging a release so the
+   release tag includes them. Publish the release from GitHub's Releases page.
+
 # Tests
 
 ```text

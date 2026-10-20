@@ -1,0 +1,116 @@
+name: Release packages
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.event.release.tag_name }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      npm_tag: ${{ steps.version.outputs.npm_tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: TiaCodegen-ts/package-lock.json
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+      - name: Validate release version
+        id: version
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          RELEASE_PRERELEASE: ${{ github.event.release.prerelease }}
+        run: |
+          node --test .github/scripts/release-version.test.mjs
+          node .github/scripts/release-version.mjs
+      - name: Install npm dependencies
+        working-directory: TiaCodegen-ts
+        run: npm ci
+      - name: Test TypeScript
+        working-directory: TiaCodegen-ts
+        run: npm test -- --runInBand --ci
+      - name: Build and test .NET
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: dotnet test TiaCodegen.slnx --configuration Release -p:Version="$VERSION" -p:GeneratePackageOnBuild=false -p:ContinuousIntegrationBuild=true
+      - name: Pack NuGet
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: dotnet pack TiaCodegen/DotNetProjects.TiaCodegen.csproj --configuration Release --no-build --output artifacts -p:Version="$VERSION" -p:PackageVersion="$VERSION" -p:ContinuousIntegrationBuild=true
+      - name: Build and pack npm
+        working-directory: TiaCodegen-ts
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          npm version "$VERSION" --no-git-tag-version --allow-same-version --ignore-scripts
+          npm pack --pack-destination ../artifacts
+      - name: Attach packages to the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: gh release upload "$RELEASE_TAG" artifacts/*.tgz artifacts/*.nupkg --clobber
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-packages
+          path: artifacts/*
+          if-no-files-found: error
+
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install npm with trusted publishing support
+        run: npm install --global npm@11
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-packages
+          path: artifacts
+      - name: Publish to npm using trusted publishing
+        env:
+          NPM_TAG: ${{ needs.build.outputs.npm_tag }}
+        run: npm publish artifacts/*.tgz --access public --tag "$NPM_TAG" --registry https://registry.npmjs.org/
+
+  publish-nuget:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-packages
+          path: artifacts
+      - name: Publish to NuGet.org
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          if [ -z "$NUGET_API_KEY" ]; then
+            echo '::error::Set the NUGET_API_KEY Actions secret to a NuGet.org API key with push access to DotNetProjects.TiaCodegen, and grant this repository access.'
+            exit 1
+          fi
+          dotnet nuget push 'artifacts/*.nupkg' --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json --skip-duplicate

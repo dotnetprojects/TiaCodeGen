@@ -3,6 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>DotNetProjects.TiaCodegen</PackageId>
+    <Authors>DotNetProjects</Authors>
+    <Description>Library for generating Siemens TIA Portal ladder logic (KOP) XML.</Description>
+    <RepositoryUrl>https://github.com/dotnetprojects/TiaCodeGen</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/dotnetprojects/TiaCodeGen</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>DotNetProjects</Copyright>
@@ -11,5 +17,9 @@
     <FileVersion>1.0.0.0</FileVersion>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
 
 </Project>

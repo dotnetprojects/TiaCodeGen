@@ -2,13 +2,24 @@
   "name": "@node-projects/tia-codegen-ts",
   "version": "2.0.3",
   "description": "TypeScript port of TiaCodeGen C# library",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dotnetprojects/TiaCodeGen.git",
+    "directory": "TiaCodegen-ts"
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
     }
   },
   "scripts": {
@@ -16,7 +27,7 @@
     "test": "node --experimental-vm-modules node_modules/jest-cli/bin/jest.js --testPathPattern=tests",
     "typecheck": "tsc --noEmit",
     "bundle": "esbuild ./dist/index.js --format=esm --minify --external:wunderbaum --platform=neutral --bundle --outfile=./dist/index-min.js",
-    "prepublishOnly": "npm run build && npm run bundle"
+    "prepack": "npm run build && npm run bundle && node scripts/prepare-package.mjs"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
