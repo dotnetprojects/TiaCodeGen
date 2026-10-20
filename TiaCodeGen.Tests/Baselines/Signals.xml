@@ -1,0 +1,642 @@
+<Cases>
+<Access Scope="GlobalVariable" UId="1">  <!-- P3: DB.Struct.Value -->
+<Symbol>
+<Component Name="DB">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="1">
+<Symbol>
+<Component Name="DB" />
+<Component Name="Struct" />
+<Component Name="Value" />
+<Address Informative="true" BitOffset="0" BlockNumber="0" Type="Byte" Area="None" />
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="1">  <!-- P3: DB.Struct.Value -->
+<Symbol>
+<Component Name="DB">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="1">  <!-- P3: DB.Struct.Value -->
+<Symbol>
+<Component Name="DB">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="1">  <!-- P3: DB.Struct.Value -->
+<Symbol>
+<Component Name="DB">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="1">  <!-- P3: DB.Struct.Value -->
+<Symbol>
+<Component Name="DB">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="1">  <!-- P3: DB.Struct.Value -->
+<Symbol>
+<Component Name="DB">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="1">  <!-- P3: DB.Struct.Value -->
+<Symbol>
+<Component Name="DB">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="1">  <!-- P3: DB.Struct.Value -->
+<Symbol>
+<Component Name="DB">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="1">  <!-- P3: DB.Struct.Value -->
+<Symbol>
+<Component Name="DB">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="1">  <!-- P3: DB.Struct.Value -->
+<Symbol>
+<Component Name="DB">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="1">  <!-- P1: DB.Struct.Value -->
+<Symbol>
+<Component Name="DB">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+<Address Area="None" Type="Block_UDT" BlockNumber="0" BitOffset="0" Informative="true" />
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="1">  <!-- P2: DB.Struct.Value -->
+<Symbol>
+<Component Name="DB">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+<Address Area="None" Type="String" BlockNumber="0" BitOffset="0" Informative="true" />
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="1">  <!-- P3: DB.Struct.Value -->
+<Symbol>
+<Component Name="DB">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalConstant" UId="1">
+<Constant Name="DB.Struct.Value">
+</Constant>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LiteralConstant" UId="1">
+<Constant>
+<ConstantType>Bool</ConstantType>
+<ConstantValue>DB.Struct.Value</ConstantValue>
+</Constant>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LiteralConstant" UId="1">
+<Constant>
+<ConstantType>Int</ConstantType>
+<ConstantValue>DB.Struct.Value</ConstantValue>
+</Constant>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="1">  <!-- P3: DB.Struct.Value -->
+<Symbol>
+<Component Name="DB">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LiteralConstant" UId="1">
+<Constant>
+<ConstantType>UInt</ConstantType>
+<ConstantValue>DB.Struct.Value</ConstantValue>
+</Constant>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LiteralConstant" UId="1">
+<Constant>
+<ConstantType>UDInt</ConstantType>
+<ConstantValue>DB.Struct.Value</ConstantValue>
+</Constant>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="TypedConstant" UId="1">
+<Constant>
+<ConstantValue>DB.Struct.Value</ConstantValue>
+</Constant>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LiteralConstant" UId="1">
+<Constant>
+<ConstantType>String</ConstantType>
+<ConstantValue>DB.Struct.Value</ConstantValue>
+</Constant>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LiteralConstant" UId="1">
+<Constant>
+<ConstantType>Real</ConstantType>
+<ConstantValue>DB.Struct.Value</ConstantValue>
+</Constant>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="TypedConstant" UId="1">
+<Constant>
+<ConstantValue>DB.Struct.Value</ConstantValue>
+</Constant>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="1">  <!-- P3: DB.Struct.Value -->
+<Symbol>
+<Component Name="DB">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LiteralConstant" UId="1">
+<Constant>
+<ConstantType>Void</ConstantType>
+<ConstantValue>DB.Struct.Value</ConstantValue>
+</Constant>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="1">  <!-- P3: DB.Struct.Value -->
+<Symbol>
+<Component Name="DB">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="1">  <!-- P3: DB.Struct.Value -->
+<Symbol>
+<Component Name="DB">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="1">  <!-- P3: DB.Struct.Value -->
+<Symbol>
+<Component Name="DB">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="1">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Struct">
+</Component>
+<Component Name="Value">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="2">  <!-- P3: DB.Values[1,2] -->
+<Symbol>
+<Component Name="DB">
+</Component>
+<Component Name="Values">
+<Access Scope="LiteralConstant">
+<Constant>
+<ConstantType>DInt</ConstantType>
+<ConstantValue>1</ConstantValue>
+</Constant>
+</Access>
+<Access Scope="LiteralConstant">
+<Constant>
+<ConstantType>DInt</ConstantType>
+<ConstantValue>2</ConstantValue>
+</Constant>
+</Access>
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="2">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Values">
+<Access Scope="LocalVariable">
+<Symbol>
+<Component Name="Index" />
+<Component Name="Row" />
+</Symbol>
+</Access>
+<Access Scope="LiteralConstant">
+<Constant>
+<ConstantType>DInt</ConstantType>
+<ConstantValue>1</ConstantValue>
+</Constant>
+</Access>
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="2">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Values">
+<Access Scope="LocalVariable">
+<Symbol>
+<Component Name="Index" />
+<Component Name="Row" />
+</Symbol>
+</Access>
+<Access Scope="LocalVariable">
+<Symbol>
+<Component Name="Index" />
+<Component Name="Column" />
+</Symbol>
+</Access>
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="2">  <!-- P3: DB.Values["Index"] -->
+<Symbol>
+<Component Name="DB">
+</Component>
+<Component Name="Values">
+<Access Scope="GlobalConstant">
+<Constant Name="Index">
+</Constant>
+</Access>
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="2">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="Motor.Status">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="3">  <!-- P3: Tag.With.Dots -->
+<Symbol>
+<Component Name="Tag.With.Dots">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="4">  <!-- P3: Tag.With.Dots -->
+<Symbol>
+<Component Name="Tag.With.Dots" SimpleAccessModifier="Periphery">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LiteralConstant" UId="5">
+<Constant>
+<ConstantType>Int</ConstantType>
+<ConstantValue>42</ConstantValue>
+</Constant>
+</Access>
+<Access Scope="LiteralConstant" UId="6">
+<Constant>
+<ConstantType>Bool</ConstantType>
+<ConstantValue>TRUE</ConstantValue>
+</Constant>
+</Access>
+</Cases>

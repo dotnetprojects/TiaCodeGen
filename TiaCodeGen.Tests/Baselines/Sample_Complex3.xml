@@ -1,0 +1,137 @@
+  
+<SW.Blocks.FC ID="0">
+    <AttributeList>
+      
+      <HeaderFamily>General</HeaderFamily>
+      <HeaderVersion>1.0</HeaderVersion>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <Name>Test</Name>
+ 
+      <Namespace />
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList><SW.Blocks.CompileUnit ID="1" CompositionName="CompileUnits"> <!--T1-->
+<AttributeList>
+<NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v1">
+<Parts>
+<Access Scope="GlobalVariable" UId="21">  <!-- P3: Test1 -->
+<Symbol>
+<Component Name="Test1">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="22">  <!-- P3: Test2 -->
+<Symbol>
+<Component Name="Test2">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="23">  <!-- P3: Test11 -->
+<Symbol>
+<Component Name="Test11">
+</Component>
+</Symbol>
+</Access>
+<Part Name="Contact" UId="24" /><!-- Test1 -->
+<Part Name="Contact" UId="25" /><!-- Test2 -->
+<Part Name="Coil" UId="26"/><!-- Test11 -->
+</Parts>
+<Wires>
+<Wire UId="27">
+<Powerrail />
+<NameCon UId="24" Name="in" />  <!-- Test1 -->
+</Wire>
+<Wire UId="28"><!-- Wire Parent FunctionCall (Parent:Coil) -->
+<IdentCon UId="23" />  <!-- Test11 -->
+<NameCon UId="26" Name="operand" />  <!-- Test11 -->
+</Wire>
+<Wire UId="29"><!-- Wire Parent FunctionCall (Parent:And (Signal(Test1),Signal(Test2))) -->
+<IdentCon UId="21" />  <!-- Test1 -->
+<NameCon UId="24" Name="operand" />  <!-- Test1 -->
+</Wire>
+<Wire UId="30"><!-- Wire Parent FunctionCall (Parent:And (Signal(Test1),Signal(Test2))) -->
+<IdentCon UId="22" />  <!-- Test2 -->
+<NameCon UId="25" Name="operand" />  <!-- Test2 -->
+</Wire>
+<Wire UId="31"><!-- Wire And -->
+<NameCon UId="24" Name="out" />  <!-- Test1 -->
+<NameCon UId="25" Name="in" />  <!-- Test2 -->
+</Wire>
+<Wire UId="32"><!-- Wire Coil -->
+<NameCon UId="25" Name="out" />  <!-- Signal (Test2) -->
+<NameCon UId="26" Name="in" />  <!-- Signal (Test11) -->
+</Wire>
+</Wires>
+</FlgNet></NetworkSource>
+<ProgrammingLanguage>LAD</ProgrammingLanguage>
+</AttributeList>
+<ObjectList>
+<MultilingualText ID="2" CompositionName="Comment">
+<ObjectList>
+<MultilingualTextItem ID="3" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="4" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+<MultilingualText ID="5" CompositionName="Title">
+<ObjectList>
+<MultilingualTextItem ID="6" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text>T1</Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="7" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text>T1</Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+</ObjectList>
+</SW.Blocks.CompileUnit>
+  
+      <MultilingualText ID="8" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="9" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>blabla</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="10" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text></Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="11" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="12" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text></Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="13" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text></Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>

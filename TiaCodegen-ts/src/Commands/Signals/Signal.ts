@@ -1,8 +1,28 @@
 import { IOperationOrSignal } from '../../Interfaces/IOperationOrSignal.js';
 import { SignalType } from '../../Enums/SignalType.js';
 import { StringBuilder } from '../../utils/StringBuilder.js';
+import { escapeSymbolComponent, joinSymbolPath, splitSymbolPath, unescapeSymbolComponent } from '../../Internal/SymbolPath.js';
 
 export class Signal implements IOperationOrSignal {
+    private localScope: boolean | null = null;
+
+    private get isLocal(): boolean {
+        return this.localScope ?? this.name.startsWith('#');
+    }
+
+    /** Components are global by default; dots and backslashes in each component are literal. */
+    static global(components: readonly string[], signalType: SignalType = SignalType.Bool, customType?: string, description?: string): Signal {
+        return new Signal(components, signalType, customType, description);
+    }
+
+    /** Local components do not need a leading # scope marker. */
+    static local(components: readonly string[], signalType: SignalType = SignalType.Bool, customType?: string, description?: string): Signal {
+        const signal = new Signal(components, signalType, customType, description);
+        signal.name = '#' + signal.name;
+        signal.localScope = true;
+        return signal;
+    }
+
     debugInfo: string | null = null;
     operationId: number = 0;
     signalId: number = 0;
@@ -15,19 +35,21 @@ export class Signal implements IOperationOrSignal {
     doNotCreateContact: boolean = false;
     cardinality: number = 0;
 
-    constructor(nameOrValue: string | number | boolean, signalType?: SignalType, customType?: string, description?: string) {
-        if (typeof nameOrValue === 'number') {
-            this.name = nameOrValue.toString();
+    constructor(nameOrValue: string | number | boolean | readonly string[], signalType?: SignalType, customType?: string, description?: string) {
+        const value = typeof nameOrValue === 'object' ? joinSymbolPath(nameOrValue) : nameOrValue;
+        if (typeof nameOrValue === 'object') this.localScope = false;
+        if (typeof value === 'number') {
+            this.name = value.toString();
             this.signalType = SignalType.ConstantInt;
             this.description = null;
             this.customType = null;
-        } else if (typeof nameOrValue === 'boolean') {
-            this.name = nameOrValue.toString().toUpperCase();
+        } else if (typeof value === 'boolean') {
+            this.name = value.toString().toUpperCase();
             this.signalType = SignalType.ConstantBool;
             this.description = null;
             this.customType = null;
         } else {
-            this.name = nameOrValue;
+            this.name = value;
             this.signalType = signalType ?? SignalType.Bool;
             this.customType = customType ?? null;
             this.description = description ?? null;
@@ -41,15 +63,16 @@ export class Signal implements IOperationOrSignal {
     }
 
     escape(txt: string): string {
-        return txt.replace(/\\\./g, '\uD83C\uDF34');
+        return escapeSymbolComponent(txt);
     }
 
     unescape(txt: string): string {
-        return txt.replace(/\uD83C\uDF34/g, '.').replace(/\\\\/g, '\\');
+        return unescapeSymbolComponent(txt);
     }
 
     clone(): IOperationOrSignal {
         const inst = new Signal(this.name, this.signalType, this.customType ?? undefined, this.description ?? undefined);
+        inst.localScope = this.localScope;
         inst.debugInfo = this.debugInfo;
         for (const c of this.children) {
             inst.children.push(c.clone());
@@ -61,7 +84,7 @@ export class Signal implements IOperationOrSignal {
         const name = this.name;
         const signalType = this.signalType;
 
-        if (signalType === SignalType.Constant && !name.startsWith('#')) {
+        if (signalType === SignalType.Constant && !this.isLocal) {
             const value = name.indexOf(',');
             sb.appendLine(`<Access Scope="GlobalConstant" UId="${id}">`);
             if (value === -1)
@@ -70,71 +93,71 @@ export class Signal implements IOperationOrSignal {
                 sb.appendLine(`<Constant Name="${name.substring(0, value)}">`);
             sb.appendLine('</Constant>');
             sb.appendLine('</Access>');
-        } else if (signalType === SignalType.ConstantBool && !name.startsWith('#')) {
+        } else if (signalType === SignalType.ConstantBool && !this.isLocal) {
             sb.appendLine(`<Access Scope="LiteralConstant" UId="${id}">`);
             sb.appendLine('<Constant>');
             sb.appendLine('<ConstantType>Bool</ConstantType>');
             sb.appendLine(`<ConstantValue>${name}</ConstantValue>`);
             sb.appendLine('</Constant>');
             sb.appendLine('</Access>');
-        } else if (signalType === SignalType.ConstantTime && !name.startsWith('#')) {
+        } else if (signalType === SignalType.ConstantTime && !this.isLocal) {
             sb.appendLine(`<Access Scope="TypedConstant" UId="${id}">`);
             sb.appendLine('<Constant>');
             sb.appendLine(`<ConstantValue>${name}</ConstantValue>`);
             sb.appendLine('</Constant>');
             sb.appendLine('</Access>');
-        } else if (signalType === SignalType.ConstantUInt && !name.startsWith('#')) {
+        } else if (signalType === SignalType.ConstantUInt && !this.isLocal) {
             sb.appendLine(`<Access Scope="LiteralConstant" UId="${id}">`);
             sb.appendLine('<Constant>');
             sb.appendLine('<ConstantType>UInt</ConstantType>');
             sb.appendLine(`<ConstantValue>${name}</ConstantValue>`);
             sb.appendLine('</Constant>');
             sb.appendLine('</Access>');
-        } else if (signalType === SignalType.ConstantUDInt && !name.startsWith('#')) {
+        } else if (signalType === SignalType.ConstantUDInt && !this.isLocal) {
             sb.appendLine(`<Access Scope="LiteralConstant" UId="${id}">`);
             sb.appendLine('<Constant>');
             sb.appendLine('<ConstantType>UDInt</ConstantType>');
             sb.appendLine(`<ConstantValue>${name}</ConstantValue>`);
             sb.appendLine('</Constant>');
             sb.appendLine('</Access>');
-        } else if (signalType === SignalType.ConstantInt && !name.startsWith('#')) {
+        } else if (signalType === SignalType.ConstantInt && !this.isLocal) {
             sb.appendLine(`<Access Scope="LiteralConstant" UId="${id}">`);
             sb.appendLine('<Constant>');
             sb.appendLine('<ConstantType>Int</ConstantType>');
             sb.appendLine(`<ConstantValue>${name}</ConstantValue>`);
             sb.appendLine('</Constant>');
             sb.appendLine('</Access>');
-        } else if (signalType === SignalType.ConstantReal && !name.startsWith('#')) {
+        } else if (signalType === SignalType.ConstantReal && !this.isLocal) {
             sb.appendLine(`<Access Scope="LiteralConstant" UId="${id}">`);
             sb.appendLine('<Constant>');
             sb.appendLine('<ConstantType>Real</ConstantType>');
             sb.appendLine(`<ConstantValue>${name}</ConstantValue>`);
             sb.appendLine('</Constant>');
             sb.appendLine('</Access>');
-        } else if (signalType === SignalType.ConstantString && !name.startsWith('#')) {
+        } else if (signalType === SignalType.ConstantString && !this.isLocal) {
             sb.appendLine(`<Access Scope="LiteralConstant" UId="${id}">`);
             sb.appendLine('<Constant>');
             sb.appendLine('<ConstantType>String</ConstantType>');
             sb.appendLine(`<ConstantValue>${name}</ConstantValue>`);
             sb.appendLine('</Constant>');
             sb.appendLine('</Access>');
-        } else if (signalType === SignalType.ConstantWord && !name.startsWith('#')) {
+        } else if (signalType === SignalType.ConstantWord && !this.isLocal) {
             sb.appendLine(`<Access Scope="TypedConstant" UId="${id}">`);
             sb.appendLine('<Constant>');
             sb.appendLine(`<ConstantValue>${name}</ConstantValue>`);
             sb.appendLine('</Constant>');
             sb.appendLine('</Access>');
-        } else if (signalType === SignalType.Void && !name.startsWith('#')) {
+        } else if (signalType === SignalType.Void && !this.isLocal) {
             sb.appendLine(`<Access Scope="LiteralConstant" UId="${id}">`);
             sb.appendLine('<Constant>');
             sb.appendLine('<ConstantType>Void</ConstantType>');
             sb.appendLine(`<ConstantValue>${name}</ConstantValue>`);
             sb.appendLine('</Constant>');
             sb.appendLine('</Access>');
-        } else if (signalType === SignalType.UDT && !name.startsWith('#')) {
+        } else if (signalType === SignalType.UDT && !this.isLocal) {
             sb.appendLine(`<Access Scope="GlobalVariable" UId="${id}">  <!-- P1: ${name} -->`);
             sb.appendLine('<Symbol>');
-            const escapedParts = this.escape(name).split('.');
+            const escapedParts = splitSymbolPath(name);
             for (let i = 0; i < escapedParts.length; i++) {
                 const part = this.unescape(escapedParts[i]);
                 const idx = part.indexOf('[') + 1;
@@ -159,7 +182,7 @@ export class Signal implements IOperationOrSignal {
                         sb.appendLine(`<Component Name="${p1}" />`);
                         while (p1 !== null) {
                             i++;
-                            p1 = this.unescape(this.escape(name).split('.')[i]);
+                            p1 = this.unescape(splitSymbolPath(name)[i]);
                             if (p1.includes(']')) {
                                 sb.appendLine(`<Component Name="${p1.substring(0, p1.length - 1)}" />`);
                                 p1 = null;
@@ -187,20 +210,20 @@ export class Signal implements IOperationOrSignal {
             sb.appendLine('<Address Area="None" Type="Block_UDT" BlockNumber="0" BitOffset="0" Informative="true" />');
             sb.appendLine('</Symbol>');
             sb.appendLine('</Access>');
-        } else if (signalType === SignalType.Byte && !name.startsWith('#')) {
+        } else if (signalType === SignalType.Byte && !this.isLocal) {
             sb.appendLine(`<Access Scope="GlobalVariable" UId="${id}">`);
             sb.appendLine('<Symbol>');
-            for (const parte of this.escape(name).split('.')) {
+            for (const parte of splitSymbolPath(name)) {
                 const part = this.unescape(parte);
                 sb.appendLine(`<Component Name="${part}" />`);
             }
             sb.appendLine('<Address Informative="true" BitOffset="0" BlockNumber="0" Type="Byte" Area="None" />');
             sb.appendLine('</Symbol>');
             sb.appendLine('</Access>');
-        } else if (signalType === SignalType.String && !name.startsWith('#')) {
+        } else if (signalType === SignalType.String && !this.isLocal) {
             sb.appendLine(`<Access Scope="GlobalVariable" UId="${id}">  <!-- P2: ${name} -->`);
             sb.appendLine('<Symbol>');
-            for (const parte of this.escape(name).split('.')) {
+            for (const parte of splitSymbolPath(name)) {
                 const part = this.unescape(parte);
                 const idx = part.indexOf('[') + 1;
                 if (idx > 0) {
@@ -231,14 +254,14 @@ export class Signal implements IOperationOrSignal {
             sb.appendLine('</Access>');
         } else {
             let localName = name;
-            if (name.startsWith('#')) {
+            if (this.isLocal) {
                 sb.appendLine(`<Access Scope="LocalVariable" UId="${id}">`);
                 localName = name.substring(1);
             } else {
                 sb.appendLine(`<Access Scope="GlobalVariable" UId="${id}">  <!-- P3: ${name} -->`);
             }
             sb.appendLine('<Symbol>');
-            const escapedLocal = this.escape(localName).split('.');
+            const escapedLocal = splitSymbolPath(localName);
             const cnt = (this instanceof FixedSignal) ? 1 : escapedLocal.length;
             for (let i = 0; i < cnt; i++) {
                 let part = this.unescape(escapedLocal[i]);
@@ -267,7 +290,7 @@ export class Signal implements IOperationOrSignal {
                         let noClose = false;
                         while (p1 !== null) {
                             i++;
-                            p1 = this.unescape(this.escape(localName).split('.')[i]);
+                            p1 = this.unescape(splitSymbolPath(localName)[i]);
                             if (p1.includes(',')) {
                                 const innerParts = p1.split(',');
                                 sb.appendLine(`<Component Name="${innerParts[0]}" />`);

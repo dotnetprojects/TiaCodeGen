@@ -253,7 +253,7 @@ namespace TiaCodegen.CodeGen
                         _currentId++;
 
 
-                        foreach (var part in fb.InstanceName.Split('.')) // Aufsplitten von a.b.c in einzel Elemente
+                        foreach (var part in SymbolPath.Split(fb.InstanceName).Select(SymbolPath.Unescape)) // Aufsplitten von a.b.c in einzel Elemente
                         {
                             var idx = part.IndexOf("[") + 1; // Aufsplitten von Arrays
                             if (idx > 0)
@@ -371,7 +371,7 @@ namespace TiaCodegen.CodeGen
                         }
                         _currentId++;
 
-                        foreach (var part in fb.InstanceName.Split('.')) // Aufsplitten von a.b.c in einzel Elemente
+                        foreach (var part in SymbolPath.Split(fb.InstanceName).Select(SymbolPath.Unescape)) // Aufsplitten von a.b.c in einzel Elemente
                         {
                             string instanceNamePart;
                             if (part.StartsWith("\""))

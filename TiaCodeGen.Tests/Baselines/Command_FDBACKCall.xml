@@ -1,0 +1,968 @@
+<Cases>
+  
+<SW.Blocks.FC ID="0">
+    <AttributeList>
+      <HeaderAuthor>Test</HeaderAuthor>
+      <HeaderFamily>General</HeaderFamily>
+      <HeaderVersion>1.0</HeaderVersion>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <Name>Regression</Name>
+ <Number>12</Number>
+      <Namespace />
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList><SW.Blocks.CompileUnit ID="1" CompositionName="CompileUnits"> <!--Regression-->
+<AttributeList>
+<NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v1">
+<Parts>
+<Access Scope="LocalVariable" UId="21">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="ack">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="22">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="ack_nec">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="23">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="ack_req">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="24">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="diag">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="25">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="error">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="26">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="fdb_time">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="27">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="feedback">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="28">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="on">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="29">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="q">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="30">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="qbad_fio">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="31">
+<Symbol>
+<Component Name="Enable">
+</Component>
+</Symbol>
+</Access>
+<Part Name="Contact" UId="32" /><!-- #Enable -->
+<Part Name="FDBACK" UId="33">
+<Instance UId="34" Scope="LocalVariable">
+<Component Name="Instances">
+</Component>
+<Component Name="Timer">
+<Access Scope="LiteralConstant" UId="35" >
+<Constant>
+<ConstantType>DInt</ConstantType>
+<ConstantValue>1</ConstantValue>
+</Constant>
+</Access>
+</Component>
+</Instance>
+</Part>
+</Parts>
+<Wires>
+<Wire UId="36">
+<Powerrail />
+<NameCon UId="32" Name="in" />  <!-- #Enable -->
+</Wire>
+<Wire UId="37"><!-- Wire Parent FunctionCall (Parent:And (Signal(#Enable),FDBACKCall(FDBACK))) -->
+<IdentCon UId="31" />  <!-- #Enable -->
+<NameCon UId="32" Name="operand" />  <!-- #Enable -->
+</Wire>
+<Wire UId="38"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="28" />  <!-- #Data.on -->
+<NameCon UId="33" Name="ON" />
+</Wire>
+<Wire UId="39"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="27" />  <!-- #Data.feedback -->
+<NameCon UId="33" Name="FEEDBACK" />
+</Wire>
+<Wire UId="40"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="30" />  <!-- #Data.qbad_fio -->
+<NameCon UId="33" Name="QBAD_FIO" />
+</Wire>
+<Wire UId="41"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="22" />  <!-- #Data.ack_nec -->
+<NameCon UId="33" Name="ACK_NEC" />
+</Wire>
+<Wire UId="42"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="21" />  <!-- #Data.ack -->
+<NameCon UId="33" Name="ACK" />
+</Wire>
+<Wire UId="43"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="26" />  <!-- #Data.fdb_time -->
+<NameCon UId="33" Name="FDB_TIME" />
+</Wire>
+<Wire UId="44"><!-- Wire 4 FunctionCall -->
+<NameCon UId="33" Name="Q" />
+<IdentCon UId="29" />  <!-- #Data.q -->
+</Wire>
+<Wire UId="45"><!-- Wire 4 FunctionCall -->
+<NameCon UId="33" Name="ERROR" />
+<IdentCon UId="25" />  <!-- #Data.error -->
+</Wire>
+<Wire UId="46"><!-- Wire 4 FunctionCall -->
+<NameCon UId="33" Name="ACK_REQ" />
+<IdentCon UId="23" />  <!-- #Data.ack_req -->
+</Wire>
+<Wire UId="47"><!-- Wire 4 FunctionCall -->
+<NameCon UId="33" Name="DIAG" />
+<IdentCon UId="24" />  <!-- #Data.diag -->
+</Wire>
+<Wire UId="48"><!-- Wire And -->
+<NameCon UId="32" Name="out" />  <!-- #Enable -->
+<NameCon UId="33" Name="en" />  <!-- FDBACKCall -->
+</Wire>
+</Wires>
+</FlgNet></NetworkSource>
+<ProgrammingLanguage>LAD</ProgrammingLanguage>
+</AttributeList>
+<ObjectList>
+<MultilingualText ID="2" CompositionName="Comment">
+<ObjectList>
+<MultilingualTextItem ID="3" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="4" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+<MultilingualText ID="5" CompositionName="Title">
+<ObjectList>
+<MultilingualTextItem ID="6" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text>Regression</Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="7" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text>Regression</Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+</ObjectList>
+</SW.Blocks.CompileUnit>
+  
+      <MultilingualText ID="8" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="9" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>Regression</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="10" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text>English</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="11" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="12" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>Comment</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="13" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text>Comment en</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>
+  
+<SW.Blocks.FC ID="0">
+    <AttributeList>
+      <HeaderAuthor>Test</HeaderAuthor>
+      <HeaderFamily>General</HeaderFamily>
+      <HeaderVersion>1.0</HeaderVersion>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <Name>Regression</Name>
+ <Number>12</Number>
+      <Namespace />
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList><SW.Blocks.CompileUnit ID="1" CompositionName="CompileUnits"> <!--Regression-->
+<AttributeList>
+<NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v1">
+<Parts>
+<Access Scope="LocalVariable" UId="21">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="ack">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="22">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="ack_nec">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="23">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="ack_req">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="24">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="diag">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="25">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="error">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="26">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="fdb_time">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="27">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="feedback">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="28">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="on">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="29">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="q">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="30">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="qbad_fio">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="31">
+<Symbol>
+<Component Name="Enable">
+</Component>
+</Symbol>
+</Access>
+<Part Name="Contact" UId="32" /><!-- #Enable -->
+<Part Name="FDBACK" UId="33">
+<Instance UId="34" Scope="GlobalVariable">
+<Component Name="GlobalInstance" />
+</Instance>
+</Part>
+</Parts>
+<Wires>
+<Wire UId="35">
+<Powerrail />
+<NameCon UId="32" Name="in" />  <!-- #Enable -->
+</Wire>
+<Wire UId="36"><!-- Wire Parent FunctionCall (Parent:And (Signal(#Enable),FDBACKCall(FDBACK))) -->
+<IdentCon UId="31" />  <!-- #Enable -->
+<NameCon UId="32" Name="operand" />  <!-- #Enable -->
+</Wire>
+<Wire UId="37"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="28" />  <!-- #Data.on -->
+<NameCon UId="33" Name="ON" />
+</Wire>
+<Wire UId="38"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="27" />  <!-- #Data.feedback -->
+<NameCon UId="33" Name="FEEDBACK" />
+</Wire>
+<Wire UId="39"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="30" />  <!-- #Data.qbad_fio -->
+<NameCon UId="33" Name="QBAD_FIO" />
+</Wire>
+<Wire UId="40"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="22" />  <!-- #Data.ack_nec -->
+<NameCon UId="33" Name="ACK_NEC" />
+</Wire>
+<Wire UId="41"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="21" />  <!-- #Data.ack -->
+<NameCon UId="33" Name="ACK" />
+</Wire>
+<Wire UId="42"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="26" />  <!-- #Data.fdb_time -->
+<NameCon UId="33" Name="FDB_TIME" />
+</Wire>
+<Wire UId="43"><!-- Wire 4 FunctionCall -->
+<NameCon UId="33" Name="Q" />
+<IdentCon UId="29" />  <!-- #Data.q -->
+</Wire>
+<Wire UId="44"><!-- Wire 4 FunctionCall -->
+<NameCon UId="33" Name="ERROR" />
+<IdentCon UId="25" />  <!-- #Data.error -->
+</Wire>
+<Wire UId="45"><!-- Wire 4 FunctionCall -->
+<NameCon UId="33" Name="ACK_REQ" />
+<IdentCon UId="23" />  <!-- #Data.ack_req -->
+</Wire>
+<Wire UId="46"><!-- Wire 4 FunctionCall -->
+<NameCon UId="33" Name="DIAG" />
+<IdentCon UId="24" />  <!-- #Data.diag -->
+</Wire>
+<Wire UId="47"><!-- Wire And -->
+<NameCon UId="32" Name="out" />  <!-- #Enable -->
+<NameCon UId="33" Name="en" />  <!-- FDBACKCall -->
+</Wire>
+</Wires>
+</FlgNet></NetworkSource>
+<ProgrammingLanguage>LAD</ProgrammingLanguage>
+</AttributeList>
+<ObjectList>
+<MultilingualText ID="2" CompositionName="Comment">
+<ObjectList>
+<MultilingualTextItem ID="3" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="4" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+<MultilingualText ID="5" CompositionName="Title">
+<ObjectList>
+<MultilingualTextItem ID="6" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text>Regression</Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="7" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text>Regression</Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+</ObjectList>
+</SW.Blocks.CompileUnit>
+  
+      <MultilingualText ID="8" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="9" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>Regression</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="10" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text>English</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="11" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="12" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>Comment</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="13" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text>Comment en</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>
+  
+<SW.Blocks.FC ID="0">
+    <AttributeList>
+      <HeaderAuthor>Test</HeaderAuthor>
+      <HeaderFamily>General</HeaderFamily>
+      <HeaderVersion>1.0</HeaderVersion>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <Name>Regression</Name>
+ <Number>12</Number>
+      <Namespace />
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList><SW.Blocks.CompileUnit ID="1" CompositionName="CompileUnits"> <!--Regression-->
+<AttributeList>
+<NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v1">
+<Parts>
+<Access Scope="LocalVariable" UId="21">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="ack">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="22">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="ack_nec">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="23">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="ack_req">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="24">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="diag">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="25">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="error">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="26">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="fdb_time">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="27">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="feedback">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="28">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="on">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="29">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="q">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="30">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="qbad_fio">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="31">
+<Symbol>
+<Component Name="Enable">
+</Component>
+</Symbol>
+</Access>
+<Part Name="Contact" UId="32" /><!-- #Enable -->
+<Part Name="FDBACK" UId="33">
+<Instance UId="34" Scope="LocalVariable">
+<Component Name="Instances">
+</Component>
+<Component Name="Timer">
+<Access Scope="LiteralConstant" UId="35" >
+<Constant>
+<ConstantType>DInt</ConstantType>
+<ConstantValue>1</ConstantValue>
+</Constant>
+</Access>
+</Component>
+</Instance>
+      <TemplateValue Name="f_user_card" Type="Cardinality">1</TemplateValue>
+      <TemplateValue Name="f_image_card" Type="Cardinality">0</TemplateValue>
+</Part>
+</Parts>
+<Wires>
+<Wire UId="36">
+<Powerrail />
+<NameCon UId="32" Name="in" />  <!-- #Enable -->
+</Wire>
+<Wire UId="37"><!-- Wire Parent FunctionCall (Parent:And (Signal(#Enable),FDBACKCall(FDBACK))) -->
+<IdentCon UId="31" />  <!-- #Enable -->
+<NameCon UId="32" Name="operand" />  <!-- #Enable -->
+</Wire>
+<Wire UId="38"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="28" />  <!-- #Data.on -->
+<NameCon UId="33" Name="ON" />
+</Wire>
+<Wire UId="39"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="27" />  <!-- #Data.feedback -->
+<NameCon UId="33" Name="FEEDBACK" />
+</Wire>
+<Wire UId="40"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="30" />  <!-- #Data.qbad_fio -->
+<NameCon UId="33" Name="QBAD_FIO" />
+</Wire>
+<Wire UId="41"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="22" />  <!-- #Data.ack_nec -->
+<NameCon UId="33" Name="ACK_NEC" />
+</Wire>
+<Wire UId="42"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="21" />  <!-- #Data.ack -->
+<NameCon UId="33" Name="ACK" />
+</Wire>
+<Wire UId="43"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="26" />  <!-- #Data.fdb_time -->
+<NameCon UId="33" Name="FDB_TIME" />
+</Wire>
+<Wire UId="44"><!-- Wire 4 FunctionCall -->
+<NameCon UId="33" Name="Q" />
+<IdentCon UId="29" />  <!-- #Data.q -->
+</Wire>
+<Wire UId="45"><!-- Wire 4 FunctionCall -->
+<NameCon UId="33" Name="ERROR" />
+<IdentCon UId="25" />  <!-- #Data.error -->
+</Wire>
+<Wire UId="46"><!-- Wire 4 FunctionCall -->
+<NameCon UId="33" Name="ACK_REQ" />
+<IdentCon UId="23" />  <!-- #Data.ack_req -->
+</Wire>
+<Wire UId="47"><!-- Wire 4 FunctionCall -->
+<NameCon UId="33" Name="DIAG" />
+<IdentCon UId="24" />  <!-- #Data.diag -->
+</Wire>
+<Wire UId="48"><!-- Wire And -->
+<NameCon UId="32" Name="out" />  <!-- #Enable -->
+<NameCon UId="33" Name="en" />  <!-- FDBACKCall -->
+</Wire>
+</Wires>
+</FlgNet></NetworkSource>
+<ProgrammingLanguage>F_LAD</ProgrammingLanguage>
+</AttributeList>
+<ObjectList>
+<MultilingualText ID="2" CompositionName="Comment">
+<ObjectList>
+<MultilingualTextItem ID="3" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="4" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+<MultilingualText ID="5" CompositionName="Title">
+<ObjectList>
+<MultilingualTextItem ID="6" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text>Regression</Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="7" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text>Regression</Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+</ObjectList>
+</SW.Blocks.CompileUnit>
+  
+      <MultilingualText ID="8" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="9" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>Regression</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="10" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text>English</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="11" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="12" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>Comment</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="13" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text>Comment en</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>
+  
+<SW.Blocks.FC ID="0">
+    <AttributeList>
+      <HeaderAuthor>Test</HeaderAuthor>
+      <HeaderFamily>General</HeaderFamily>
+      <HeaderVersion>1.0</HeaderVersion>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <Name>Regression</Name>
+ <Number>12</Number>
+      <Namespace />
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList><SW.Blocks.CompileUnit ID="1" CompositionName="CompileUnits"> <!--Regression-->
+<AttributeList>
+<NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v1">
+<Parts>
+<Access Scope="LocalVariable" UId="21">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="ack">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="22">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="ack_nec">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="23">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="ack_req">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="24">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="diag">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="25">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="error">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="26">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="fdb_time">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="27">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="feedback">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="28">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="on">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="29">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="q">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="30">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="qbad_fio">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="31">
+<Symbol>
+<Component Name="Enable">
+</Component>
+</Symbol>
+</Access>
+<Part Name="Contact" UId="32" /><!-- #Enable -->
+<Part Name="FDBACK" UId="33">
+<Instance UId="34" Scope="GlobalVariable">
+<Component Name="GlobalInstance" />
+</Instance>
+      <TemplateValue Name="f_user_card" Type="Cardinality">1</TemplateValue>
+      <TemplateValue Name="f_image_card" Type="Cardinality">0</TemplateValue>
+</Part>
+</Parts>
+<Wires>
+<Wire UId="35">
+<Powerrail />
+<NameCon UId="32" Name="in" />  <!-- #Enable -->
+</Wire>
+<Wire UId="36"><!-- Wire Parent FunctionCall (Parent:And (Signal(#Enable),FDBACKCall(FDBACK))) -->
+<IdentCon UId="31" />  <!-- #Enable -->
+<NameCon UId="32" Name="operand" />  <!-- #Enable -->
+</Wire>
+<Wire UId="37"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="28" />  <!-- #Data.on -->
+<NameCon UId="33" Name="ON" />
+</Wire>
+<Wire UId="38"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="27" />  <!-- #Data.feedback -->
+<NameCon UId="33" Name="FEEDBACK" />
+</Wire>
+<Wire UId="39"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="30" />  <!-- #Data.qbad_fio -->
+<NameCon UId="33" Name="QBAD_FIO" />
+</Wire>
+<Wire UId="40"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="22" />  <!-- #Data.ack_nec -->
+<NameCon UId="33" Name="ACK_NEC" />
+</Wire>
+<Wire UId="41"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="21" />  <!-- #Data.ack -->
+<NameCon UId="33" Name="ACK" />
+</Wire>
+<Wire UId="42"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="26" />  <!-- #Data.fdb_time -->
+<NameCon UId="33" Name="FDB_TIME" />
+</Wire>
+<Wire UId="43"><!-- Wire 4 FunctionCall -->
+<NameCon UId="33" Name="Q" />
+<IdentCon UId="29" />  <!-- #Data.q -->
+</Wire>
+<Wire UId="44"><!-- Wire 4 FunctionCall -->
+<NameCon UId="33" Name="ERROR" />
+<IdentCon UId="25" />  <!-- #Data.error -->
+</Wire>
+<Wire UId="45"><!-- Wire 4 FunctionCall -->
+<NameCon UId="33" Name="ACK_REQ" />
+<IdentCon UId="23" />  <!-- #Data.ack_req -->
+</Wire>
+<Wire UId="46"><!-- Wire 4 FunctionCall -->
+<NameCon UId="33" Name="DIAG" />
+<IdentCon UId="24" />  <!-- #Data.diag -->
+</Wire>
+<Wire UId="47"><!-- Wire And -->
+<NameCon UId="32" Name="out" />  <!-- #Enable -->
+<NameCon UId="33" Name="en" />  <!-- FDBACKCall -->
+</Wire>
+</Wires>
+</FlgNet></NetworkSource>
+<ProgrammingLanguage>F_LAD</ProgrammingLanguage>
+</AttributeList>
+<ObjectList>
+<MultilingualText ID="2" CompositionName="Comment">
+<ObjectList>
+<MultilingualTextItem ID="3" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="4" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+<MultilingualText ID="5" CompositionName="Title">
+<ObjectList>
+<MultilingualTextItem ID="6" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text>Regression</Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="7" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text>Regression</Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+</ObjectList>
+</SW.Blocks.CompileUnit>
+  
+      <MultilingualText ID="8" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="9" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>Regression</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="10" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text>English</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="11" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="12" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>Comment</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="13" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text>Comment en</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>
+</Cases>

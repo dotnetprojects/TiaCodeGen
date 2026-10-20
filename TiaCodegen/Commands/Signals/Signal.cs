@@ -5,11 +5,35 @@ using System.Text;
 using TiaCodegen.Commands.Comparisons;
 using TiaCodegen.Enums;
 using TiaCodegen.Interfaces;
+using TiaCodegen.Internal;
 
 namespace TiaCodegen.Commands.Signals
 {
     public class Signal : IOperationOrSignal
     {
+        private bool? _local;
+        private bool IsLocal => _local ?? Name.StartsWith("#");
+
+        /// <summary>Creates a global signal from components. Dots and backslashes in each component are literal.</summary>
+        public Signal(string[] components, SignalType signalType = SignalType.Bool, string customType = null, string description = null)
+            : this(SymbolPath.Join(components), signalType, customType, description)
+        {
+            _local = false;
+        }
+
+        /// <summary>Creates a local signal from components without a leading # scope marker.</summary>
+        public static Signal Local(string[] components, SignalType signalType = SignalType.Bool, string customType = null, string description = null)
+        {
+            var signal = new Signal(components, signalType, customType, description);
+            signal.Name = "#" + signal.Name;
+            signal._local = true;
+            return signal;
+        }
+
+        /// <summary>Creates a global signal from components.</summary>
+        public static Signal Global(string[] components, SignalType signalType = SignalType.Bool, string customType = null, string description = null)
+            => new Signal(components, signalType, customType, description);
+
         public string DebugInfo { get; set; }
         public Signal(string name, SignalType signalType = SignalType.Bool, string customType = null, string description = null)
         {
@@ -62,12 +86,12 @@ namespace TiaCodegen.Commands.Signals
 
         public string Escape(string txt)
         {
-            return txt.Replace("\\.", "🌴");
+            return SymbolPath.Escape(txt);
         }
 
         public string Unescape(string txt)
         {
-            return txt.Replace("🌴", ".").Replace("\\\\", "\\");
+            return SymbolPath.Unescape(txt);
         }
 
         public IOperationOrSignal Clone()
@@ -75,6 +99,7 @@ namespace TiaCodegen.Commands.Signals
             try
             {
                 var inst = new Signal(this.Name);
+                inst._local = _local;
                 var props = this.GetType().GetProperties();
                 foreach (var p in props)
                 {
@@ -98,7 +123,7 @@ namespace TiaCodegen.Commands.Signals
         public void AddXmlToStringBuilder(ulong id, StringBuilder sb)
         {
             string LocalName;
-            if (SignalType == SignalType.Constant && !Name.StartsWith("#"))
+            if (SignalType == SignalType.Constant && !IsLocal)
             {
                 var value = Name.IndexOf(",");
                 sb.AppendLine("<Access Scope=\"GlobalConstant\" UId=\"" + id + "\">");
@@ -109,7 +134,7 @@ namespace TiaCodegen.Commands.Signals
                 sb.AppendLine("</Constant>");
                 sb.AppendLine("</Access>");
             }
-            else if (SignalType == SignalType.ConstantBool && !Name.StartsWith("#"))
+            else if (SignalType == SignalType.ConstantBool && !IsLocal)
             {
                 sb.AppendLine("<Access Scope=\"LiteralConstant\" UId=\"" + id + "\">");
                 sb.AppendLine("<Constant>");
@@ -118,7 +143,7 @@ namespace TiaCodegen.Commands.Signals
                 sb.AppendLine("</Constant>");
                 sb.AppendLine("</Access>");
             }
-            else if (SignalType == SignalType.ConstantTime && !Name.StartsWith("#"))
+            else if (SignalType == SignalType.ConstantTime && !IsLocal)
             {
                 sb.AppendLine("<Access Scope=\"TypedConstant\" UId=\"" + id + "\">");
                 sb.AppendLine("<Constant>");
@@ -126,7 +151,7 @@ namespace TiaCodegen.Commands.Signals
                 sb.AppendLine("</Constant>");
                 sb.AppendLine("</Access>");
             }
-            else if (SignalType == SignalType.ConstantUInt && !Name.StartsWith("#"))
+            else if (SignalType == SignalType.ConstantUInt && !IsLocal)
             {
                 sb.AppendLine("<Access Scope=\"LiteralConstant\" UId=\"" + id + "\">");
                 sb.AppendLine("<Constant>");
@@ -135,7 +160,7 @@ namespace TiaCodegen.Commands.Signals
                 sb.AppendLine("</Constant>");
                 sb.AppendLine("</Access>");
             }
-            else if (SignalType == SignalType.ConstantUDInt && !Name.StartsWith("#"))
+            else if (SignalType == SignalType.ConstantUDInt && !IsLocal)
             {
                 sb.AppendLine("<Access Scope=\"LiteralConstant\" UId=\"" + id + "\">");
                 sb.AppendLine("<Constant>");
@@ -144,7 +169,7 @@ namespace TiaCodegen.Commands.Signals
                 sb.AppendLine("</Constant>");
                 sb.AppendLine("</Access>");
             }
-            else if (SignalType == SignalType.ConstantInt && !Name.StartsWith("#"))
+            else if (SignalType == SignalType.ConstantInt && !IsLocal)
             {
                 sb.AppendLine("<Access Scope=\"LiteralConstant\" UId=\"" + id + "\">");
                 sb.AppendLine("<Constant>");
@@ -153,7 +178,7 @@ namespace TiaCodegen.Commands.Signals
                 sb.AppendLine("</Constant>");
                 sb.AppendLine("</Access>");
             }
-            else if (SignalType == SignalType.ConstantReal && !Name.StartsWith("#"))
+            else if (SignalType == SignalType.ConstantReal && !IsLocal)
             {
                 sb.AppendLine("<Access Scope=\"LiteralConstant\" UId=\"" + id + "\">");
                 sb.AppendLine("<Constant>");
@@ -162,7 +187,7 @@ namespace TiaCodegen.Commands.Signals
                 sb.AppendLine("</Constant>");
                 sb.AppendLine("</Access>");
             }
-            else if (SignalType == SignalType.ConstantString && !Name.StartsWith("#"))
+            else if (SignalType == SignalType.ConstantString && !IsLocal)
             {
                 sb.AppendLine("<Access Scope=\"LiteralConstant\" UId=\"" + id + "\">");
                 sb.AppendLine("<Constant>");
@@ -171,7 +196,7 @@ namespace TiaCodegen.Commands.Signals
                 sb.AppendLine("</Constant>");
                 sb.AppendLine("</Access>");
             }
-            else if (SignalType == SignalType.ConstantWord && !Name.StartsWith("#"))
+            else if (SignalType == SignalType.ConstantWord && !IsLocal)
             {
                 sb.AppendLine("<Access Scope=\"TypedConstant\" UId=\"" + id + "\">");
                 sb.AppendLine("<Constant>");
@@ -179,7 +204,7 @@ namespace TiaCodegen.Commands.Signals
                 sb.AppendLine("</Constant>");
                 sb.AppendLine("</Access>");
             }
-            else if (SignalType == SignalType.Void && !Name.StartsWith("#"))
+            else if (SignalType == SignalType.Void && !IsLocal)
             {
                 sb.AppendLine("<Access Scope=\"LiteralConstant\" UId=\"" + id + "\">");
                 sb.AppendLine("<Constant>");
@@ -188,13 +213,13 @@ namespace TiaCodegen.Commands.Signals
                 sb.AppendLine("</Constant>");
                 sb.AppendLine("</Access>");
             }
-            else if (SignalType == SignalType.UDT && !Name.StartsWith("#"))
+            else if (SignalType == SignalType.UDT && !IsLocal)
             {
                 sb.AppendLine("<Access Scope=\"GlobalVariable\" UId=\"" + id + "\">" + "  <!-- P1: " + Name + " -->");
                 sb.AppendLine("<Symbol>");
-                for (int i = 0; i < Escape(Name).Split('.').Length; i++) // Aufsplitten von a.b.c in einzel Elemente
+                for (int i = 0; i < SymbolPath.Split(Name).Length; i++) // Aufsplitten von a.b.c in einzel Elemente
                 {
-                    var part = Unescape(Escape(Name).Split('.')[i]);
+                    var part = Unescape(SymbolPath.Split(Name)[i]);
 
                     var idx = part.IndexOf("[") + 1; // Aufsplitten von Arrays
                     if (idx > 0)
@@ -224,7 +249,7 @@ namespace TiaCodegen.Commands.Signals
                             while (p1 != null)
                             {
                                 i++;
-                                p1 = Unescape(Escape(Name).Split('.')[i]);
+                                p1 = Unescape(SymbolPath.Split(Name)[i]);
                                 if (p1.Contains("]"))
                                 {
                                     sb.AppendLine("<Component Name=\"" + p1.Substring(0, p1.Length - 1) + "\" />");
@@ -259,11 +284,11 @@ namespace TiaCodegen.Commands.Signals
                 sb.AppendLine("</Symbol>");
                 sb.AppendLine("</Access>");
             }
-            else if (SignalType == SignalType.Byte && !Name.StartsWith("#"))
+            else if (SignalType == SignalType.Byte && !IsLocal)
             {
                 sb.AppendLine("<Access Scope=\"GlobalVariable\" UId=\"" + id + "\">");
                 sb.AppendLine("<Symbol>");
-                foreach (var parte in Escape(Name).Split('.')) // Aufsplitten von a.b.c in einzel Elemente
+                foreach (var parte in SymbolPath.Split(Name)) // Aufsplitten von a.b.c in einzel Elemente
                 {
                     var part = Unescape(parte);
                     sb.AppendLine("<Component Name=\"" + part + "\" />");
@@ -272,11 +297,11 @@ namespace TiaCodegen.Commands.Signals
                 sb.AppendLine("</Symbol>");
                 sb.AppendLine("</Access>");
             }
-            else if (SignalType == SignalType.String && !Name.StartsWith("#"))
+            else if (SignalType == SignalType.String && !IsLocal)
             {
                 sb.AppendLine("<Access Scope=\"GlobalVariable\" UId=\"" + id + "\">" + "  <!-- P2: " + Name + " -->");
                 sb.AppendLine("<Symbol>");
-                foreach (var parte in Escape(Name).Split('.')) // Aufsplitten von a.b.c in einzel Elemente
+                foreach (var parte in SymbolPath.Split(Name)) // Aufsplitten von a.b.c in einzel Elemente
                 {
                     var part = Unescape(parte);
                     var idx = part.IndexOf("[") + 1; // Aufsplitten von Arrays
@@ -318,7 +343,7 @@ namespace TiaCodegen.Commands.Signals
             else
             {
                 LocalName = Name;
-                if (Name.StartsWith("#"))
+                if (IsLocal)
                 {
                     sb.AppendLine("<Access Scope=\"LocalVariable\" UId=\"" + id + "\">");
                     LocalName = Name.Substring(1);
@@ -328,12 +353,12 @@ namespace TiaCodegen.Commands.Signals
                     sb.AppendLine("<Access Scope=\"GlobalVariable\" UId=\"" + id + "\">" + "  <!-- P3: " + Name + " -->");
                 }
                 sb.AppendLine("<Symbol>");
-                var cnt = Escape(LocalName).Split('.').Length;
+                var cnt = SymbolPath.Split(LocalName).Length;
                 if (this is FixedSignal)
                     cnt = 1;
                 for (int i = 0; i < cnt; i++) // Aufsplitten von a.b.c in einzel Elemente
                 {
-                    var part = Unescape(Escape(LocalName).Split('.')[i]);
+                    var part = Unescape(SymbolPath.Split(LocalName)[i]);
                     if (this is FixedSignal)
                         part = LocalName;
 
@@ -366,7 +391,7 @@ namespace TiaCodegen.Commands.Signals
                             while (p1 != null)
                             {
                                 i++;
-                                p1 = Unescape(Escape(LocalName).Split('.')[i]);
+                                p1 = Unescape(SymbolPath.Split(LocalName)[i]);
                                 if (p1.Contains(","))
                                 {
                                     var innerParts = p1.Split(',');

@@ -14,4 +14,7 @@
     <ProjectReference Include="..\TiaCodegen\DotNetProjects.TiaCodegen.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Baselines\*.xml" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
 </Project>

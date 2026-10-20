@@ -1,0 +1,198 @@
+  
+<SW.Blocks.FC ID="0">
+    <AttributeList>
+      
+      <HeaderFamily>General</HeaderFamily>
+      <HeaderVersion>1.0</HeaderVersion>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <Name>Test</Name>
+ 
+      <Namespace />
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList><SW.Blocks.CompileUnit ID="1" CompositionName="CompileUnits"> <!--Test2-->
+<AttributeList>
+<NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v1">
+<Parts>
+<Access Scope="GlobalVariable" UId="21">  <!-- P3: 1 -->
+<Symbol>
+<Component Name="1">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="22">  <!-- P3: a -->
+<Symbol>
+<Component Name="a">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="23">  <!-- P3: b -->
+<Symbol>
+<Component Name="b">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="24">  <!-- P3: c -->
+<Symbol>
+<Component Name="c">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="25">  <!-- P3: d -->
+<Symbol>
+<Component Name="d">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="26">  <!-- P3: e -->
+<Symbol>
+<Component Name="e">
+</Component>
+</Symbol>
+</Access>
+<Part Name="Contact" UId="27" /><!-- 1 -->
+<Part Name="Contact" UId="28" /><!-- b -->
+<Part Name="Contact" UId="29" /><!-- c -->
+<Part Name="O" UId="30"><!-- Or (Signals...) -->
+<TemplateValue Name="Card" Type="Cardinality">2</TemplateValue>
+</Part>
+<Part Name="Contact" UId="31" /><!-- d -->
+<Part Name="Contact" UId="32" /><!-- e -->
+<Part Name="O" UId="33"><!-- Or (Signals...) -->
+<TemplateValue Name="Card" Type="Cardinality">2</TemplateValue>
+</Part>
+<Part Name="Coil" UId="34"/><!-- a -->
+</Parts>
+<Wires>
+<Wire UId="35">
+<Powerrail />
+<NameCon UId="27" Name="in" />  <!-- 1 -->
+</Wire>
+<Wire UId="36"><!-- Wire Parent FunctionCall (Parent:Coil) -->
+<IdentCon UId="22" />  <!-- a -->
+<NameCon UId="34" Name="operand" />  <!-- a -->
+</Wire>
+<Wire UId="37"><!-- Wire Parent FunctionCall (Parent:And (Signal(1),Or (And (Or (Signal(b),Signal(c)),Signal(d)),Signal(e)))) -->
+<IdentCon UId="21" />  <!-- 1 -->
+<NameCon UId="27" Name="operand" />  <!-- 1 -->
+</Wire>
+<Wire UId="38"><!-- Wire Parent FunctionCall (Parent:Or (Signal(b),Signal(c))) -->
+<IdentCon UId="23" />  <!-- b -->
+<NameCon UId="28" Name="operand" />  <!-- b -->
+</Wire>
+<Wire UId="39"><!-- Wire Parent FunctionCall (Parent:Or (Signal(b),Signal(c))) -->
+<IdentCon UId="24" />  <!-- c -->
+<NameCon UId="29" Name="operand" />  <!-- c -->
+</Wire>
+<Wire UId="40"><!-- Wire 2 Or -->
+<NameCon UId="28" Name="out" />  <!-- Signal(b) -->
+<NameCon UId="30" Name="in1" />  <!-- Or (Signal(b),Signal(c)) -->
+</Wire>
+<Wire UId="41"><!-- Wire 2 Or -->
+<NameCon UId="29" Name="out" />  <!-- Signal(c) -->
+<NameCon UId="30" Name="in2" />  <!-- Or (Signal(b),Signal(c)) -->
+</Wire>
+<Wire UId="42"><!-- Wire Parent FunctionCall (Parent:And (Or (Signal(b),Signal(c)),Signal(d))) -->
+<IdentCon UId="25" />  <!-- d -->
+<NameCon UId="31" Name="operand" />  <!-- d -->
+</Wire>
+<Wire UId="43"><!-- Wire And -->
+<NameCon UId="30" Name="out" />  <!-- Or -->
+<NameCon UId="31" Name="in" />  <!-- d -->
+</Wire>
+<Wire UId="44"><!-- Wire Parent FunctionCall (Parent:Or (And (Or (Signal(b),Signal(c)),Signal(d)),Signal(e))) -->
+<IdentCon UId="26" />  <!-- e -->
+<NameCon UId="32" Name="operand" />  <!-- e -->
+</Wire>
+<Wire UId="45"><!-- Wire 2 Or -->
+<NameCon UId="31" Name="out" />  <!-- And (Or (Signal(b),Signal(c)),Signal(d)) -->
+<NameCon UId="33" Name="in1" />  <!-- Or (And (Or (Signal(b),Signal(c)),Signal(d)),Signal(e)) -->
+</Wire>
+<Wire UId="46"><!-- Wire 2 Or -->
+<NameCon UId="32" Name="out" />  <!-- Signal(e) -->
+<NameCon UId="33" Name="in2" />  <!-- Or (And (Or (Signal(b),Signal(c)),Signal(d)),Signal(e)) -->
+</Wire>
+<Wire UId="47"><!-- Wire And next Or -->
+<NameCon UId="27" Name="out" />  <!-- 1 -->
+<NameCon UId="28" Name="in" />  <!-- b -->
+<NameCon UId="29" Name="in" />  <!-- c -->
+<NameCon UId="32" Name="in" />  <!-- e -->
+</Wire>
+<Wire UId="48"><!-- Wire Coil -->
+<NameCon UId="33" Name="out" />  <!-- Or -->
+<NameCon UId="34" Name="in" />  <!-- Signal (a) -->
+</Wire>
+</Wires>
+</FlgNet></NetworkSource>
+<ProgrammingLanguage>LAD</ProgrammingLanguage>
+</AttributeList>
+<ObjectList>
+<MultilingualText ID="2" CompositionName="Comment">
+<ObjectList>
+<MultilingualTextItem ID="3" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="4" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+<MultilingualText ID="5" CompositionName="Title">
+<ObjectList>
+<MultilingualTextItem ID="6" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text>Test2</Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="7" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text>Test2en</Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+</ObjectList>
+</SW.Blocks.CompileUnit>
+  
+      <MultilingualText ID="8" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="9" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>blabla</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="10" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text></Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="11" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="12" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text></Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="13" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text></Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>

@@ -1,0 +1,134 @@
+  
+<SW.Blocks.FC ID="0">
+    <AttributeList>
+      
+      <HeaderFamily>General</HeaderFamily>
+      <HeaderVersion>1.0</HeaderVersion>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <Name>Test</Name>
+ 
+      <Namespace />
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList><SW.Blocks.CompileUnit ID="1" CompositionName="CompileUnits"> <!--TestDPXX_DAT-->
+<AttributeList>
+<NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v1">
+<Parts>
+<Access Scope="LocalVariable" UId="21">
+<Symbol>
+<Component Name="Configuration">
+</Component>
+<Component Name="GeneralMoviC">
+</Component>
+<Component Name="ModuleHardwareID">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="22">
+<Symbol>
+<Component Name="PeripheryInputsMoviC">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="23">
+<Symbol>
+<Component Name="retVal">
+</Component>
+</Symbol>
+</Access>
+<Part Name="DPRD_DAT" UId="24">
+<TemplateValue Name="ptr_type" Type="Type">Variant</TemplateValue>
+<TemplateValue Name="laddr_type" Type="Type">HW_IO</TemplateValue>
+</Part>
+</Parts>
+<Wires>
+<Wire UId="25">
+<Powerrail />
+<NameCon UId="24" Name="en" />  <!-- DPRD_DAT -->
+</Wire>
+<Wire UId="26"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="21" />  <!-- #Configuration.GeneralMoviC.ModuleHardwareID -->
+<NameCon UId="24" Name="LADDR" />
+</Wire>
+<Wire UId="27"><!-- Wire 4 FunctionCall -->
+<NameCon UId="24" Name="RET_VAL" />
+<IdentCon UId="23" />  <!-- #retVal -->
+</Wire>
+<Wire UId="28"><!-- Wire 4 FunctionCall -->
+<NameCon UId="24" Name="RECORD" />
+<IdentCon UId="22" />  <!-- #PeripheryInputsMoviC -->
+</Wire>
+</Wires>
+</FlgNet></NetworkSource>
+<ProgrammingLanguage>LAD</ProgrammingLanguage>
+</AttributeList>
+<ObjectList>
+<MultilingualText ID="2" CompositionName="Comment">
+<ObjectList>
+<MultilingualTextItem ID="3" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="4" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+<MultilingualText ID="5" CompositionName="Title">
+<ObjectList>
+<MultilingualTextItem ID="6" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text>TestDPXX_DAT</Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="7" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text>TestDPXX_DATen</Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+</ObjectList>
+</SW.Blocks.CompileUnit>
+  
+      <MultilingualText ID="8" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="9" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>blabla</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="10" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text></Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="11" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="12" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text></Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="13" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text></Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>

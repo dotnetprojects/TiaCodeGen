@@ -1,0 +1,122 @@
+  
+<SW.Blocks.FC ID="0">
+    <AttributeList>
+      
+      <HeaderFamily>General</HeaderFamily>
+      <HeaderVersion>1.0</HeaderVersion>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <Name>Test</Name>
+ 
+      <Namespace />
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList><SW.Blocks.CompileUnit ID="1" CompositionName="CompileUnits"> <!--Test3-->
+<AttributeList>
+<NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v1">
+<Parts>
+<Access Scope="GlobalVariable" UId="21">  <!-- P3: 1 -->
+<Symbol>
+<Component Name="1">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="GlobalVariable" UId="22">  <!-- P3: =PBG10.6+FBG11-BV1:4 -->
+<Symbol>
+<Component Name="=PBG10.6+FBG11-BV1:4" SimpleAccessModifier="Periphery">
+</Component>
+</Symbol>
+</Access>
+<Part Name="Contact" UId="23" /><!-- 1 -->
+<Part Name="Coil" UId="24"/><!-- =PBG10.6+FBG11-BV1:4 -->
+</Parts>
+<Wires>
+<Wire UId="25">
+<Powerrail />
+<NameCon UId="23" Name="in" />  <!-- 1 -->
+</Wire>
+<Wire UId="26"><!-- Wire Parent FunctionCall (Parent:Coil) -->
+<IdentCon UId="22" />  <!-- =PBG10.6+FBG11-BV1:4 -->
+<NameCon UId="24" Name="operand" />  <!-- =PBG10.6+FBG11-BV1:4 -->
+</Wire>
+<Wire UId="27"><!-- Wire Parent FunctionCall (Parent:And (Signal(1))) -->
+<IdentCon UId="21" />  <!-- 1 -->
+<NameCon UId="23" Name="operand" />  <!-- 1 -->
+</Wire>
+<Wire UId="28"><!-- Wire Coil -->
+<NameCon UId="23" Name="out" />  <!-- Signal (1) -->
+<NameCon UId="24" Name="in" />  <!-- FixedPeripherySignal (=PBG10.6+FBG11-BV1:4) -->
+</Wire>
+</Wires>
+</FlgNet></NetworkSource>
+<ProgrammingLanguage>LAD</ProgrammingLanguage>
+</AttributeList>
+<ObjectList>
+<MultilingualText ID="2" CompositionName="Comment">
+<ObjectList>
+<MultilingualTextItem ID="3" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="4" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+<MultilingualText ID="5" CompositionName="Title">
+<ObjectList>
+<MultilingualTextItem ID="6" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text>Test3</Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="7" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text>Test3en</Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+</ObjectList>
+</SW.Blocks.CompileUnit>
+  
+      <MultilingualText ID="8" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="9" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>blabla</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="10" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text></Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="11" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="12" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text></Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="13" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text></Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>

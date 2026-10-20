@@ -1,3 +1,4 @@
+import { splitSymbolPath, unescapeSymbolComponent } from '../Internal/SymbolPath.js';
 import { IOperationOrSignal } from '../Interfaces/IOperationOrSignal.js';
 import { ICoil } from '../Interfaces/ICoil.js';
 import { IFunctionOperation } from '../Interfaces/IFunctionOperation.js';
@@ -214,7 +215,7 @@ export class KopCodeHelper {
                     this._sb.appendLine(`<Instance UId="${this._currentId}" Scope="LocalVariable">`);
                     this._currentId++;
 
-                    for (const part of fb.instanceName.split('.')) {
+                    for (const part of splitSymbolPath(fb.instanceName).map(unescapeSymbolComponent)) {
                         const idx = part.indexOf('[') + 1;
                         if (idx > 0) {
                             this._sb.appendLine(`<Component Name="${part.substring(0, idx - 1)}">`);
@@ -301,7 +302,7 @@ export class KopCodeHelper {
                     }
                     this._currentId++;
 
-                    for (const part of fb.instanceName.split('.')) {
+                    for (const part of splitSymbolPath(fb.instanceName).map(unescapeSymbolComponent)) {
                         let instanceNamePart: string;
                         if (part.startsWith('"')) {
                             instanceNamePart = part.replace(/"/g, '');

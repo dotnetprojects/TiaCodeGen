@@ -1,0 +1,232 @@
+  
+<SW.Blocks.FC ID="0">
+    <AttributeList>
+      
+      <HeaderFamily>General</HeaderFamily>
+      <HeaderVersion>1.0</HeaderVersion>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <Name>Test</Name>
+ 
+      <Namespace />
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList><SW.Blocks.CompileUnit ID="1" CompositionName="CompileUnits"> <!--Test2-->
+<AttributeList>
+<NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v1">
+<Parts>
+<Access Scope="LocalVariable" UId="21">
+<Symbol>
+<Component Name="Bool1">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="22">
+<Symbol>
+<Component Name="Bool2">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="23">
+<Symbol>
+<Component Name="Bool3">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="24">
+<Symbol>
+<Component Name="Bool4">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="25">
+<Symbol>
+<Component Name="Dint2">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="26">
+<Symbol>
+<Component Name="Real1">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="27">
+<Symbol>
+<Component Name="Real1">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="28">
+<Symbol>
+<Component Name="Real2">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="29">
+<Symbol>
+<Component Name="Real3">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="30">
+<Symbol>
+<Component Name="Real4">
+</Component>
+</Symbol>
+</Access>
+<Part Name="Contact" UId="31" /><!-- #Bool1 -->
+<Part Name="Contact" UId="32" /><!-- #Bool2 -->
+<Part Name="Convert" UId="33">
+<TemplateValue Name="SrcType" Type="Type">DInt</TemplateValue>
+<TemplateValue Name="DestType" Type="Type">Real</TemplateValue>
+</Part>
+<Part Name="Move" UId="34" DisabledENO="true">
+<TemplateValue Name="Card" Type="Cardinality">1</TemplateValue>
+</Part>
+<Part Name="SCoil" UId="35"/><!-- #Bool3 -->
+<Part Name="Gt" UId="36">
+<TemplateValue Name="SrcType" Type="Type">Real</TemplateValue>
+</Part>
+<Part Name="SCoil" UId="37"/><!-- #Bool4 -->
+</Parts>
+<Wires>
+<Wire UId="38">
+<Powerrail />
+<NameCon UId="31" Name="in" />  <!-- #Bool1 -->
+</Wire>
+<Wire UId="39"><!-- Wire Parent FunctionCall (Parent:And (Signal(#Bool1),Signal(#Bool2),Convert,Distributor)) -->
+<IdentCon UId="21" />  <!-- #Bool1 -->
+<NameCon UId="31" Name="operand" />  <!-- #Bool1 -->
+</Wire>
+<Wire UId="40"><!-- Wire Parent FunctionCall (Parent:And (Signal(#Bool1),Signal(#Bool2),Convert,Distributor)) -->
+<IdentCon UId="22" />  <!-- #Bool2 -->
+<NameCon UId="32" Name="operand" />  <!-- #Bool2 -->
+</Wire>
+<Wire UId="41"><!-- Wire Move or S_Move -->
+<IdentCon UId="25" />  <!-- #Dint2 -->
+<NameCon UId="33" Name="in" />  <!-- Convert -->
+</Wire>
+<Wire UId="42">
+<NameCon UId="33" Name="out" />  <!-- Convert -->
+<IdentCon UId="26" />  <!-- #Real1 -->
+</Wire>
+<Wire UId="43"><!-- Wire Move or S_Move -->
+<IdentCon UId="30" />  <!-- #Real4 -->
+<NameCon UId="34" Name="in" />  <!-- Move -->
+</Wire>
+<Wire UId="44">
+<NameCon UId="34" Name="out1" />  <!-- Move -->
+<IdentCon UId="29" />  <!-- #Real3 -->
+</Wire>
+<Wire UId="45"><!-- Wire Parent FunctionCall (Parent:SCoil) -->
+<IdentCon UId="23" />  <!-- #Bool3 -->
+<NameCon UId="35" Name="operand" />  <!-- #Bool3 -->
+</Wire>
+<Wire UId="46"><!-- Wire And -->
+<NameCon UId="34" Name="eno" />  <!-- Move -->
+<NameCon UId="35" Name="in" />  <!-- SCoil -->
+</Wire>
+<Wire UId="47"><!-- Wire CompareOperator -->
+<IdentCon UId="27" />  <!-- Signal(#Real1) -->
+<NameCon UId="36" Name="in1" />  <!-- Gt -->
+</Wire>
+<Wire UId="48"><!-- Wire CompareOperator -->
+<IdentCon UId="28" />  <!-- Signal(#Real2) -->
+<NameCon UId="36" Name="in2" />  <!-- Gt -->
+</Wire>
+<Wire UId="49"><!-- Wire Parent FunctionCall (Parent:SCoil) -->
+<IdentCon UId="24" />  <!-- #Bool4 -->
+<NameCon UId="37" Name="operand" />  <!-- #Bool4 -->
+</Wire>
+<Wire UId="50"><!-- Wire And -->
+<NameCon UId="36" Name="out" />  <!-- Gt -->
+<NameCon UId="37" Name="in" />  <!-- SCoil -->
+</Wire>
+<Wire UId="51"><!-- Wire And -->
+<NameCon UId="31" Name="out" />  <!-- #Bool1 -->
+<NameCon UId="32" Name="in" />  <!-- #Bool2 -->
+</Wire>
+<Wire UId="52"><!-- Wire And -->
+<NameCon UId="32" Name="out" />  <!-- #Bool2 -->
+<NameCon UId="33" Name="en" />  <!-- Convert -->
+</Wire>
+<Wire UId="53"><!-- Wire And -->
+<NameCon UId="33" Name="eno" />  <!-- Convert -->
+<!-- Distributor -->
+<NameCon UId="34" Name="en" />  <!-- Move -->
+<NameCon UId="36" Name="pre" />  <!-- Gt -->
+</Wire>
+</Wires>
+</FlgNet></NetworkSource>
+<ProgrammingLanguage>LAD</ProgrammingLanguage>
+</AttributeList>
+<ObjectList>
+<MultilingualText ID="2" CompositionName="Comment">
+<ObjectList>
+<MultilingualTextItem ID="3" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="4" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+<MultilingualText ID="5" CompositionName="Title">
+<ObjectList>
+<MultilingualTextItem ID="6" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text>Test2</Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="7" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text>Test2en</Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+</ObjectList>
+</SW.Blocks.CompileUnit>
+  
+      <MultilingualText ID="8" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="9" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>blabla</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="10" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text></Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="11" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="12" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text></Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="13" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text></Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>

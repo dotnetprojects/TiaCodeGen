@@ -1,0 +1,824 @@
+<Cases>
+  
+<SW.Blocks.FC ID="0">
+    <AttributeList>
+      <HeaderAuthor>Test</HeaderAuthor>
+      <HeaderFamily>General</HeaderFamily>
+      <HeaderVersion>1.0</HeaderVersion>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <Name>Regression</Name>
+ <Number>12</Number>
+      <Namespace />
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList><SW.Blocks.CompileUnit ID="1" CompositionName="CompileUnits"> <!--Regression-->
+<AttributeList>
+<NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v1">
+<Parts>
+<Access Scope="LocalVariable" UId="21">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="cd">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="22">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="cv">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="23">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="ld">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="24">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="pv">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="25">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="qd">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="26">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="qu">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="27">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="r">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="28">
+<Symbol>
+<Component Name="Enable">
+</Component>
+</Symbol>
+</Access>
+<Part Name="Contact" UId="29" /><!-- #Enable -->
+<Part Name="CTUD" UId="30">
+<Instance UId="31" Scope="LocalVariable">
+<Component Name="Instances">
+</Component>
+<Component Name="Timer">
+<Access Scope="LiteralConstant" UId="32" >
+<Constant>
+<ConstantType>DInt</ConstantType>
+<ConstantValue>1</ConstantValue>
+</Constant>
+</Access>
+</Component>
+</Instance>
+<TemplateValue Name="value_type" Type="Type">Int</TemplateValue>
+</Part>
+</Parts>
+<Wires>
+<Wire UId="33">
+<Powerrail />
+<NameCon UId="29" Name="in" />  <!-- #Enable -->
+</Wire>
+<Wire UId="34"><!-- Wire Parent FunctionCall (Parent:And (Signal(#Enable),CTUDCall(CTUD))) -->
+<IdentCon UId="28" />  <!-- #Enable -->
+<NameCon UId="29" Name="operand" />  <!-- #Enable -->
+</Wire>
+<Wire UId="35"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="21" />  <!-- #Data.cd -->
+<NameCon UId="30" Name="CD" />
+</Wire>
+<Wire UId="36"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="27" />  <!-- #Data.r -->
+<NameCon UId="30" Name="R" />
+</Wire>
+<Wire UId="37"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="23" />  <!-- #Data.ld -->
+<NameCon UId="30" Name="LD" />
+</Wire>
+<Wire UId="38"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="24" />  <!-- #Data.pv -->
+<NameCon UId="30" Name="PV" />
+</Wire>
+<Wire UId="39"><!-- Wire 4 FunctionCall -->
+<NameCon UId="30" Name="QU" />
+<IdentCon UId="26" />  <!-- #Data.qu -->
+</Wire>
+<Wire UId="40"><!-- Wire 4 FunctionCall -->
+<NameCon UId="30" Name="QD" />
+<IdentCon UId="25" />  <!-- #Data.qd -->
+</Wire>
+<Wire UId="41"><!-- Wire 4 FunctionCall -->
+<NameCon UId="30" Name="CV" />
+<IdentCon UId="22" />  <!-- #Data.cv -->
+</Wire>
+<Wire UId="42"><!-- Wire And -->
+<NameCon UId="29" Name="out" />  <!-- #Enable -->
+<NameCon UId="30" Name="CU" />  <!-- CTUDCall -->
+</Wire>
+</Wires>
+</FlgNet></NetworkSource>
+<ProgrammingLanguage>LAD</ProgrammingLanguage>
+</AttributeList>
+<ObjectList>
+<MultilingualText ID="2" CompositionName="Comment">
+<ObjectList>
+<MultilingualTextItem ID="3" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="4" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+<MultilingualText ID="5" CompositionName="Title">
+<ObjectList>
+<MultilingualTextItem ID="6" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text>Regression</Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="7" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text>Regression</Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+</ObjectList>
+</SW.Blocks.CompileUnit>
+  
+      <MultilingualText ID="8" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="9" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>Regression</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="10" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text>English</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="11" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="12" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>Comment</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="13" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text>Comment en</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>
+  
+<SW.Blocks.FC ID="0">
+    <AttributeList>
+      <HeaderAuthor>Test</HeaderAuthor>
+      <HeaderFamily>General</HeaderFamily>
+      <HeaderVersion>1.0</HeaderVersion>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <Name>Regression</Name>
+ <Number>12</Number>
+      <Namespace />
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList><SW.Blocks.CompileUnit ID="1" CompositionName="CompileUnits"> <!--Regression-->
+<AttributeList>
+<NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v1">
+<Parts>
+<Access Scope="LocalVariable" UId="21">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="cd">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="22">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="cv">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="23">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="ld">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="24">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="pv">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="25">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="qd">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="26">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="qu">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="27">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="r">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="28">
+<Symbol>
+<Component Name="Enable">
+</Component>
+</Symbol>
+</Access>
+<Part Name="Contact" UId="29" /><!-- #Enable -->
+<Part Name="CTUD" UId="30">
+<Instance UId="31" Scope="GlobalVariable">
+<Component Name="GlobalInstance" />
+</Instance>
+<TemplateValue Name="value_type" Type="Type">Int</TemplateValue>
+</Part>
+</Parts>
+<Wires>
+<Wire UId="32">
+<Powerrail />
+<NameCon UId="29" Name="in" />  <!-- #Enable -->
+</Wire>
+<Wire UId="33"><!-- Wire Parent FunctionCall (Parent:And (Signal(#Enable),CTUDCall(CTUD))) -->
+<IdentCon UId="28" />  <!-- #Enable -->
+<NameCon UId="29" Name="operand" />  <!-- #Enable -->
+</Wire>
+<Wire UId="34"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="21" />  <!-- #Data.cd -->
+<NameCon UId="30" Name="CD" />
+</Wire>
+<Wire UId="35"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="27" />  <!-- #Data.r -->
+<NameCon UId="30" Name="R" />
+</Wire>
+<Wire UId="36"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="23" />  <!-- #Data.ld -->
+<NameCon UId="30" Name="LD" />
+</Wire>
+<Wire UId="37"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="24" />  <!-- #Data.pv -->
+<NameCon UId="30" Name="PV" />
+</Wire>
+<Wire UId="38"><!-- Wire 4 FunctionCall -->
+<NameCon UId="30" Name="QU" />
+<IdentCon UId="26" />  <!-- #Data.qu -->
+</Wire>
+<Wire UId="39"><!-- Wire 4 FunctionCall -->
+<NameCon UId="30" Name="QD" />
+<IdentCon UId="25" />  <!-- #Data.qd -->
+</Wire>
+<Wire UId="40"><!-- Wire 4 FunctionCall -->
+<NameCon UId="30" Name="CV" />
+<IdentCon UId="22" />  <!-- #Data.cv -->
+</Wire>
+<Wire UId="41"><!-- Wire And -->
+<NameCon UId="29" Name="out" />  <!-- #Enable -->
+<NameCon UId="30" Name="CU" />  <!-- CTUDCall -->
+</Wire>
+</Wires>
+</FlgNet></NetworkSource>
+<ProgrammingLanguage>LAD</ProgrammingLanguage>
+</AttributeList>
+<ObjectList>
+<MultilingualText ID="2" CompositionName="Comment">
+<ObjectList>
+<MultilingualTextItem ID="3" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="4" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+<MultilingualText ID="5" CompositionName="Title">
+<ObjectList>
+<MultilingualTextItem ID="6" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text>Regression</Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="7" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text>Regression</Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+</ObjectList>
+</SW.Blocks.CompileUnit>
+  
+      <MultilingualText ID="8" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="9" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>Regression</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="10" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text>English</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="11" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="12" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>Comment</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="13" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text>Comment en</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>
+  
+<SW.Blocks.FC ID="0">
+    <AttributeList>
+      <HeaderAuthor>Test</HeaderAuthor>
+      <HeaderFamily>General</HeaderFamily>
+      <HeaderVersion>1.0</HeaderVersion>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <Name>Regression</Name>
+ <Number>12</Number>
+      <Namespace />
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList><SW.Blocks.CompileUnit ID="1" CompositionName="CompileUnits"> <!--Regression-->
+<AttributeList>
+<NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v1">
+<Parts>
+<Access Scope="LocalVariable" UId="21">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="cd">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="22">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="cv">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="23">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="ld">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="24">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="pv">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="25">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="qd">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="26">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="qu">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="27">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="r">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="28">
+<Symbol>
+<Component Name="Enable">
+</Component>
+</Symbol>
+</Access>
+<Part Name="Contact" UId="29" /><!-- #Enable -->
+<Part Name="CTUD" UId="30">
+<Instance UId="31" Scope="LocalVariable">
+<Component Name="Instances">
+</Component>
+<Component Name="Timer">
+<Access Scope="LiteralConstant" UId="32" >
+<Constant>
+<ConstantType>DInt</ConstantType>
+<ConstantValue>1</ConstantValue>
+</Constant>
+</Access>
+</Component>
+</Instance>
+<TemplateValue Name="value_type" Type="Type">Int</TemplateValue>
+</Part>
+</Parts>
+<Wires>
+<Wire UId="33">
+<Powerrail />
+<NameCon UId="29" Name="in" />  <!-- #Enable -->
+</Wire>
+<Wire UId="34"><!-- Wire Parent FunctionCall (Parent:And (Signal(#Enable),CTUDCall(CTUD))) -->
+<IdentCon UId="28" />  <!-- #Enable -->
+<NameCon UId="29" Name="operand" />  <!-- #Enable -->
+</Wire>
+<Wire UId="35"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="21" />  <!-- #Data.cd -->
+<NameCon UId="30" Name="CD" />
+</Wire>
+<Wire UId="36"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="27" />  <!-- #Data.r -->
+<NameCon UId="30" Name="R" />
+</Wire>
+<Wire UId="37"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="23" />  <!-- #Data.ld -->
+<NameCon UId="30" Name="LD" />
+</Wire>
+<Wire UId="38"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="24" />  <!-- #Data.pv -->
+<NameCon UId="30" Name="PV" />
+</Wire>
+<Wire UId="39"><!-- Wire 4 FunctionCall -->
+<NameCon UId="30" Name="QU" />
+<IdentCon UId="26" />  <!-- #Data.qu -->
+</Wire>
+<Wire UId="40"><!-- Wire 4 FunctionCall -->
+<NameCon UId="30" Name="QD" />
+<IdentCon UId="25" />  <!-- #Data.qd -->
+</Wire>
+<Wire UId="41"><!-- Wire 4 FunctionCall -->
+<NameCon UId="30" Name="CV" />
+<IdentCon UId="22" />  <!-- #Data.cv -->
+</Wire>
+<Wire UId="42"><!-- Wire And -->
+<NameCon UId="29" Name="out" />  <!-- #Enable -->
+<NameCon UId="30" Name="CU" />  <!-- CTUDCall -->
+</Wire>
+</Wires>
+</FlgNet></NetworkSource>
+<ProgrammingLanguage>F_LAD</ProgrammingLanguage>
+</AttributeList>
+<ObjectList>
+<MultilingualText ID="2" CompositionName="Comment">
+<ObjectList>
+<MultilingualTextItem ID="3" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="4" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+<MultilingualText ID="5" CompositionName="Title">
+<ObjectList>
+<MultilingualTextItem ID="6" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text>Regression</Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="7" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text>Regression</Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+</ObjectList>
+</SW.Blocks.CompileUnit>
+  
+      <MultilingualText ID="8" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="9" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>Regression</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="10" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text>English</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="11" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="12" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>Comment</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="13" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text>Comment en</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>
+  
+<SW.Blocks.FC ID="0">
+    <AttributeList>
+      <HeaderAuthor>Test</HeaderAuthor>
+      <HeaderFamily>General</HeaderFamily>
+      <HeaderVersion>1.0</HeaderVersion>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <Name>Regression</Name>
+ <Number>12</Number>
+      <Namespace />
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList><SW.Blocks.CompileUnit ID="1" CompositionName="CompileUnits"> <!--Regression-->
+<AttributeList>
+<NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v1">
+<Parts>
+<Access Scope="LocalVariable" UId="21">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="cd">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="22">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="cv">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="23">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="ld">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="24">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="pv">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="25">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="qd">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="26">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="qu">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="27">
+<Symbol>
+<Component Name="Data">
+</Component>
+<Component Name="r">
+</Component>
+</Symbol>
+</Access>
+<Access Scope="LocalVariable" UId="28">
+<Symbol>
+<Component Name="Enable">
+</Component>
+</Symbol>
+</Access>
+<Part Name="Contact" UId="29" /><!-- #Enable -->
+<Part Name="CTUD" UId="30">
+<Instance UId="31" Scope="GlobalVariable">
+<Component Name="GlobalInstance" />
+</Instance>
+<TemplateValue Name="value_type" Type="Type">Int</TemplateValue>
+</Part>
+</Parts>
+<Wires>
+<Wire UId="32">
+<Powerrail />
+<NameCon UId="29" Name="in" />  <!-- #Enable -->
+</Wire>
+<Wire UId="33"><!-- Wire Parent FunctionCall (Parent:And (Signal(#Enable),CTUDCall(CTUD))) -->
+<IdentCon UId="28" />  <!-- #Enable -->
+<NameCon UId="29" Name="operand" />  <!-- #Enable -->
+</Wire>
+<Wire UId="34"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="21" />  <!-- #Data.cd -->
+<NameCon UId="30" Name="CD" />
+</Wire>
+<Wire UId="35"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="27" />  <!-- #Data.r -->
+<NameCon UId="30" Name="R" />
+</Wire>
+<Wire UId="36"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="23" />  <!-- #Data.ld -->
+<NameCon UId="30" Name="LD" />
+</Wire>
+<Wire UId="37"><!-- Wire 2 FunctionCall -->
+<IdentCon UId="24" />  <!-- #Data.pv -->
+<NameCon UId="30" Name="PV" />
+</Wire>
+<Wire UId="38"><!-- Wire 4 FunctionCall -->
+<NameCon UId="30" Name="QU" />
+<IdentCon UId="26" />  <!-- #Data.qu -->
+</Wire>
+<Wire UId="39"><!-- Wire 4 FunctionCall -->
+<NameCon UId="30" Name="QD" />
+<IdentCon UId="25" />  <!-- #Data.qd -->
+</Wire>
+<Wire UId="40"><!-- Wire 4 FunctionCall -->
+<NameCon UId="30" Name="CV" />
+<IdentCon UId="22" />  <!-- #Data.cv -->
+</Wire>
+<Wire UId="41"><!-- Wire And -->
+<NameCon UId="29" Name="out" />  <!-- #Enable -->
+<NameCon UId="30" Name="CU" />  <!-- CTUDCall -->
+</Wire>
+</Wires>
+</FlgNet></NetworkSource>
+<ProgrammingLanguage>F_LAD</ProgrammingLanguage>
+</AttributeList>
+<ObjectList>
+<MultilingualText ID="2" CompositionName="Comment">
+<ObjectList>
+<MultilingualTextItem ID="3" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="4" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text></Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+<MultilingualText ID="5" CompositionName="Title">
+<ObjectList>
+<MultilingualTextItem ID="6" CompositionName="Items">
+<AttributeList>
+<Culture>de-DE</Culture>
+<Text>Regression</Text>
+</AttributeList>
+</MultilingualTextItem>
+<MultilingualTextItem ID="7" CompositionName="Items">
+<AttributeList>
+<Culture>en-GB</Culture>
+<Text>Regression</Text>
+</AttributeList>
+</MultilingualTextItem>
+</ObjectList>
+</MultilingualText>
+</ObjectList>
+</SW.Blocks.CompileUnit>
+  
+      <MultilingualText ID="8" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="9" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>Regression</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="10" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text>English</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="11" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="12" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text>Comment</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="13" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-GB</Culture>
+              <Text>Comment en</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>
+</Cases>
