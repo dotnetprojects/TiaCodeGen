@@ -8,15 +8,16 @@ Library to Generate TIA KOP Code via C#
 Use component arrays for new code. Choose the scope explicitly with `Signal.Local`
 or `Signal.Global`; local components do not need the legacy `#` prefix.
 Dots and backslashes within a component are literal, so no path escaping is needed.
+The C# examples use C# 12 collection expressions (`[...]`) for component arrays.
 
 ```csharp
-var running = Signal.Local(new[] { "Machine", "Motor.Status" });
-var speed = Signal.Global(new[] { "DB.Process", "Motor", "Speed" }, SignalType.Real);
-var custom = Signal.Local(new[] { "Data", "Value" }, SignalType.Custom,
+var running = Signal.Local(["Machine", "Motor.Status"]);
+var speed = Signal.Global(["DB.Process", "Motor", "Speed"], SignalType.Real);
+var custom = Signal.Local(["Data", "Value"], SignalType.Custom,
     customType: "MyType", description: "Process value");
 
 // The array constructor also creates a global signal.
-var global = new Signal(new[] { "DB.Process", "Motor.Status" }, SignalType.Bool);
+var global = new Signal(["DB.Process", "Motor.Status"], SignalType.Bool);
 ```
 
 The factories and array constructor accept the same optional `signalType`
@@ -48,8 +49,8 @@ new Signal(@"#Machine.Motor\\Status");     // Machine → Motor\Status
 new Signal(@"#Machine.Motor\\.Status");    // Machine → Motor\ → Status
 
 // Equivalent component syntax, with no path escapes:
-Signal.Local(new[] { "Machine", "Motor.Status" });
-Signal.Local(new[] { "Machine", @"Motor\Status" });
+Signal.Local(["Machine", "Motor.Status"]);
+Signal.Local(["Machine", @"Motor\Status"]);
 ```
 
 These C# examples use verbatim strings (`@"..."`) to show the actual path escapes.
@@ -70,7 +71,7 @@ new Signal("#Data.Values[1,2]");
 new Signal("#Data.Values[#Index.Row, 1]");
 new Signal("#Data.Values[\"IndexConstant\"]");
 new Signal(@"#Data.Values[#Index.Row\.Number, 1]");
-Signal.Local(new[] { "Data.With.Dots", "Values[1,2]" });
+Signal.Local(["Data.With.Dots", "Values[1,2]"]);
 ```
 
 Use the string syntax for expressions with variable index paths. The same path
@@ -148,11 +149,11 @@ Only platform line endings are normalized. The C# fixtures are in
 
             nw.Add(
                 new And(
-                    Signal.Local(new[] { "Bool1" }),
+                    Signal.Local(["Bool1"]),
                 new Distributor
                 (
-                    new RCoil(Signal.Local(new[] { "Bool2" })),
-                    new Coil(Signal.Local(new[] { "Bool3" }))
+                    new RCoil(Signal.Local(["Bool2"])),
+                    new Coil(Signal.Local(["Bool3"]))
                 )));
 
             codeblock.Add(nw);
@@ -172,26 +173,26 @@ This will create following
             var nw = new Network("Test2", "Test2en");
             nw.Add(
                 new And(
-                    Signal.Local(new[] { "Bool1" }),
-                    Signal.Local(new[] { "Bool2" }),
+                    Signal.Local(["Bool1"]),
+                    Signal.Local(["Bool2"]),
                     new Convert(
-                        Signal.Local(new[] { "Real1" }, SignalType.Real),
-                        Signal.Local(new[] { "Dint2" }, SignalType.DInt)
+                        Signal.Local(["Real1"], SignalType.Real),
+                        Signal.Local(["Dint2"], SignalType.DInt)
                     ),
                     new Distributor(
                         new And(
                             new Move(
-                                Signal.Local(new[] { "Real3" }),
-                                Signal.Local(new[] { "Real4" })
+                                Signal.Local(["Real3"]),
+                                Signal.Local(["Real4"])
                             ),
-                            new SCoil(Signal.Local(new[] { "Bool3" }))
+                            new SCoil(Signal.Local(["Bool3"]))
                         ),
                         new And(
                             new Gt(
-                                Signal.Local(new[] { "Real1" }, SignalType.Real),
-                                Signal.Local(new[] { "Real2" }, SignalType.Real)
+                                Signal.Local(["Real1"], SignalType.Real),
+                                Signal.Local(["Real2"], SignalType.Real)
                             ),
-                            new SCoil(Signal.Local(new[] { "Bool4" }))
+                            new SCoil(Signal.Local(["Bool4"]))
                         )
                     )
                 )
@@ -214,14 +215,14 @@ This will create following
             var nw = new Network("Test2", "Test2en");
             nw.Add(
                 new Coil(
-                    Signal.Local(new[] { "Bool1" }),
+                    Signal.Local(["Bool1"]),
                     new And(
-                        Signal.Local(new[] { "Bool2" }),
+                        Signal.Local(["Bool2"]),
                         new Or(
-                             Signal.Local(new[] { "Bool3" }),
+                             Signal.Local(["Bool3"]),
                              new And(
-                                Signal.Local(new[] { "Bool1" }),
-                                Signal.Local(new[] { "Bool4" })
+                                Signal.Local(["Bool1"]),
+                                Signal.Local(["Bool4"])
                             )
                         )
                     )
