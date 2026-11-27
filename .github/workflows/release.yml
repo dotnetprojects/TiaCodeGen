@@ -3,16 +3,23 @@ name: Release packages
 on:
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Published release tag whose npm package should be retried
+        required: true
+        type: string
 
 permissions:
   contents: read
 
 concurrency:
-  group: release-${{ github.event.release.tag_name }}
+  group: release-${{ github.event.release.tag_name || inputs.release_tag }}
   cancel-in-progress: false
 
 jobs:
   build:
+    if: github.event_name == 'release'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -75,24 +82,47 @@ jobs:
 
   publish-npm:
     needs: build
+    if: >-
+      !cancelled() && (needs.build.result == 'success' ||
+      (github.event_name == 'workflow_dispatch' &&
+      github.ref == format('refs/heads/{0}', github.event.repository.default_branch)))
     runs-on: ubuntu-latest
     permissions:
       contents: read
       id-token: write
     steps:
+      - uses: actions/checkout@v4
+        if: github.event_name == 'workflow_dispatch'
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
       - name: Install npm with trusted publishing support
         run: npm install --global npm@11
       - uses: actions/download-artifact@v4
+        if: github.event_name == 'release'
         with:
           name: release-packages
           path: artifacts
+      - name: Download npm package from the published release
+        id: retry
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: |
+          node .github/scripts/release-version.mjs
+          if [ "$(gh release view "$RELEASE_TAG" --json isDraft --jq .isDraft)" != "false" ]; then
+            echo '::error::The release must be published before retrying npm.'
+            exit 1
+          fi
+          gh release download "$RELEASE_TAG" --pattern "node-projects-tia-codegen-ts-${RELEASE_TAG#v}.tgz" --dir artifacts
       - name: Publish to npm using trusted publishing
         env:
-          NPM_TAG: ${{ needs.build.outputs.npm_tag }}
-        run: npm publish artifacts/*.tgz --access public --tag "$NPM_TAG" --registry https://registry.npmjs.org/
+          NPM_TAG: ${{ needs.build.outputs.npm_tag || steps.retry.outputs.npm_tag }}
+        run: npm publish ./artifacts/*.tgz --access public --tag "$NPM_TAG" --registry https://registry.npmjs.org/
 
   publish-nuget:
     needs: build
