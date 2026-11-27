@@ -96,6 +96,8 @@ Draft releases do not publish packages. Pushes to `main` only build and test.
 The workflow uploads the built `.tgz` and `.nupkg` to the GitHub release before
 publishing those same files to the registries. Publishing runs in independent
 jobs so a failed registry job can be rerun without republishing to the other registry.
+If a workflow fix is needed after the release, run `Release packages` manually
+from the default branch with the published release tag to retry the attached npm package.
 
 For prereleases, use a tag such as `v3.0.0-rc.1`. These publish under npm's
 `next` dist-tag, leaving `latest` unchanged. A GitHub prerelease must include a
